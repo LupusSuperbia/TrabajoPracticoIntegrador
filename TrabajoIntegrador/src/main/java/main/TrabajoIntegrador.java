@@ -6,9 +6,9 @@ package main;
 
 /**
  *
- * @author estudiante
+ * @author Juan Cruz
  */
-public class ProyectoIntegrador {
+public class TrabajoIntegrador {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");

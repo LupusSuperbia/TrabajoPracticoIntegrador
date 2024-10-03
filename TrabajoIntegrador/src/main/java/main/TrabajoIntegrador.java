@@ -8,6 +8,10 @@ package main;
  *
  * @author Juan Cruz
  */
+
+//MODIFICAR VERSIÒN DE MAVEN EN /Proyect Files/pom.xml
+//Usar comando mvn -v en la consola de comandos!
+
 public class TrabajoIntegrador {
 
     public static void main(String[] args) {

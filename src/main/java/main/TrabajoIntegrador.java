@@ -3,7 +3,7 @@
  */
 
 package main;
-
+import main.Util.ConnectionBD;
 /**
  *
  * @author Juan Cruz
@@ -15,6 +15,8 @@ package main;
 public class TrabajoIntegrador {
 
     public static void main(String[] args) {
+        ConnectionBD connect = new ConnectionBD();
+        connect.main(args);
         System.out.println("Hello World!");
     }
 }

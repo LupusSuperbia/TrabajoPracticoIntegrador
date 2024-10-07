@@ -13,6 +13,7 @@ public class Habitacion {
     protected static int IdHabitacion=1;
     protected boolean reservado = false;
     protected int cantHuespedes;
+    protected int idHotel;
 
     public Habitacion() {
     }

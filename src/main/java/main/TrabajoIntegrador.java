@@ -3,7 +3,12 @@
  */
 
 package main;
-import main.Util.ConnectionBD;
+import DAO.ClienteModel;
+import Model.Cliente;
+import Util.ConnectionBD;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Juan Cruz
@@ -15,8 +20,11 @@ import main.Util.ConnectionBD;
 public class TrabajoIntegrador {
 
     public static void main(String[] args) {
-        ConnectionBD connect = new ConnectionBD();
-        connect.main(args);
-        System.out.println("Hello World!");
+        ClienteModel model = new ClienteModel();
+        List<Cliente> prueba = new ArrayList<>();
+        prueba = model.obtenerClientes();
+        for (Cliente cliente : prueba) {
+            System.out.println(cliente);
+        }
     }
 }

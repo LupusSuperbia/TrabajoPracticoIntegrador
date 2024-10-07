@@ -14,11 +14,11 @@ public class Cliente extends Persona {
     protected boolean Reserva = false;
     protected int IdHabitacion;
 
-    public Cliente(String nombre, String apellido, int DNI) {
+    public Cliente(String nombre, String apellido, String DNI) {
         super(nombre, apellido, DNI);
     }
 
-    public Cliente(int IdCliente, String nombre, String apellido, int DNI) {
+    public Cliente(int IdCliente, String nombre, String apellido, String DNI) {
         super(nombre, apellido, DNI);
         this.IdCliente = IdCliente;
     }
@@ -55,12 +55,21 @@ public class Cliente extends Persona {
         this.apellido = apellido;
     }
 
-    public int getDNI() {
+    public String getDNI() {
         return DNI;
     }
 
-    public void setDNI(int DNI) {
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
+
+    @Override
+    public String toString() {
+        return "{ Nombre : " + this.nombre + ""
+                + "Apellido : " + this.apellido + ""
+                + "DNI : "  + this.DNI + "}"; 
+    }
+    
+    
 
 }

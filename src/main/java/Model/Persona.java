@@ -12,9 +12,9 @@ public abstract class Persona {
 
     protected String nombre;
     protected String apellido;
-    protected int DNI;
+    protected String DNI;
 
-    public Persona(String nombre, String apellido, int DNI) {
+    public Persona(String nombre, String apellido, String DNI) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
@@ -36,11 +36,11 @@ public abstract class Persona {
         this.apellido = apellido;
     }
 
-    public int getDNI() {
+    public String getDNI() {
         return DNI;
     }
 
-    public void setDNI(int DNI) {
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 }

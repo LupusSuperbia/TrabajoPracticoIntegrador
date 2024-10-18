@@ -4,26 +4,27 @@
  */
 package Model;
 
+import java.util.List;
+
 /**
  *
  * @author mateo
  */
-public abstract class Hotel {
+public class Hotel {
 
     protected static int IdHotel=1;
     protected String nombre;
     protected String direccion;
     protected int telefono;
-
-    public Hotel() {
-        IdHotel = createId();
-    }
-
-    public int createId() {
-
-        IdHotel = +1;
-        return IdHotel;
-
+    protected int estrellas;
+    protected int cantidadHabitaciones;
+    protected List<Habitacion> habitaciones;
+    
+    public Hotel(String nombre, int estrellas, int habitaciones) {
+        this.nombre = nombre;
+        this.estrellas = estrellas;
+        this.cantidadHabitaciones = habitaciones;
+        ++IdHotel; 
     }
 
     public static int getIdHotel() {
@@ -61,5 +62,22 @@ public abstract class Hotel {
     public void Reserva() {
 
     }
+
+    public void setHabitaciones(List<Habitacion> habitaciones) {
+       
+    }
+    
+  //  public void agregarHabitacion(){
+    //     habitaciones.add(habitacion);
+    // }
+
+    @Override
+    public String toString() {
+        return "{ Hotel Nombre: " + this.nombre + " " +
+                 "Estrellas: " + this.estrellas + " " + 
+                 "Habitaciones: " + this.cantidadHabitaciones + "}";  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    
 
 }

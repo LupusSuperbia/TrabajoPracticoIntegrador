@@ -10,7 +10,7 @@ package Model;
  */
 public class Habitacion {
 
-    protected static int IdHabitacion=1;
+    protected  int IdHabitacion=1;
     protected int numeroHabitacion=1;
     protected boolean reservado = false;
     protected int cantHuespedes;
@@ -20,14 +20,14 @@ public class Habitacion {
     public Habitacion() {
     }
 
-    public Habitacion(int cantHuespedes, int reservado, int hotel_id  ) {
+    public Habitacion(int habitacionId, int cantHuespedes, int reservado, int hotelId  ) {
         this.cantHuespedes = cantHuespedes;
         if(reservado == 1){ 
             this.reservado = true;
         } 
-        this.idHotel = hotel_id;
+        this.idHotel = hotelId;
         //this.numeroHabitacion = numeroHabitacion;
-        ++IdHabitacion;
+        this.IdHabitacion = habitacionId;
     }
 
     public boolean isReservado() {

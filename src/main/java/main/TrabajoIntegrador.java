@@ -55,6 +55,8 @@ public class TrabajoIntegrador {
         for (Habitacion habitacion : pruebaHabitacion) {
             System.out.println(habitacion);
         }
+        
+        System.out.println(modelHotel.ObtenerHotelPorId(2));
          
     }
 }

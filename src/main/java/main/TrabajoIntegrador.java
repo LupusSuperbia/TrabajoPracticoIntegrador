@@ -3,6 +3,7 @@
  */
 
 package main;
+import AppLogic.Menu;
 import DAO.ClienteModel;
 import DAO.HabitacionesModel;
 import DAO.HotelModel;
@@ -27,6 +28,7 @@ import java.util.List;
 public class TrabajoIntegrador {
 
     public static void main(String[] args) {
+        Menu menu = new Menu();
         ClienteModel model = new ClienteModel();
         List<Hotel> prueba = new ArrayList<>();
         List<Habitacion> pruebaHabitacion = new ArrayList<>();
@@ -38,7 +40,10 @@ public class TrabajoIntegrador {
         modelHotel.crearTabla();
         modelReserva.crearTabla();
         
-        modelHotel.insertarHotel("Pasarela", 4);
+        
+        menu.mostrarHoteles();
+        
+        /*modelHotel.insertarHotel("Pasarela", 4);
         modelHotel.insertarHotel("Pasarela2423", 5);
         modelHotel.insertarHotel("Pasarelasdada", 3);
         modelHotel.insertarHotel("HolaBienvenidos", 3);
@@ -71,7 +76,15 @@ public class TrabajoIntegrador {
             System.out.println(habitacion);
         }
         
-         
+        System.out.println("Filtrar por tamanio");
+
+        List<Habitacion> pruebaHabitacionHotel2 = modelHabitacion.filtrarHabitacionesPorTamaño(4);
+        for (Habitacion habitacion : pruebaHabitacionHotel2){
+            System.out.println(habitacion);
+    }*/
+        
+
+        
       //  System.out.println(modelHotel.obtenerHotelPorNombre("Pasarela2423"));
       
        /* pruebaHabitacion = modelHabitacion.obtenerHabitacionesPorReserva(0);

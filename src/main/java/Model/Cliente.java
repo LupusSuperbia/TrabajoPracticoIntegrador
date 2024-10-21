@@ -22,7 +22,7 @@ public class Cliente extends Persona {
         super(nombre, apellido, DNI);
         this.IdCliente = IdCliente;
     }
-
+    
     public int getIdCliente() {
         return IdCliente;
     }
@@ -70,6 +70,6 @@ public class Cliente extends Persona {
                 + "DNI : "  + this.DNI + "}"; 
     }
     
-    
+   
 
 }

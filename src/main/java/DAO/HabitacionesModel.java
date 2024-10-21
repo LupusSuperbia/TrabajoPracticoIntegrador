@@ -94,11 +94,14 @@ public class HabitacionesModel {
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, hotel_id);
             ResultSet rs = pstmt.executeQuery();
+            if (rs.next()){
             while (rs.next()) {
                 Habitacion habita = new Habitacion(rs.getInt("habitacion_id"), 
                         rs.getInt("cant_huesped"), 
                         rs.getInt("hotel_id"));
                 habitaciones.add(habita);
+            }}else{
+                System.out.println("No hay habitaciones para este Id");
             }
             System.out.println("La consulta obtener habitaciones por id ha sido un exito");
         } catch (SQLException e) {
@@ -141,5 +144,29 @@ public class HabitacionesModel {
         return habitaciones;
     }
 
-    
+    public List<Habitacion> mostrarHabitacionesPorTamaño(int cant_huesped){
+        
+        List<Habitacion> habitaciones = new ArrayList<>();
+        String query = "SELECT cant_huesped, habitacion_id, hotel_id FROM Habitacion WHERE cant_huesped = ?";
+        
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, cant_huesped);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Habitacion habita = new Habitacion(rs.getInt("habitacion_id"), 
+                        rs.getInt("cant_huesped"), 
+                        rs.getInt("hotel_id"));
+                habitaciones.add(habita);
+            }
+            System.out.println("La consulta obtener habitaciones por tamaño ha sido un exito");
+        } catch (SQLException e) {
+            System.out.println("No se pudo obtener habitaciones " + e.getMessage());
+        } finally {
+            ConnectionBD.getInstance().closeConnection();
+        }
+        
+        return habitaciones;
+        
+        
+    }
 }

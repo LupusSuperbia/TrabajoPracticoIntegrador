@@ -10,22 +10,20 @@ package Model;
  */
 public class Habitacion {
 
-    protected  int IdHabitacion=1;
-    protected int numeroHabitacion=1;
+    protected int IdHabitacion = 1;
+    protected int numeroHabitacion = 1;
     protected int cantHuespedes;
     protected int idHotel;
-    
 
     public Habitacion() {
     }
 
-    public Habitacion(int habitacionId, int cantHuespedes, int hotelId  ) {
+    public Habitacion(int habitacionId, int cantHuespedes, int hotelId) {
         this.cantHuespedes = cantHuespedes;
         this.idHotel = hotelId;
         //this.numeroHabitacion = numeroHabitacion;
         this.IdHabitacion = habitacionId;
     }
-
 
     public int getCantHuespedes() {
         return cantHuespedes;
@@ -42,10 +40,11 @@ public class Habitacion {
     public void setIdHotel(int idHotel) {
         this.idHotel = idHotel;
     }
-    
-      @Override
+
+    @Override
     public String toString() {
-        return "{ Habitacion cant_husped: " + this.cantHuespedes + " " + 
-                 "Hotel: " + this.idHotel + "}";  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return "{ Habitacion id: " + this.IdHabitacion + " "
+                + " cant_husped: " + this.cantHuespedes + " "
+                + "Hotel: " + this.idHotel + "}";  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 }

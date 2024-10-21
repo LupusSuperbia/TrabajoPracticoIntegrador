@@ -4,6 +4,7 @@
  */
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class Hotel {
 
-    protected static int IdHotel=1;
+    protected  int IdHotel=1;
     protected String nombre;
     protected String direccion;
     protected int telefono;
@@ -20,19 +21,19 @@ public class Hotel {
     protected int cantidadHabitaciones;
     protected List<Habitacion> habitaciones;
     
-    public Hotel(String nombre, int estrellas, int habitaciones) {
+    public Hotel(String nombre, int estrellas, int habitaciones, int hotel_id) {
         this.nombre = nombre;
         this.estrellas = estrellas;
         this.cantidadHabitaciones = habitaciones;
-        ++IdHotel; 
+        this.IdHotel = hotel_id; 
     }
 
-    public static int getIdHotel() {
+    public  int getIdHotel() {
         return IdHotel;
     }
 
-    public static void setIdHotel(int IdHotel) {
-        Hotel.IdHotel = IdHotel;
+    public  void setIdHotel(int IdHotel) {
+        this.IdHotel = IdHotel;
     }
 
     public String getNombre() {
@@ -64,7 +65,15 @@ public class Hotel {
     }
 
     public void setHabitaciones(List<Habitacion> habitaciones) {
-       
+       this.habitaciones = habitaciones;
+    }
+    
+     public List<Habitacion> getHabitaciones() {
+          return habitaciones;
+    }
+    
+    public void addHabitaciones(Habitacion habitacion){
+        habitaciones.add(habitacion);
     }
     
   //  public void agregarHabitacion(){
@@ -73,7 +82,8 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return "{ Hotel Nombre: " + this.nombre + " " +
+        return "{ Hotel Nombre: " + this.nombre + " "
+                + "Hotel ID: "  + this.IdHotel + " " +
                  "Estrellas: " + this.estrellas + " " + 
                  "Habitaciones: " + this.cantidadHabitaciones + "}";  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }

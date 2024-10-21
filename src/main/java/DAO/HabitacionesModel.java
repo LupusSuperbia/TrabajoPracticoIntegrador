@@ -32,7 +32,6 @@ public class HabitacionesModel {
         String query = "CREATE TABLE IF NOT EXISTS Habitacion( "
                 + "habitacion_id INTEGER NOT NULL PRIMARY KEY,"
                 + "cant_huesped INTEGER NOT NULL, "
-                + "reservado INTEGER NOT NULL,"
                 + "hotel_id INTEGER NOT NULL,"
                 + "FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id)"
                 + ");"; 
@@ -62,12 +61,11 @@ public class HabitacionesModel {
      * 
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */ 
-    public void insertarHabitacion(int cant_huesped, int reservado, int hotel_id){
-        String query = "INSERT INTO Habitacion(cant_huesped, reservado, hotel_id) VALUES (?, ?, ?)";
+    public void insertarHabitacion(int cant_huesped, int hotel_id){
+        String query = "INSERT INTO Habitacion(cant_huesped, hotel_id) VALUES (?, ?)";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, cant_huesped);
-            pstmt.setInt(2, reservado);
-            pstmt.setInt(3, hotel_id);
+            pstmt.setInt(2, hotel_id);
             pstmt.executeUpdate();
             System.out.println("Se ha insertado una habitacion exitosamente");
         } catch (SQLException e) {
@@ -92,15 +90,17 @@ public class HabitacionesModel {
     
     public List<Habitacion> obtenerHabitacionPorHotelId(int hotel_id){
         List<Habitacion> habitaciones = new ArrayList<>();
-        String query = "SELECT cant_huesped, reservado, hotel_id FROM Habitacion where hotel_id = ?";
+        String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where hotel_id = ?";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, hotel_id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Habitacion habita = new Habitacion(rs.getInt("cant_huesped"), rs.getInt("reservado"), rs.getInt("hotel_id"));
+                Habitacion habita = new Habitacion(rs.getInt("habitacion_id"), 
+                        rs.getInt("cant_huesped"), 
+                        rs.getInt("hotel_id"));
                 habitaciones.add(habita);
             }
-            System.out.println("La consulta obtener habitaciones por id a sido un exito");
+            System.out.println("La consulta obtener habitaciones por id ha sido un exito");
         } catch (SQLException e) {
             System.out.println("No se pudo obtener habitaciones " + e.getMessage());
         } finally {
@@ -121,19 +121,18 @@ public class HabitacionesModel {
      * 
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */ 
-    public List<Habitacion> obtenerHabitacionesPorReserva(int reserva) {
+    public List<Habitacion> obtenerHabitacionesPorReserva() {
         List<Habitacion> habitaciones = new ArrayList<>();
-        String query = "SELECT cant_huesped, reservado, ha.hotel_id FROM Habitacion ha"
-                + "LEFT JOIN Hotel h ON ha.hotel_id = h.hotel_id "
-                + "WHERE reservado = ?";
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, reserva);
-            ResultSet rs = pstmt.executeQuery();
+        String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion ";
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery();) {
+
             while (rs.next()) {
-                Habitacion habita = new Habitacion(rs.getInt("cant_huesped"), rs.getInt("reservado"), rs.getInt("hotel_id"));
+                Habitacion habita = new Habitacion(rs.getInt("habitacion_id"), 
+                        rs.getInt("cant_huesped"), 
+                        rs.getInt("hotel_id"));
                 habitaciones.add(habita);
             }
-            System.out.println("La consulta obtener habitaciones por reserva a sido un exito");
+            System.out.println("La consulta obtener habitaciones por reserva ha sido un exito");
         } catch (SQLException e) {
             System.out.println("No se pudo obtener habitaciones  " + e.getMessage());
         } finally {
@@ -141,7 +140,6 @@ public class HabitacionesModel {
         }
         return habitaciones;
     }
-    
-    
+
     
 }

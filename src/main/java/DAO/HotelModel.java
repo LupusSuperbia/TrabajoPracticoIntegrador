@@ -85,19 +85,24 @@ public class HotelModel {
      */ 
     public List<Hotel> obtenerHoteles() {
         List<Hotel> hoteles = new ArrayList<>();
-        String query = "SELECT h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones " +
+        String query = "SELECT h.hotel_id, h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones " +
                "FROM Hotel h " +
                "LEFT JOIN Habitacion ha ON h.hotel_id = ha.hotel_id " +
                "GROUP BY h.nombre, h.estrellas;";
                 
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query); 
+                ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
-                Hotel hotel = new Hotel(rs.getString("nombre"), rs.getInt("estrellas"), rs.getInt("habitaciones"));
+                Hotel  hotel = new Hotel(rs.getString("nombre"), 
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
                 hoteles.add(hotel);
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener al hotel " + e.getMessage());
+            System.out.println("Error al obtener Hoteles " + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
@@ -105,7 +110,50 @@ public class HotelModel {
         return hoteles;
     }
     
-    /**
+
+         /**
+     * Metodo para Obtener Hoteles que contengan cierto nombre en la tabla Hotel en la Base de Datos SQLITE
+     * 
+     * @param IdHotel
+     * ( Este parametro nos proporciona que busque el hotel que contengan este id)
+     * El uso de PreparedStatement evita inyecciones de SQL y así mantener
+     * seguridad.
+     * @return Nos retorna un tipo Hotel que es el que contenga el parametro id que les pasamos
+     * 
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */ 
+    
+    public Hotel ObtenerHotelPorId(int IdHotel) {
+        String query = "SELECT h.hotel_id, h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones " +
+               "FROM Hotel h "+
+               "LEFT JOIN Habitacion ha ON h.hotel_id = ha.hotel_id "+
+               " WHERE h.hotel_id = ? " +
+               "GROUP BY h.nombre, h.estrellas;";
+        Hotel hotel = null;
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, IdHotel);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                hotel = new Hotel(rs.getString("nombre"), 
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
+                rs.close();
+            } else {
+                System.out.println("No se ha encontrado ningun hotel con ese nombre");
+                rs.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener Hoteles " + e.getMessage());
+        } finally {
+            ConnectionBD.getInstance().closeConnection();
+
+        }
+        return hotel;
+    }
+    
+        /**
      * Metodo para Obtener Hoteles que contengan cierto nombre en la tabla Hotel en la Base de Datos SQLITE
      * 
      * @param nombre
@@ -116,26 +164,30 @@ public class HotelModel {
      * 
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */ 
-
+    
     public Hotel obtenerHotelPorNombre(String nombre) {
-         String query = "SELECT h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones " +
+         String query = "SELECT h.hotel_id, h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones " +
                "FROM Hotel h " +
                "LEFT JOIN Habitacion ha ON h.hotel_id = ha.hotel_id "
                + " WHERE nombre = ?" +
                "GROUP BY h.nombre, h.estrellas;";
         Hotel hotel = null;
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, nombre);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                hotel = new Hotel(rs.getString("nombre"), rs.getInt("estrellas"), rs.getInt("habitaciones"));
+                hotel = new Hotel(rs.getString("nombre"),
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
                 rs.close();
             } else {
                 System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 rs.close();
             }
         } catch (SQLException e) {
-            System.out.println("No se pudo encontrar hoteles " + e.getMessage());
+            System.out.println("Error al obtener Hotel " + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 
@@ -158,23 +210,27 @@ public class HotelModel {
     
     public List<Hotel> obtenerHotelesPorEstrella(int estrellas) {
         List<Hotel> hoteles = new ArrayList<>();
-        String query = "SELECT nombre, estrellas, COUNT(*) AS habitaciones  "
+        String query = "SELECT h.hotel_id, nombre, estrellas, COUNT(*) AS habitaciones  "
                 + "FROM Hotel h  "
                 + "INNER JOIN Habitacion ha "
                 + "ON h.hotel_id = ha.hotel_id  "
                 + "WHERE estrellas = ? "
                 + "GROUP BY h.nombre, h.estrellas; ";
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query);) {
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query);) {
             pstmt.setInt(1, estrellas);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 System.out.println(rs.getInt("habitaciones"));
-                Hotel hotel = new Hotel(rs.getString("nombre"), rs.getInt("estrellas"), rs.getInt("habitaciones"));
+                Hotel hotel = new Hotel(rs.getString("nombre"), 
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
                 hoteles.add(hotel);
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener al hotel " + e.getMessage());
+            System.out.println("Error al obtener Hoteles por estrellas" + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
@@ -232,7 +288,7 @@ public class HotelModel {
             try(Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, nombre);
                 pstmt.executeUpdate();
-                System.out.println("Se a eliminado un hotel correctamente");
+                System.out.println("Se ha eliminado un hotel correctamente");
             } catch (SQLException e) {
                 System.out.println("No se ha podido eliminar al hotel " + e.getMessage());
             } finally {

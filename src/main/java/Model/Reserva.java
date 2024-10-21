@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author mateo
@@ -14,17 +16,21 @@ public class Reserva {
     protected int IdCliente;
     protected int IdHotel;
     protected int idHabitacion;
-    protected int CantDias;
+    protected LocalDate fechaInicio;
+    protected LocalDate fechaFin;
+    protected String estado;
 
     public Reserva() {
     }
 
-    public Reserva(int IdReserva, int IdCliente, int IdHotel, int idHabitacion, int CantDias) {
+    public Reserva(int IdReserva, int IdCliente, int IdHotel, int idHabitacion, LocalDate fechaInicio, LocalDate fechaFin, String estado) {
         this.IdReserva = IdReserva;
         this.IdCliente = IdCliente;
         this.IdHotel = IdHotel;
         this.idHabitacion = idHabitacion;
-        this.CantDias = CantDias;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.estado = estado;
     }
 
     public int getIdReserva() {
@@ -59,12 +65,34 @@ public class Reserva {
         this.idHabitacion = idHabitacion;
     }
 
-    public int getCantDias() {
-        return CantDias;
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setCantDias(int CantDias) {
-        this.CantDias = CantDias;
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    
+
+    @Override
+    public String toString() {
+        return "{Reserva : {"
+                + "reserva_id: " + this.IdReserva + " "
+                + "hotel_id: " + this.IdHotel + " "
+                + "cliente_id: "+ this.IdCliente + " "
+                + "habitacion_id: "+ this.idHabitacion + " "
+                + "fecha inicio: "+ this.fechaInicio.toString() +  " "
+                + "fecha fin: "+ this.fechaFin.toString() +" "
+                + "Estado: " + this.estado + "} }";
     }
 
     

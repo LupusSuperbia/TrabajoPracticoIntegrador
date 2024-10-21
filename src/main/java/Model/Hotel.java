@@ -4,6 +4,7 @@
  */
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -64,7 +65,15 @@ public class Hotel {
     }
 
     public void setHabitaciones(List<Habitacion> habitaciones) {
-       
+       this.habitaciones = habitaciones;
+    }
+    
+     public List<Habitacion> getHabitaciones() {
+          return habitaciones;
+    }
+    
+    public void addHabitaciones(Habitacion habitacion){
+        habitaciones.add(habitacion);
     }
     
   //  public void agregarHabitacion(){

@@ -90,14 +90,19 @@ public class HotelModel {
                "LEFT JOIN Habitacion ha ON h.hotel_id = ha.hotel_id " +
                "GROUP BY h.nombre, h.estrellas;";
                 
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query); 
+                ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
-                Hotel  hotel = new Hotel(rs.getString("nombre"), rs.getInt("estrellas"), rs.getInt("habitaciones"), rs.getInt("hotel_id"));
+                Hotel  hotel = new Hotel(rs.getString("nombre"), 
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
                 hoteles.add(hotel);
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener el hotel " + e.getMessage());
+            System.out.println("Error al obtener Hoteles " + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
@@ -125,18 +130,22 @@ public class HotelModel {
                " WHERE h.hotel_id = ? " +
                "GROUP BY h.nombre, h.estrellas;";
         Hotel hotel = null;
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, IdHotel);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                hotel = new Hotel(rs.getString("nombre"), rs.getInt("estrellas"), rs.getInt("habitaciones"), rs.getInt("hotel_id"));
+                hotel = new Hotel(rs.getString("nombre"), 
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
                 rs.close();
             } else {
                 System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 rs.close();
             }
         } catch (SQLException e) {
-            System.out.println("No se pudo encontrar hoteles " + e.getMessage());
+            System.out.println("Error al obtener Hoteles " + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 
@@ -163,18 +172,22 @@ public class HotelModel {
                + " WHERE nombre = ?" +
                "GROUP BY h.nombre, h.estrellas;";
         Hotel hotel = null;
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, nombre);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                hotel = new Hotel(rs.getString("nombre"), rs.getInt("estrellas"), rs.getInt("habitaciones"), rs.getInt("hotel_id"));
+                hotel = new Hotel(rs.getString("nombre"),
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
                 rs.close();
             } else {
                 System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 rs.close();
             }
         } catch (SQLException e) {
-            System.out.println("No se pudo encontrar hoteles " + e.getMessage());
+            System.out.println("Error al obtener Hotel " + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 
@@ -203,17 +216,21 @@ public class HotelModel {
                 + "ON h.hotel_id = ha.hotel_id  "
                 + "WHERE estrellas = ? "
                 + "GROUP BY h.nombre, h.estrellas; ";
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query);) {
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query);) {
             pstmt.setInt(1, estrellas);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 System.out.println(rs.getInt("habitaciones"));
-                Hotel hotel = new Hotel(rs.getString("nombre"), rs.getInt("estrellas"), rs.getInt("habitaciones"), rs.getInt("hotel_id"));
+                Hotel hotel = new Hotel(rs.getString("nombre"), 
+                        rs.getInt("estrellas"), 
+                        rs.getInt("habitaciones"), 
+                        rs.getInt("hotel_id"));
                 hoteles.add(hotel);
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener al hotel " + e.getMessage());
+            System.out.println("Error al obtener Hoteles por estrellas" + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }

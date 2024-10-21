@@ -12,7 +12,6 @@ public class Habitacion {
 
     protected  int IdHabitacion=1;
     protected int numeroHabitacion=1;
-    protected boolean reservado = false;
     protected int cantHuespedes;
     protected int idHotel;
     
@@ -20,23 +19,13 @@ public class Habitacion {
     public Habitacion() {
     }
 
-    public Habitacion(int habitacionId, int cantHuespedes, int reservado, int hotelId  ) {
+    public Habitacion(int habitacionId, int cantHuespedes, int hotelId  ) {
         this.cantHuespedes = cantHuespedes;
-        if(reservado == 1){ 
-            this.reservado = true;
-        } 
         this.idHotel = hotelId;
         //this.numeroHabitacion = numeroHabitacion;
         this.IdHabitacion = habitacionId;
     }
 
-    public boolean isReservado() {
-        return reservado;
-    }
-
-    public void setReservado(boolean reservado) {
-        this.reservado = reservado;
-    }
 
     public int getCantHuespedes() {
         return cantHuespedes;
@@ -56,8 +45,7 @@ public class Habitacion {
     
       @Override
     public String toString() {
-        return "{ Habitacion cant_husped: " + this.cantHuespedes + " " +
-                 "Reservado: " + this.reservado + " " + 
+        return "{ Habitacion cant_husped: " + this.cantHuespedes + " " + 
                  "Hotel: " + this.idHotel + "}";  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 }

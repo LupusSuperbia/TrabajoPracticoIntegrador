@@ -2,24 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package DTO;
 
 /**
  *
- * @author mateo
+ * @author asamsu
  */
-public class Habitacion {
-
+public class HabitacionDTO {
     protected int IdHabitacion=1;
     protected int numeroHabitacion=1;
     protected int cantHuespedes;
     protected int idHotel;
     
 
-    public Habitacion() {
-    }
-
-    public Habitacion(int habitacionId, int cantHuespedes, int hotelId  ) {
+    public HabitacionDTO(int habitacionId, int cantHuespedes, int hotelId  ) {
         this.cantHuespedes = cantHuespedes;
         this.idHotel = hotelId;
         //this.numeroHabitacion = numeroHabitacion;

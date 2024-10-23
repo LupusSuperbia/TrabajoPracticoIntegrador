@@ -146,16 +146,15 @@ public class HotelModel {
         Hotel hotel = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, IdHotel);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                hotel = new Hotel(rs.getString("nombre"),
-                        rs.getInt("estrellas"),
-                        rs.getInt("habitaciones"),
-                        rs.getInt("hotel_id"));
-                rs.close();
-            } else {
-                System.out.println("No se ha encontrado ningun hotel con ese nombre");
-                rs.close();
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    hotel = new Hotel(rs.getString("nombre"),
+                            rs.getInt("estrellas"),
+                            rs.getInt("habitaciones"),
+                            rs.getInt("hotel_id"));
+                } else {
+                    System.out.println("No se ha encontrado ningun hotel con ese nombre");
+                }
             }
         } catch (SQLException e) {
             System.out.println("Error al obtener Hoteles " + e.getMessage());
@@ -187,16 +186,16 @@ public class HotelModel {
         Hotel hotel = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, nombre);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                hotel = new Hotel(rs.getString("nombre"),
-                        rs.getInt("estrellas"),
-                        rs.getInt("habitaciones"),
-                        rs.getInt("hotel_id"));
-                rs.close();
-            } else {
-                System.out.println("No se ha encontrado ningun hotel con ese nombre");
-                rs.close();
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    hotel = new Hotel(rs.getString("nombre"),
+                            rs.getInt("estrellas"),
+                            rs.getInt("habitaciones"),
+                            rs.getInt("hotel_id"));
+                    
+                } else {
+                    System.out.println("No se ha encontrado ningun hotel con ese nombre");
+                }
             }
         } catch (SQLException e) {
             System.out.println("Error al obtener Hotel " + e.getMessage());

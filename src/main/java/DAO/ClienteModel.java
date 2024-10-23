@@ -108,6 +108,33 @@ public class ClienteModel {
         return cliente;
     }
     
+    
+     public Cliente obtenerClientePorId(int cliente_id) {
+        String query = "SELECT cliente_id, nombre, apellido, DNI, email FROM Cliente where cliente_id = ?";
+        Cliente cliente = null;
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, cliente_id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                cliente = new Cliente(rs.getInt("cliente_id"),
+                        rs.getString("nombre"), 
+                        rs.getString("apellido"), 
+                        rs.getString("DNI"), 
+                        rs.getString("email"));
+                rs.close();
+            } else {
+                System.out.println("No se ha encontrado ningun cliente con ese DNI");
+                rs.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudo insertar el Cliente " + e.getMessage());
+        } finally {
+            ConnectionBD.getInstance().closeConnection();
+
+        }
+        return cliente;
+    }
+    
         public Cliente obtenerClientePorEmail(String email) {
         String query = "SELECT nombre, apellido, DNI, email FROM Cliente where email = ?";
         Cliente cliente = null;

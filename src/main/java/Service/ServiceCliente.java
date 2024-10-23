@@ -7,6 +7,8 @@ package Service;
 import DAO.ClienteModel;
 import DTO.ClienteDTO;
 import Model.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -55,4 +57,62 @@ public class ServiceCliente {
                 cliente.getApellido(), 
                 cliente.getDNI());
     }
+    
+    
+    public ClienteDTO buscarClienteEmail(String email){
+        if(email.isBlank()){
+            System.out.println("Por favor, ingrese el dato pedido");
+        }
+        Cliente cliente = clienteDAO.obtenerClientePorEmail(email);
+        
+        if (cliente == null){
+            System.out.println("No se ha encontrado ningun cliente con ese DNI");
+            return null;
+        }
+        
+        return new ClienteDTO(cliente.getIdCliente(), 
+                cliente.getNombre(), 
+                cliente.getApellido(), 
+                cliente.getDNI());
+    }
+    
+    public List<ClienteDTO> obtenerClientes(){
+        List<Cliente> clientes = clienteDAO.obtenerClientes();
+        List<ClienteDTO> clientesDTO = new ArrayList<>();
+        // TODO : MODULAR
+        for (Cliente cliente : clientes) {
+            ClienteDTO clienteDTO = new ClienteDTO(cliente.getIdCliente(), 
+                    cliente.getNombre(),
+                    cliente.getApellido(), cliente.getDNI());
+            clientesDTO.add(clienteDTO);
+        }
+        return clientesDTO; 
+    }
+    
+     public ClienteDTO actualizarCliente(String DNI, String nombreActualizar, String apellidoActualizar, String DNIActualizar, String emailActualizar){
+        if(DNI.isBlank() || nombreActualizar.isBlank() || apellidoActualizar.isBlank() || DNIActualizar.isBlank() || emailActualizar.isBlank()){
+            throw new IllegalArgumentException("Por favor ingrese los datos pedidos");
+        }
+        Cliente cliente = clienteDAO.actualizarCliente(DNI, nombreActualizar, apellidoActualizar, DNIActualizar, emailActualizar);
+        
+        if (cliente == null){
+            System.out.println("No se ha encontrado ningun cliente con ese DNI");
+            return null;
+        }
+        
+        return new ClienteDTO(cliente.getIdCliente(), 
+                cliente.getNombre(), 
+                cliente.getApellido(), 
+                cliente.getDNI());
+    }
+     
+    public void eliminarCliente(String DNI){
+        if(DNI.isBlank()){
+            throw new IllegalArgumentException("Por favor ingrese los datos pedidos");
+        }
+        clienteDAO.eliminarCuenta(DNI);
+        System.out.println("Se ha eliminado el cliente correctamente");
+    }
+    
+    
 }

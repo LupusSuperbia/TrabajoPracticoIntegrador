@@ -126,8 +126,8 @@ public class ReservaModel {
     public List<Reserva> obtenerReservasPorCliente(int cliente_id) {
         return obtenerReservasConCondicion("cliente_id", cliente_id);
     }
-    
-    public List<Reserva> obtenerReservasPorHabitacion(int habitacion_id){
+
+    public List<Reserva> obtenerReservasPorHabitacion(int habitacion_id) {
         return obtenerReservasConCondicion("habitacion_id", habitacion_id);
     }
 
@@ -160,6 +160,32 @@ public class ReservaModel {
         return reserva;
     }
 
+    public boolean verificarReserva(int habitacion_id, String fecha_inicio, String fecha_fin) {
+        boolean reservacion = false;
+        String query = "SELECT COUNT(*)"
+                + "FROM Reserva "
+                + "WHERE habitacion_id = ? "
+                + "  AND (fecha_inicio < ? AND fecha_fin > ?)";
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, habitacion_id);
+            pstmt.setString(2, fecha_fin);
+            pstmt.setString(3, fecha_inicio);
+            int filasAfectadas = pstmt.executeUpdate();
+            if (filasAfectadas == 0) {
+                reservacion = true;
+            } else {
+                reservacion = false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar Reserva " + e.getSQLState());
+        } finally {
+            ConnectionBD.getInstance().closeConnection();
+        }
+
+        return reservacion;
+    }
+
     public Reserva actualizarEstadoReserva(int reserva_id, String estado) {
         Reserva reserva = obtenerReservaPorId(reserva_id);
         if (reserva == null) {
@@ -183,9 +209,7 @@ public class ReservaModel {
         }
         return reserva;
     }
-    
-    
-    
+
     public void eliminarReserva(int reserva_id) {
         Reserva reserva = obtenerReservaPorId(reserva_id);
         if (reserva == null) {
@@ -203,7 +227,6 @@ public class ReservaModel {
             ConnectionBD.getInstance().closeConnection();
         }
     }
-    
 
 //     public Cliente actualizarCliente(String DNIBusqueda, String nombreActualizar, String apellidoActualizar, String DNIActualizar) {
 //        Cliente client = obtenerClientePorDNI(DNIBusqueda);

@@ -7,13 +7,15 @@ package Service;
 import DAO.HotelModel;
 import DTO.HotelDTO;
 import Model.Hotel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author asamsu
  */
 public class ServiceHotel {
-    private HotelModel hotelDAO;
+    private final HotelModel hotelDAO;
 
     public ServiceHotel() {
         this.hotelDAO = new HotelModel();
@@ -24,7 +26,20 @@ public class ServiceHotel {
         hotelDAO.crearTabla();
     }
     
-
+        // Utils
+     public List<HotelDTO> procesarHoteles(List<Hotel> hotelesModel){
+         List<HotelDTO> hotelesDTO = new ArrayList<>();
+        
+        for (Hotel hotel : hotelesModel) {
+            HotelDTO hotelDTO = new HotelDTO(hotel.getNombre(), 
+                    hotel.getIdHotel(), 
+                    hotel.getEstrellas(), 
+                    hotel.getCantidadHabitaciones());
+            hotelesDTO.add(hotelDTO);
+        }
+        
+        return hotelesDTO;
+    }
     
     public boolean ingresarHotel(String nombre, int estrellas){
         Hotel hotel = hotelDAO.obtenerHotelPorNombre(nombre);
@@ -47,8 +62,30 @@ public class ServiceHotel {
             System.out.println("No se ha encontrado ningun hotel con ese nombre");
             return null;
         }
-        return new HotelDTO(hotel.getNombre(), hotel.getIdHotel(), hotel.getEstrellas(), hotel.getCantidadHabitaciones());
+        return new HotelDTO(hotel.getNombre(),
+                hotel.getIdHotel(),
+                hotel.getEstrellas(),
+                hotel.getCantidadHabitaciones());
     }
+    
+    public List<HotelDTO> buscarHotelesPorEstrella(int estrellas){
+        if(estrellas < 0 ) {
+            throw new IllegalArgumentException("Por favor ingrese un numero mayor a 0");
+        }
+        
+        List<Hotel> hotelesModel = hotelDAO.obtenerHotelesPorEstrella(estrellas);
+        return procesarHoteles(hotelesModel);
+    }
+    
+    
+    public void eliminarHotel(String nombre){
+        if(nombre.isBlank()){
+            throw new IllegalArgumentException("Por favor ingrese un nombre");
+        }
+        hotelDAO.eliminarHotel(nombre);
+        System.out.println("Se ha eliminado correctamente el hotel: " + nombre);
+    }
+    
     
     
     

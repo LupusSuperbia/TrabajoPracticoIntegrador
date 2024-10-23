@@ -114,7 +114,9 @@ public class HabitacionesModel {
         }
         return habitaciones;
     }
-
+    
+    
+    
 
     public Habitacion obtenerHabitacionPorHabitacionId(int habitacion_id) {
         Habitacion habitacion = null;
@@ -135,6 +137,23 @@ public class HabitacionesModel {
         }
         return habitacion;
     }
+    
+    public List<Habitacion> obtenerHabitacion() {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where cant_huesped = ?";
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); 
+                ResultSet rs = pstmt.executeQuery();) {
+            
+            habitaciones = procesarHabitacion(rs);
+            System.out.println("La consulta obtener habitaciones por id ha sido un exito");
+        } catch (SQLException e) {
+            System.out.println("No se pudo obtener habitaciones " + e.getMessage());
+        } finally {
+            ConnectionBD.getInstance().closeConnection();
+        }
+        return habitaciones;
+    }
+
 
     public List<Habitacion> obtenerHabitacionPorTamanio(int tamanio) {
         List<Habitacion> habitaciones = new ArrayList<>();

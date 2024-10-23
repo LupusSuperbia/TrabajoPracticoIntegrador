@@ -42,6 +42,24 @@ public class Habitacion {
     public void setIdHotel(int idHotel) {
         this.idHotel = idHotel;
     }
+
+    public int getIdHabitacion() {
+        return IdHabitacion;
+    }
+
+    public void setIdHabitacion(int IdHabitacion) {
+        this.IdHabitacion = IdHabitacion;
+    }
+
+    public int getNumeroHabitacion() {
+        return numeroHabitacion;
+    }
+
+    public void setNumeroHabitacion(int numeroHabitacion) {
+        this.numeroHabitacion = numeroHabitacion;
+    }
+    
+    
     
       @Override
     public String toString() {

@@ -8,7 +8,11 @@ import DAO.ClienteModel;
 import DAO.HabitacionesModel;
 import DAO.HotelModel;
 import DAO.ReservaModel;
+import DTO.HabitacionDTO;
+import DTO.HotelDTO;
 import Model.Hotel;
+import Service.ServiceHabitacion;
+import Service.ServiceHotel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,8 +23,8 @@ import java.util.Scanner;
  */
 public class Menu {
     
-    HotelModel modeloHotel = new HotelModel();
-    HabitacionesModel modeloHab = new HabitacionesModel();
+    ServiceHotel serviceHotel = new ServiceHotel();
+    ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
     ClienteModel  modeloCliente = new ClienteModel();
     ReservaModel modeloReserva = new ReservaModel();
     List<Hotel> hoteles = new ArrayList<>();
@@ -42,20 +46,26 @@ public class Menu {
         switch(eleccion){
             
             case 1: mostrarHoteles();
+            break;
             case 2: 
                 System.out.println("Ingrese el id del hotel para ver sus habitaciones.");
                 opcion = leer.nextInt();
-                modeloHab.obtenerHabitacionPorHotelId(opcion);
+                mostrarHabitaciones(serviceHabitacion.obtenerHabitacionesPorHotelId(opcion));
+                break;
                 
         }
     }
     
     public void mostrarHoteles(){
-        hoteles = modeloHotel.obtenerHoteles();
-        for(Hotel hotel : hoteles){
+        List<HotelDTO> hoteles = serviceHotel.obtenerHoteles();
+        for(HotelDTO hotel : hoteles){
             System.out.println(hotel);
+        }             
+    }
+    
+    public void mostrarHabitaciones(List<HabitacionDTO> habitaciones) {
+        for (HabitacionDTO habitacione : habitaciones) {
+            System.out.println(habitacione);
         }
-            
-                    
     }
 }

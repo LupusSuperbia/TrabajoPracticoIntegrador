@@ -8,14 +8,19 @@ import DAO.HabitacionesModel;
 import DAO.HotelModel;
 import DAO.ReservaModel;
 import DTO.ClienteDTO;
+import DTO.HabitacionDTO;
 import Model.Cliente;
 import Model.Habitacion;
 import Model.Hotel;
 import Model.Reserva;
 import Service.ServiceCliente;
+import Service.ServiceHabitacion;
+import Service.ServiceHotel;
+import Service.ServiceReserva;
 import Util.ConnectionBD;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -31,77 +36,29 @@ public class TrabajoIntegrador {
 
     public static void main(String[] args) {
         ServiceCliente serviceCliente = new ServiceCliente();
-
-        serviceCliente.crearTabla();
-
-        Scanner in = new Scanner(System.in);
-
-        String nombre = in.next();
-        in.nextLine();
-        String apellido = in.next();
-        in.nextLine();
-        String DNI = in.next();
-        in.nextLine();
-        String email = in.next();
-        in.nextLine();
+        ServiceHotel serviceHotel = new ServiceHotel();
+        ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
+        ServiceReserva serviceReserva = new ServiceReserva();
         
-        serviceCliente.registrarCliente(nombre, apellido, DNI, email);
-        String DNI2 = in.next();
-        in.nextLine();
-        ClienteDTO clienteDTO = serviceCliente.iniciarSesion(DNI2);
-        System.out.println(clienteDTO);
-//        ClienteModel model = new ClienteModel();
-//        List<Hotel> prueba = new ArrayList<>();
-//        List<Habitacion> pruebaHabitacion = new ArrayList<>();
-//        List<Reserva> pruebaReserva = new ArrayList<>();
-//        HotelModel modelHotel = new HotelModel();
-//        HabitacionesModel modelHabitacion = new HabitacionesModel();
-//        ReservaModel modelReserva = new ReservaModel();
-//        modelHabitacion.crearTabla();
-//        modelHotel.crearTabla();
-//        modelReserva.crearTabla();
-//        
-//        modelHotel.insertarHotel("Pasarela", 4);
-//        modelHotel.insertarHotel("Pasarela2423", 5);
-//        modelHotel.insertarHotel("Pasarelasdada", 3);
-//        modelHotel.insertarHotel("HolaBienvenidos", 3);
-//        
-//        modelHabitacion.insertarHabitacion(5, 3);
-//        modelHabitacion.insertarHabitacion(2, 3);
-//        modelHabitacion.insertarHabitacion(4, 3);
-//        modelHabitacion.insertarHabitacion(4, 2);
-//        modelHabitacion.insertarHabitacion(4, 1);
-//        
-//        modelReserva.insertarReserva(3, 2, 3, LocalDate.now(), LocalDate.of(2024, 11, 21), "Activado");
-//        pruebaReserva = modelReserva.obtenerReservas();
-//        
-//        for (Reserva reserva : pruebaReserva) {
-//            System.out.println(reserva);
-//        }
-//        
-//        prueba = modelHotel.obtenerHoteles();
-//        for (Hotel hotel : prueba) {
-//            hotel.setHabitaciones(modelHabitacion.obtenerHabitacionPorHotelId(hotel.getIdHotel()));
-//            System.out.println(hotel);
-//        }
-//        System.out.println("hola");
-//        List<Habitacion> pruebaHabitacionHotel = new ArrayList<>();
-//        Hotel hotelprueba = prueba.getLast();
-//        System.out.println(prueba.size());
-//        pruebaHabitacionHotel = hotelprueba.getHabitaciones();
-//        System.out.println(pruebaHabitacionHotel);
-//        for (Habitacion habitacion : pruebaHabitacionHotel) {
-//            System.out.println(habitacion);
-//        }
-//        
-//         
-        //  System.out.println(modelHotel.obtenerHotelPorNombre("Pasarela2423"));
-        /* pruebaHabitacion = modelHabitacion.obtenerHabitacionesPorReserva(0);
-        for (Habitacion habitacion : pruebaHabitacion) {
-            System.out.println(habitacion);
+//        serviceHabitacion.crearTabla();
+//        serviceHotel.crearTabla();
+//        serviceReserva.crearTabla();
+        
+        ClienteDTO cliente = serviceCliente.iniciarSesion("4242");
+//        System.out.println(cliente);
+//        serviceHotel.ingresarHotel("UnCUyo", 3);
+//        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
+//        serviceHabitacion.ingresarHabitacion(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel(), 3);
+//        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
+        List<HabitacionDTO> habitaciones = serviceHabitacion.obtenerHabitacionesPorHotelId(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel());
+        HabitacionDTO habitacionId = habitaciones.get(0);
+        try {
+            serviceReserva.crearReserva(habitacionId.getIdHabitacion(),habitacionId.getIdHotel(), cliente.getIdCliente(), LocalDate.of(2024, 10, 24), LocalDate.of(2024, 10, 30));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
         
-        System.out.println(modelHotel.ObtenerHotelPorId(2));
-         */
+        
+
     }
 }

@@ -170,15 +170,14 @@ public class ReservaModel {
             pstmt.setInt(1, habitacion_id);
             pstmt.setString(2, fecha_fin);
             pstmt.setString(3, fecha_inicio);
-            int filasAfectadas = pstmt.executeUpdate();
-            if (filasAfectadas == 0) {
-                reservacion = true;
-            } else {
-                reservacion = false;
-            }
+           ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int reservas = rs.getInt(1);
+                reservacion = reservas == 0;
+            } 
 
         } catch (SQLException e) {
-            System.out.println("Error al actualizar Reserva " + e.getSQLState());
+            System.out.println("Error al actualizar Reserva " + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }

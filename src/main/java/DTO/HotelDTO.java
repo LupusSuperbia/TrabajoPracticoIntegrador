@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package DTO;
 
-import java.util.ArrayList;
+import Model.Habitacion;
 import java.util.List;
 
 /**
  *
- * @author mateo
+ * @author asamsu
  */
-public class Hotel {
-
+public class HotelDTO {
     protected  int IdHotel=1;
     protected String nombre;
     protected String direccion;
@@ -21,7 +20,7 @@ public class Hotel {
     protected int cantidadHabitaciones;
     protected List<Habitacion> habitaciones;
     
-    public Hotel(String nombre, int estrellas, int habitaciones, int hotel_id) {
+    public HotelDTO(String nombre,int hotel_id, int estrellas, int habitaciones) {
         this.nombre = nombre;
         this.estrellas = estrellas;
         this.cantidadHabitaciones = habitaciones;
@@ -98,6 +97,4 @@ public class Hotel {
                  "Habitaciones: " + this.cantidadHabitaciones + "}";  // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
     
-    
-
 }

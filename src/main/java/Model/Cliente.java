@@ -12,15 +12,13 @@ public class Cliente extends Persona {
 
     protected int IdCliente;
     protected boolean Reserva = false;
-    protected int IdHabitacion;
+    protected String email;
 
-    public Cliente(String nombre, String apellido, String DNI) {
-        super(nombre, apellido, DNI);
-    }
 
-    public Cliente(int IdCliente, String nombre, String apellido, String DNI) {
+    public Cliente(int IdCliente, String nombre, String apellido, String DNI, String email) {
         super(nombre, apellido, DNI);
         this.IdCliente = IdCliente;
+        this.email = email;
     }
 
     public int getIdCliente() {
@@ -39,29 +37,45 @@ public class Cliente extends Persona {
         this.Reserva = Reserva;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
     public String getNombre() {
         return nombre;
     }
 
+    @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    @Override
     public String getApellido() {
         return apellido;
     }
 
+    @Override
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
+    @Override
     public String getDNI() {
         return DNI;
     }
 
+    @Override
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
+    
+    
 
     @Override
     public String toString() {

@@ -2,16 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package DTO;
 
 import java.time.LocalDate;
 
 /**
  *
- * @author mateo
+ * @author asamsu
  */
-public class Reserva {
-
+public class ReservaDTO {
     protected int IdReserva;
     protected int IdCliente;
     protected int IdHotel;
@@ -20,10 +19,7 @@ public class Reserva {
     protected LocalDate fechaFin;
     protected String estado;
 
-    public Reserva() {
-    }
-
-    public Reserva(int IdReserva, int IdCliente, int IdHotel, int idHabitacion, LocalDate fechaInicio, LocalDate fechaFin, String estado) {
+    public ReservaDTO(int IdReserva, int IdCliente, int IdHotel, int idHabitacion, LocalDate fechaInicio, LocalDate fechaFin, String estado) {
         this.IdReserva = IdReserva;
         this.IdCliente = IdCliente;
         this.IdHotel = IdHotel;
@@ -103,6 +99,4 @@ public class Reserva {
                 + "Estado: " + this.estado + "} }";
     }
 
-    
-    
 }

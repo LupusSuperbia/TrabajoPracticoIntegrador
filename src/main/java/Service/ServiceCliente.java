@@ -66,6 +66,23 @@ public class ServiceCliente {
         Cliente cliente = clienteDAO.obtenerClientePorEmail(email);
         
         if (cliente == null){
+            System.out.println("No se ha encontrado ningun cliente con ese email");
+            return null;
+        }
+        
+        return new ClienteDTO(cliente.getIdCliente(), 
+                cliente.getNombre(), 
+                cliente.getApellido(), 
+                cliente.getDNI());
+    }
+    
+    public ClienteDTO buscarClienteDNI(String DNI){
+        if(DNI.isBlank()){
+            System.out.println("Por favor, ingrese el dato pedido");
+        }
+        Cliente cliente = clienteDAO.obtenerClientePorDNI(DNI);
+        
+        if (cliente == null){
             System.out.println("No se ha encontrado ningun cliente con ese DNI");
             return null;
         }
@@ -113,6 +130,8 @@ public class ServiceCliente {
         clienteDAO.eliminarCuenta(DNI);
         System.out.println("Se ha eliminado el cliente correctamente");
     }
+    
+    
     
     
 }

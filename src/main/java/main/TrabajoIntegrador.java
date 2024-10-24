@@ -3,7 +3,7 @@
  */
 package main;
 
-import AppLogic.Menu;
+import AppLogic.MenuCliente;
 import DAO.ClienteModel;
 import DAO.HabitacionesModel;
 import DAO.HotelModel;
@@ -37,37 +37,39 @@ public class TrabajoIntegrador {
 
     public static void main(String[] args) {
         
-            Menu menu = new Menu();
-            
-            menu.mostrarMenu();
+//            Menu menu = new Menu();
+//            
+//            menu.mostrarMenu();
         
         
         
         
-//        ServiceCliente serviceCliente = new ServiceCliente();
-//        ServiceHotel serviceHotel = new ServiceHotel();
-//        ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
-//        ServiceReserva serviceReserva = new ServiceReserva();
+        ServiceCliente serviceCliente = new ServiceCliente();
+        ServiceHotel serviceHotel = new ServiceHotel();
+        ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
+        ServiceReserva serviceReserva = new ServiceReserva();
         
-//        serviceHabitacion.crearTabla();
-//        serviceHotel.crearTabla();
-//        serviceReserva.crearTabla();
+        serviceCliente.crearTabla();
+        serviceHabitacion.crearTabla();
+        serviceHotel.crearTabla();
+        serviceReserva.crearTabla();
         
-//        ClienteDTO cliente = serviceCliente.iniciarSesion("4242");
-//        System.out.println(cliente);
-//        serviceHotel.ingresarHotel("UnCUyo", 3);
-//        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
-//        serviceHabitacion.ingresarHabitacion(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel(), 3);
-//        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
-//        List<HabitacionDTO> habitaciones = serviceHabitacion.obtenerHabitacionesPorHotelId(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel());
-//        HabitacionDTO habitacionId = habitaciones.get(0);
-//        try {
-//            serviceReserva.crearReserva(habitacionId.getIdHabitacion(),habitacionId.getIdHotel(), cliente.getIdCliente(), LocalDate.of(2024, 10, 24), LocalDate.of(2024, 10, 30));
-//        } catch (Exception e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//        
+        serviceCliente.registrarCliente("Ailen", "pmm", "4242", "asdasd@gmail.com");
         
-
+        ClienteDTO cliente = serviceCliente.iniciarSesion("4242");
+        System.out.println(cliente);
+        serviceHotel.ingresarHotel("UnCUyo", 3);
+        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
+        serviceHabitacion.ingresarHabitacion(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel(), 3);
+        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
+        List<HabitacionDTO> habitaciones = serviceHabitacion.obtenerHabitacionesPorHotelId(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel());
+        HabitacionDTO habitacionId = habitaciones.get(0);
+        try {
+            serviceReserva.crearReserva(habitacionId.getIdHabitacion(),habitacionId.getIdHotel(), cliente.getIdCliente(), LocalDate.of(2024, 10, 24), LocalDate.of(2024, 10, 30));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+        
     }
 }

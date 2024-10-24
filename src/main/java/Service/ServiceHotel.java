@@ -27,7 +27,7 @@ public class ServiceHotel {
     }
     
         // Utils
-     public List<HotelDTO> procesarHoteles(List<Hotel> hotelesModel){
+    private List<HotelDTO> procesarHoteles(List<Hotel> hotelesModel){
          List<HotelDTO> hotelesDTO = new ArrayList<>();
         
         for (Hotel hotel : hotelesModel) {
@@ -50,6 +50,11 @@ public class ServiceHotel {
         hotelDAO.insertarHotel(nombre, estrellas);
         System.out.println("Se ha creado el hotel exitosamente");
         return true;
+    }
+    
+    public List<HotelDTO> obtenerHoteles(){
+        List<Hotel> hotelesModel = hotelDAO.obtenerHoteles();
+        return procesarHoteles(hotelesModel);
     }
     
     public HotelDTO buscarHotelPorNombre(String nombre){

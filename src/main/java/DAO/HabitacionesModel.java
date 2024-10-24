@@ -99,7 +99,7 @@ public class HabitacionesModel {
      *
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
-    public List<Habitacion> obtenerHabitacionPorHotelId(int hotel_id) {
+    public List<Habitacion> obtenerHabitacionesPorHotelId(int hotel_id) {
         List<Habitacion> habitaciones = new ArrayList<>();
         String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where hotel_id = ?";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -138,7 +138,7 @@ public class HabitacionesModel {
         return habitacion;
     }
     
-    public List<Habitacion> obtenerHabitacion() {
+    public List<Habitacion> obtenerHabitaciones() {
         List<Habitacion> habitaciones = new ArrayList<>();
         String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where cant_huesped = ?";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); 

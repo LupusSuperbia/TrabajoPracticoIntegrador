@@ -58,13 +58,13 @@ public class ServiceHabitacion {
     }
 
     public List<HabitacionDTO> obtenerHabitaciones() {
-        List<Habitacion> habitacionesModel = habitacionDAO.obtenerHabitacion();
+        List<Habitacion> habitacionesModel = habitacionDAO.obtenerHabitaciones();
         List<HabitacionDTO> habitacionesDTO = new ArrayList<>();
         return procesarHabitaciones(habitacionesModel);
     }
 
     public List<HabitacionDTO> obtenerHabitacionesPorHotelId(int hotel_id) {
-        List<Habitacion> habitacionesModel = habitacionDAO.obtenerHabitacionPorHotelId(hotel_id);
+        List<Habitacion> habitacionesModel = habitacionDAO.obtenerHabitacionesPorHotelId(hotel_id);
         List<HabitacionDTO> habitacionesDTO = new ArrayList<>();
         return procesarHabitaciones(habitacionesModel);
     }

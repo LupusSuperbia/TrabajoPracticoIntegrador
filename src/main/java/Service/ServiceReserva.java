@@ -4,9 +4,9 @@
  */
 package Service;
 
-import DAO.ClienteModel;
 import DAO.HabitacionesModel;
 import DAO.HotelModel;
+import DAO.PersonaModel;
 import DAO.ReservaModel;
 import Model.Cliente;
 import Model.Habitacion;
@@ -18,13 +18,13 @@ import java.time.LocalDate;
  */
 public class ServiceReserva {
     private final ReservaModel reservaDAO;
-    private final ClienteModel clienteDAO;
+    private final PersonaModel clienteDAO;
     private final HotelModel  hotelDAO;
     private final HabitacionesModel habitacionDAO;
     
     public ServiceReserva(){
         this.reservaDAO = new ReservaModel();
-        this.clienteDAO = new ClienteModel();
+        this.clienteDAO = new PersonaModel();
         this.hotelDAO = new HotelModel();
         this.habitacionDAO = new HabitacionesModel();
     }

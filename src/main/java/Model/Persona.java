@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Util.Rol;
+
 /**
  *
  * @author mateo
@@ -13,6 +15,7 @@ public abstract class Persona {
     protected String nombre;
     protected String apellido;
     protected String DNI;
+    protected Rol rol;
 
     public Persona(String nombre, String apellido, String DNI) {
         this.nombre = nombre;

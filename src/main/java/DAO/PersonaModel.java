@@ -43,9 +43,17 @@ public class PersonaModel {
         }
 
     }
-
+    
+    public void insertarCliente(String nombre, String apellido, String DNI, String email, Rol rol){
+        insertarPersona(nombre, apellido, DNI, email, rol);
+    }
+    
+    public void insertarAdmin(String nombre, String apellido, String DNI, String email, Rol rol){
+         insertarPersona(nombre, apellido, DNI, email, rol);
+    }
+    
     public void insertarPersona(String nombre, String apellido, String DNI, String email, Rol rol) {
-        String query = "INSERT INTO Persona (nombre, apellido, DNI, email) VALUES (?, ?, ?, ?, ?)";
+                String query = "INSERT INTO Persona (nombre, apellido, DNI, email) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, nombre);

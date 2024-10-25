@@ -19,6 +19,7 @@ public class Cliente extends Persona {
         super(nombre, apellido, DNI);
         this.IdCliente = IdCliente;
         this.email = email;
+        this.rol = rol.USER;
     }
 
     public int getIdCliente() {

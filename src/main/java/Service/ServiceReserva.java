@@ -4,9 +4,13 @@
  */
 package Service;
 
+<<<<<<< HEAD
 import DAO.PersonaModel;
+=======
+>>>>>>> d55e11c98ede0bb0e2cacb6379ba3afe9fb6090f
 import DAO.HabitacionesModel;
 import DAO.HotelModel;
+import DAO.PersonaModel;
 import DAO.ReservaModel;
 import Model.Cliente;
 import Model.Habitacion;

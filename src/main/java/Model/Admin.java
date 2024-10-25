@@ -22,9 +22,7 @@ public class Admin extends Persona{
         this.email = email;
     }
     
-    public Admin (){
-        
-    }
+
 
     public int getIdAdmin() {
         return IdAdmin;

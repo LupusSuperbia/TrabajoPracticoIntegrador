@@ -4,9 +4,11 @@
  */
 package Service;
 
-import DAO.ClienteModel;
+
+import DAO.PersonaModel;
 import DTO.ClienteDTO;
 import Model.Cliente;
+import Util.Rol;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +17,10 @@ import java.util.List;
  * @author asamsu
  */
 public class ServiceCliente {
-    private final ClienteModel clienteDAO ;
+    private final PersonaModel clienteDAO ;
     
     public ServiceCliente(){
-        this.clienteDAO = new ClienteModel();
+        this.clienteDAO = new PersonaModel();
     }
     
     public void crearTabla(){
@@ -36,7 +38,7 @@ public class ServiceCliente {
             return false;
         }
         System.out.println(nombre + " " + apellido + " " + DNI + " " + email);
-        clienteDAO.insertarCliente(nombre, apellido, DNI, email);
+        clienteDAO.insertarCliente(nombre, apellido, DNI, email, Rol.USER);
         System.out.println("Se ha registrado correctamente el Cliente");
         return true;
     }
@@ -127,7 +129,7 @@ public class ServiceCliente {
         if(DNI.isBlank()){
             throw new IllegalArgumentException("Por favor ingrese los datos pedidos");
         }
-        clienteDAO.eliminarCuenta(DNI);
+        clienteDAO.eliminarCuentaCliente(DNI);
         System.out.println("Se ha eliminado el cliente correctamente");
     }
     

@@ -5,6 +5,7 @@
 package DTO;
 
 import Model.Habitacion;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,11 +15,9 @@ import java.util.List;
 public class HotelDTO {
     protected  int IdHotel=1;
     protected String nombre;
-    protected String direccion;
-    protected int telefono;
     protected int estrellas;
     protected int cantidadHabitaciones;
-    protected List<Habitacion> habitaciones;
+    protected List<HabitacionDTO> habitaciones;
     
     public HotelDTO(String nombre,int hotel_id, int estrellas, int habitaciones) {
         this.nombre = nombre;
@@ -43,22 +42,6 @@ public class HotelDTO {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
-
     public void setEstrellas(int estrellas) {
         this.estrellas = estrellas;
     }
@@ -74,14 +57,21 @@ public class HotelDTO {
     
 
     public void setHabitaciones(List<Habitacion> habitaciones) {
-       this.habitaciones = habitaciones;
+        List<HabitacionDTO> habitacionesDTO = new ArrayList<>();
+        
+        for (Habitacion habitacion : habitaciones) {
+            HabitacionDTO habitacionDTO = new HabitacionDTO(habitacion.getIdHabitacion(), habitacion.getCantHuespedes(), 
+            habitacion.getIdHotel());
+            habitacionesDTO.add(habitacionDTO);
+        }
+       this.habitaciones = habitacionesDTO;
     }
     
-     public List<Habitacion> getHabitaciones() {
+     public List<HabitacionDTO> getHabitaciones() {
           return habitaciones;
     }
     
-    public void addHabitaciones(Habitacion habitacion){
+    public void addHabitaciones(HabitacionDTO habitacion){
         habitaciones.add(habitacion);
     }
     

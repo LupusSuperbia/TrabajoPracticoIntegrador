@@ -15,8 +15,7 @@ public class Hotel {
 
     protected  int IdHotel=1;
     protected String nombre;
-    protected String direccion;
-    protected int telefono;
+
     protected int estrellas;
     protected int cantidadHabitaciones;
     protected List<Habitacion> habitaciones;
@@ -44,21 +43,6 @@ public class Hotel {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
 
     public void setEstrellas(int estrellas) {
         this.estrellas = estrellas;

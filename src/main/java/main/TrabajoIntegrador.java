@@ -9,6 +9,7 @@ import DAO.HotelModel;
 import DAO.ReservaModel;
 import DTO.ClienteDTO;
 import DTO.HabitacionDTO;
+import DTO.HotelDTO;
 import Model.Cliente;
 import Model.Habitacion;
 import Model.Hotel;
@@ -29,46 +30,40 @@ import java.util.Scanner;
  *
  * @author Juan Cruz
  */
-
 //MODIFICAR VERSIÒN DE MAVEN EN /Proyect Files/pom.xml
 //Usar comando mvn -v en la consola de comandos!
 public class TrabajoIntegrador {
 
     public static void main(String[] args) {
-        
+
 //            Menu menu = new Menu();
 //            
 //            menu.mostrarMenu();
-        
-        
-        
-        
         ServiceCliente serviceCliente = new ServiceCliente();
         ServiceHotel serviceHotel = new ServiceHotel();
         ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
         ServiceReserva serviceReserva = new ServiceReserva();
-        
+
         serviceCliente.crearTabla();
         serviceHabitacion.crearTabla();
         serviceHotel.crearTabla();
         serviceReserva.crearTabla();
-        
+
         serviceCliente.registrarCliente("Ailen", "pmm", "4242", "asdasd@gmail.com");
-        
+
         ClienteDTO cliente = serviceCliente.iniciarSesion("4242");
         System.out.println(cliente);
         serviceHotel.ingresarHotel("UnCUyo", 3);
-        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
-        serviceHabitacion.ingresarHabitacion(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel(), 3);
-        System.out.println(serviceHotel.buscarHotelPorNombre("UnCUyo"));
-        List<HabitacionDTO> habitaciones = serviceHabitacion.obtenerHabitacionesPorHotelId(serviceHotel.buscarHotelPorNombre("UnCUyo").getIdHotel());
-        HabitacionDTO habitacionId = habitaciones.get(0);
-        try {
-            serviceReserva.crearReserva(habitacionId.getIdHabitacion(),habitacionId.getIdHotel(), cliente.getIdCliente(), LocalDate.of(2024, 10, 24), LocalDate.of(2024, 10, 30));
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        serviceHabitacion.ingresarHabitacion(1, 3);
+        serviceHabitacion.ingresarHabitacion(1, 3);
+        serviceHabitacion.ingresarHabitacion(1, 3);
+        serviceHabitacion.ingresarHabitacion(1, 3);
+
+        HotelDTO hotel = serviceHotel.obtenerHotelesYHabitaciones(1);
+        List<HabitacionDTO> habitaciones = hotel.getHabitaciones();
+        List<HabitacionDTO> habitacionesSe = serviceHabitacion.obtenerHabitacionesPorHotelId(1);
+        for (HabitacionDTO object : habitaciones) {
+            System.out.println(object);
         }
-        
-        
     }
 }

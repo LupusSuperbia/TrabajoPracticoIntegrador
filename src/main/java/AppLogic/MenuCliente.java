@@ -55,6 +55,7 @@ public class MenuCliente {
                     break;
                 case 1:
                     mostrarHoteles();
+                    
                     break;
                 case 2:
                     mostrarHabitaciones(serviceHabitacion.obtenerHabitaciones());
@@ -88,8 +89,11 @@ public class MenuCliente {
 
     public void mostrarHoteles() {
         List<HotelDTO> hoteles = serviceHotel.obtenerHoteles();
+        int contador = 0;
         for (HotelDTO hotel : hoteles) {
-            System.out.println(hotel);
+            contador += 1;
+            System.out.println(contador + " " + hotel);
+            
         }
     }
 

@@ -53,7 +53,7 @@ public class PersonaModel {
     }
     
     public void insertarPersona(String nombre, String apellido, String DNI, String email, Rol rol) {
-                String query = "INSERT INTO Persona (nombre, apellido, DNI, email) VALUES (?, ?, ?, ?, ?)";
+                String query = "INSERT INTO Persona (nombre, apellido, DNI, email, ROL) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, nombre);
@@ -95,7 +95,7 @@ public class PersonaModel {
     }
 
     public Cliente obtenerClientePorDNI(String DNI) {
-        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ? AND ROL = USER";
+        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ?";
         Cliente cliente = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, DNI);

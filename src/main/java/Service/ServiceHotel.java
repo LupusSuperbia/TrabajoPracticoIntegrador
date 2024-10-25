@@ -4,6 +4,7 @@
  */
 package Service;
 
+import DAO.HabitacionesModel;
 import DAO.HotelModel;
 import DTO.HotelDTO;
 import Model.Hotel;
@@ -16,9 +17,10 @@ import java.util.List;
  */
 public class ServiceHotel {
     private final HotelModel hotelDAO;
-
+    private final HabitacionesModel habitacionDAO;
     public ServiceHotel() {
         this.hotelDAO = new HotelModel();
+        this.habitacionDAO = new HabitacionesModel();
     }
     
     
@@ -80,6 +82,16 @@ public class ServiceHotel {
         
         List<Hotel> hotelesModel = hotelDAO.obtenerHotelesPorEstrella(estrellas);
         return procesarHoteles(hotelesModel);
+    }
+    
+    public HotelDTO obtenerHotelesYHabitaciones(int hotel_id){
+        Hotel hotel = hotelDAO.obtenerHotelPorId(hotel_id);
+        
+        hotel.setHabitaciones(habitacionDAO.obtenerHabitacionesPorHotelId(hotel_id));
+        
+        HotelDTO hotelDTO = new HotelDTO(hotel.getNombre(), hotel.getIdHotel(), hotel.getEstrellas(), hotel.getCantidadHabitaciones());
+        hotelDTO.setHabitaciones(hotel.getHabitaciones());
+        return hotelDTO;
     }
     
     

@@ -4,6 +4,7 @@
  */
 package Service;
 
+import DAO.PersonaModel;
 import DAO.HabitacionesModel;
 import DAO.HotelModel;
 import DAO.PersonaModel;

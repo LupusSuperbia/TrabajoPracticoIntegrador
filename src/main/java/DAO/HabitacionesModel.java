@@ -140,7 +140,7 @@ public class HabitacionesModel {
     
     public List<Habitacion> obtenerHabitaciones() {
         List<Habitacion> habitaciones = new ArrayList<>();
-        String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where cant_huesped = ?";
+        String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); 
                 ResultSet rs = pstmt.executeQuery();) {
             

@@ -21,48 +21,57 @@ import java.util.Scanner;
  *
  * @author mateo
  */
-public class Menu {
-    
+public class MenuCliente {
+
     ServiceHotel serviceHotel = new ServiceHotel();
     ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
-    ClienteModel  modeloCliente = new ClienteModel();
+    ClienteModel modeloCliente = new ClienteModel();
     ReservaModel modeloReserva = new ReservaModel();
     List<Hotel> hoteles = new ArrayList<>();
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
-    public void mostrarMenu(){
-        
+
+    public void mostrarMenu() {
+
         System.out.println("Opciones:");
         System.out.println("1 Mostrar Hoteles");
-        System.out.println("2 Mostrar Habitaciones por identificacion del hotel");
+        System.out.println("2 Mostrar habitaciones");
+        System.out.println("3 Mostrar Habitaciones por identificacion del hotel");
         System.out.println("");
         System.out.println("");
         System.out.println("");
         System.out.println("");
         System.out.println("");
-        System.out.println("");
-        
+
         int eleccion = leer.nextInt();
         int opcion;
-        switch(eleccion){
-            
-            case 1: mostrarHoteles();
-            break;
-            case 2: 
+        switch (eleccion) {
+            case 1:
+                mostrarHoteles();
+                break;
+            case 2:
+                mostrarHabitaciones(serviceHabitacion.obtenerHabitaciones());
+                break;
+            case 3:
                 System.out.println("Ingrese el id del hotel para ver sus habitaciones.");
                 opcion = leer.nextInt();
                 mostrarHabitaciones(serviceHabitacion.obtenerHabitacionesPorHotelId(opcion));
                 break;
-                
+            case 4:
+                System.out.println("Ingrese el id de la habitacion para ver sus especificaciones.");
+                opcion = leer.nextInt();
+                serviceHabitacion.obtenerHabitacionPorId(opcion);
+                break;
+
         }
     }
-    
-    public void mostrarHoteles(){
+
+    public void mostrarHoteles() {
         List<HotelDTO> hoteles = serviceHotel.obtenerHoteles();
-        for(HotelDTO hotel : hoteles){
+        for (HotelDTO hotel : hoteles) {
             System.out.println(hotel);
-        }             
+        }
     }
-    
+
     public void mostrarHabitaciones(List<HabitacionDTO> habitaciones) {
         for (HabitacionDTO habitacione : habitaciones) {
             System.out.println(habitacione);

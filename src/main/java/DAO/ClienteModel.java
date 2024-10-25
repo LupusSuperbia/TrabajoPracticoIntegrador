@@ -98,7 +98,7 @@ public class ClienteModel {
             } else {
                 System.out.println("No se ha encontrado ningun cliente con ese DNI");
                 rs.close();
-            }
+            }        
         } catch (SQLException e) {
             System.out.println("No se pudo insertar el Cliente " + e.getMessage());
         } finally {

@@ -10,6 +10,7 @@ import DAO.ReservaDAO;
 import DTO.ClienteDTO;
 import DTO.HabitacionDTO;
 import DTO.HotelDTO;
+import Exceptions.ServiceExceptions;
 import Model.Cliente;
 import Model.Habitacion;
 import Model.Hotel;
@@ -48,22 +49,30 @@ public class TrabajoIntegrador {
         serviceHabitacion.crearTabla();
         serviceHotel.crearTabla();
         serviceReserva.crearTabla();
+        boolean salir = false;
+        while (!salir) {
+            try {
+                serviceCliente.registrarCliente("Agustin", "Sa", "42422", "agus@gmail.com");
+                ClienteDTO cliente = serviceCliente.iniciarSesion("42422");
+                System.out.println(cliente);
+                serviceHabitacion.ingresarHabitacion(1, 3);
+                serviceHabitacion.ingresarHabitacion(1, 3);
+                serviceHabitacion.ingresarHabitacion(1, 3);
+                serviceHabitacion.ingresarHabitacion(1, 3);
 
-        serviceCliente.registrarCliente("Ailen", "pmm", "4242", "asdasd@gmail.com");
+                HotelDTO hotel = serviceHotel.obtenerHotelYHabitaciones(1);
+                List<HabitacionDTO> habitaciones = hotel.getHabitaciones();
+                List<HabitacionDTO> habitacionesSe = serviceHabitacion.obtenerHabitacionesPorHotelId(1);
+                for (HabitacionDTO object : habitaciones) {
+                    System.out.println(object);
+                }
+                salir = true;
 
-        ClienteDTO cliente = serviceCliente.iniciarSesion("4242");
-        System.out.println(cliente);
-        serviceHotel.ingresarHotel("UnCUyo", 3);
-        serviceHabitacion.ingresarHabitacion(1, 3);
-        serviceHabitacion.ingresarHabitacion(1, 3);
-        serviceHabitacion.ingresarHabitacion(1, 3);
-        serviceHabitacion.ingresarHabitacion(1, 3);
+            } catch (ServiceExceptions e) {
+                System.out.println("Error : " + e.getMessage());
+            } finally {
 
-        HotelDTO hotel = serviceHotel.obtenerHotelesYHabitaciones(1);
-        List<HabitacionDTO> habitaciones = hotel.getHabitaciones();
-        List<HabitacionDTO> habitacionesSe = serviceHabitacion.obtenerHabitacionesPorHotelId(1);
-        for (HabitacionDTO object : habitaciones) {
-            System.out.println(object);
+            }
         }
     }
 }

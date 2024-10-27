@@ -5,8 +5,11 @@
 package AppLogic;
 
 import DTO.ClienteDTO;
+import Exceptions.ServiceExceptions;
 import Service.ServiceCliente;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +38,7 @@ public class iniciarSesion {
         do {
             try {
                 clienteDato = servicioCliente.iniciarSesion(DNI);
-            } catch (Exception e) {
+            } catch (ServiceExceptions e) {
                 System.out.println(e);
             }
         } while (clienteDato == null);
@@ -58,13 +61,17 @@ public class iniciarSesion {
             try {
                 resultado = servicioCliente.registrarCliente(nombre, apellido, DNI, email);
 
-            } catch (Exception e) {
+            } catch (ServiceExceptions e) {
                 System.out.println(e);
             }
             if (resultado == false) {
                 System.out.println("Intenta de vuelta");
             } else {
-                clienteDato = servicioCliente.buscarClienteDNI(DNI);
+                try {
+                    clienteDato = servicioCliente.buscarClienteDNI(DNI);
+                } catch (Exception ex) {
+                    Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } while (resultado == false);
         return clienteDato;

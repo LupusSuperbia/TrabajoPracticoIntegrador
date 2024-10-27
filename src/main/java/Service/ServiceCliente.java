@@ -4,11 +4,12 @@
  */
 package Service;
 
-
 import DAO.PersonaDAO;
 import DTO.ClienteDTO;
+import Exceptions.ServiceExceptions;
 import Model.Cliente;
 import Util.Rol;
+import Util.ValidarDatos;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,123 +18,97 @@ import java.util.List;
  * @author asamsu
  */
 public class ServiceCliente {
-    private final PersonaDAO clienteDAO ;
-    
-    public ServiceCliente(){
+
+    private final PersonaDAO clienteDAO;
+    private ValidarDatos validador;
+
+    public ServiceCliente() {
         this.clienteDAO = new PersonaDAO();
+        this.validador = new ValidarDatos();
     }
-    
-    public void crearTabla(){
+
+    public void crearTabla() {
         clienteDAO.crearTabla();
     }
-    
-    public boolean registrarCliente(String nombre, String apellido, String DNI, String email){
-        if(nombre.isBlank() || apellido.isBlank() || DNI.isBlank() || email.isBlank() || !email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")){
-            System.out.println("Por favor, ingrese correctamente los datos pedidos");
-            return false;
+
+    public boolean registrarCliente(String nombre, String apellido, String DNI, String email) throws ServiceExceptions {
+        validador.validarVariosDatosString("Por favor, ingrese correctamente los datos pedidos",
+                nombre,
+                apellido,
+                DNI,
+                email);
+        if (!email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            throw new ServiceExceptions("No ha ingresado un mail valido");
         }
         Cliente cliente = clienteDAO.obtenerClientePorDNI(DNI);
-        if (cliente != null){
-            System.out.println("Ya existe un cliente con ese DNI");
-            return false;
+        if (cliente != null) {
+            throw new ServiceExceptions("Ya existe un cliente con ese DNI");
         }
-        System.out.println(nombre + " " + apellido + " " + DNI + " " + email);
         clienteDAO.insertarCliente(nombre, apellido, DNI, email, Rol.USER);
         System.out.println("Se ha registrado correctamente el Cliente");
         return true;
     }
-    
-    public ClienteDTO iniciarSesion(String DNI){
-        if(DNI.isBlank()){
-            System.out.println("Por favor, ingrese el dato pedido");
-        }
+
+    public ClienteDTO iniciarSesion(String DNI) throws ServiceExceptions {
+        validador.validarDatosString(DNI, "Porfavor ingrese un DNI valido");
         Cliente cliente = clienteDAO.obtenerClientePorDNI(DNI);
-        
-        if (cliente == null){
-            System.out.println("No se ha encontrado ningun cliente con ese DNI");
-            return null;
-        }
-        
-        return new ClienteDTO(cliente.getIdCliente(), 
-                cliente.getNombre(), 
-                cliente.getApellido(), 
-                cliente.getDNI());
+
+        return retornarClienteDTO(cliente);
     }
-    
-    
-    public ClienteDTO buscarClienteEmail(String email){
-        if(email.isBlank()){
-            System.out.println("Por favor, ingrese el dato pedido");
-        }
+
+    public ClienteDTO buscarClienteEmail(String email) throws Exception {
+        validador.validarDatosString(email, "Porfavor ingrese un DNI valido");
         Cliente cliente = clienteDAO.obtenerClientePorEmail(email);
-        
-        if (cliente == null){
-            System.out.println("No se ha encontrado ningun cliente con ese email");
-            return null;
-        }
-        
-        return new ClienteDTO(cliente.getIdCliente(), 
-                cliente.getNombre(), 
-                cliente.getApellido(), 
-                cliente.getDNI());
+        return retornarClienteDTO(cliente);
     }
-    
-    public ClienteDTO buscarClienteDNI(String DNI){
-        if(DNI.isBlank()){
-            System.out.println("Por favor, ingrese el dato pedido");
-        }
+
+    public ClienteDTO buscarClienteDNI(String DNI) throws Exception {
+        validador.validarDatosString(DNI, "Porfavor ingrese un DNI valido");
         Cliente cliente = clienteDAO.obtenerClientePorDNI(DNI);
-        
-        if (cliente == null){
-            System.out.println("No se ha encontrado ningun cliente con ese DNI");
-            return null;
-        }
-        
-        return new ClienteDTO(cliente.getIdCliente(), 
-                cliente.getNombre(), 
-                cliente.getApellido(), 
-                cliente.getDNI());
+        return retornarClienteDTO(cliente);
     }
-    
-    public List<ClienteDTO> obtenerClientes(){
+
+    public List<ClienteDTO> obtenerClientes() {
         List<Cliente> clientes = clienteDAO.obtenerClientes();
         List<ClienteDTO> clientesDTO = new ArrayList<>();
         // TODO : MODULAR
         for (Cliente cliente : clientes) {
-            ClienteDTO clienteDTO = new ClienteDTO(cliente.getIdCliente(), 
+            ClienteDTO clienteDTO = new ClienteDTO(cliente.getIdCliente(),
                     cliente.getNombre(),
                     cliente.getApellido(), cliente.getDNI());
             clientesDTO.add(clienteDTO);
         }
-        return clientesDTO; 
+        return clientesDTO;
     }
-    
-     public ClienteDTO actualizarCliente(String DNI, String nombreActualizar, String apellidoActualizar, String DNIActualizar, String emailActualizar){
-        if(DNI.isBlank() || nombreActualizar.isBlank() || apellidoActualizar.isBlank() || DNIActualizar.isBlank() || emailActualizar.isBlank()){
-            throw new IllegalArgumentException("Por favor ingrese los datos pedidos");
-        }
+
+    public ClienteDTO actualizarCliente(String DNI, String nombreActualizar, String apellidoActualizar, String DNIActualizar, String emailActualizar) throws Exception {
+        validador.validarVariosDatosString("Por favor, ingrese correctamente los datos pedidos",
+                DNI,
+                nombreActualizar,
+                apellidoActualizar,
+                DNIActualizar,
+                emailActualizar);
         Cliente cliente = clienteDAO.actualizarCliente(DNI, nombreActualizar, apellidoActualizar, DNIActualizar, emailActualizar);
-        
-        if (cliente == null){
-            System.out.println("No se ha encontrado ningun cliente con ese DNI");
-            return null;
-        }
-        
-        return new ClienteDTO(cliente.getIdCliente(), 
-                cliente.getNombre(), 
-                cliente.getApellido(), 
-                cliente.getDNI());
+
+        return retornarClienteDTO(cliente);
     }
-     
-    public void eliminarCliente(String DNI){
-        if(DNI.isBlank()){
-            throw new IllegalArgumentException("Por favor ingrese los datos pedidos");
-        }
+
+    public void eliminarCliente(String DNI) throws ServiceExceptions {
+        validador.validarDatosString(DNI, "Porfavor ingrese un DNI valido");
         clienteDAO.eliminarCuentaCliente(DNI);
         System.out.println("Se ha eliminado el cliente correctamente");
     }
-    
-    
-    
-    
+
+    // Utils 
+    private ClienteDTO retornarClienteDTO(Cliente cliente) throws ServiceExceptions {
+        if (cliente == null) {
+            throw new ServiceExceptions("No se ha encontrado al cliente");
+        }
+
+        return new ClienteDTO(cliente.getIdCliente(),
+                cliente.getNombre(),
+                cliente.getApellido(),
+                cliente.getDNI());
+    }
+
 }

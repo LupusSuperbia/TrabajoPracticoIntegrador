@@ -14,15 +14,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import DAO.Interface.PersonaDAOInterface;
 // TODO: import java.util.logging.ConsoleHandler;
 
 /**
  *
  * @author asamsu
  */
-public class PersonaModel {
+public class PersonaDAO implements PersonaDAOInterface {
 
     // Crear Tabla cliente 
+    @Override
     public void crearTabla() {
         String query = "CREATE TABLE IF NOT EXISTS Persona ( "
                 + "persona_id INTEGER NOT NULL PRIMARY KEY,"
@@ -39,21 +41,24 @@ public class PersonaModel {
         } catch (SQLException e) {
             System.out.println("No se pudó crear la tabla Persona " + e.getMessage());
         } finally {
-             ConnectionBD.getInstance().closeConnection();
+            ConnectionBD.getInstance().closeConnection();
         }
 
     }
-    
-    public void insertarCliente(String nombre, String apellido, String DNI, String email, Rol rol){
+
+    @Override
+    public void insertarCliente(String nombre, String apellido, String DNI, String email, Rol rol) {
         insertarPersona(nombre, apellido, DNI, email, rol);
     }
-    
-    public void insertarAdmin(String nombre, String apellido, String DNI, String email, Rol rol){
-         insertarPersona(nombre, apellido, DNI, email, rol);
+
+    @Override
+    public void insertarAdmin(String nombre, String apellido, String DNI, String email, Rol rol) {
+        insertarPersona(nombre, apellido, DNI, email, rol);
     }
-    
+
+    @Override
     public void insertarPersona(String nombre, String apellido, String DNI, String email, Rol rol) {
-                String query = "INSERT INTO Persona (nombre, apellido, DNI, email, ROL) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Persona (nombre, apellido, DNI, email, ROL) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, nombre);
@@ -61,7 +66,7 @@ public class PersonaModel {
             pstmt.setString(3, DNI);
             pstmt.setString(4, email);
             pstmt.setString(5, rol.toString());
-            
+
             pstmt.executeUpdate();
             System.out.println("Se creo un usuario exitosamente");
 
@@ -72,15 +77,16 @@ public class PersonaModel {
         }
     }
 
+    @Override
     public List<Cliente> obtenerClientes() {
         List<Cliente> clientes = new ArrayList<>();
         String query = "SELECT nombre, apellido, DNI FROM Persona WHERE ROL = USER";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Cliente cliente = new Cliente(rs.getInt("persona_id"),
-                        rs.getString("nombre"), 
-                        rs.getString("apellido"), 
-                        rs.getString("DNI"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("DNI"),
                         rs.getString("email"));
                 clientes.add(cliente);
             }
@@ -94,6 +100,7 @@ public class PersonaModel {
         return clientes;
     }
 
+    @Override
     public Cliente obtenerClientePorDNI(String DNI) {
         String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ?";
         Cliente cliente = null;
@@ -102,9 +109,9 @@ public class PersonaModel {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 cliente = new Cliente(rs.getInt("persona_id"),
-                        rs.getString("nombre"), 
-                        rs.getString("apellido"), 
-                        rs.getString("DNI"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("DNI"),
                         rs.getString("email"));
                 rs.close();
             } else {
@@ -119,9 +126,9 @@ public class PersonaModel {
         }
         return cliente;
     }
-    
-    
-     public Cliente obtenerClientePorId(int cliente_id) {
+
+    @Override
+    public Cliente obtenerClientePorId(int cliente_id) {
         String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where cliente_id = ? AND ROL = USER";
         Cliente cliente = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -129,9 +136,9 @@ public class PersonaModel {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 cliente = new Cliente(rs.getInt("persona_id"),
-                        rs.getString("nombre"), 
-                        rs.getString("apellido"), 
-                        rs.getString("DNI"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("DNI"),
                         rs.getString("email"));
                 rs.close();
             } else {
@@ -146,8 +153,9 @@ public class PersonaModel {
         }
         return cliente;
     }
-    
-        public Cliente obtenerClientePorEmail(String email) {
+
+    @Override
+    public Cliente obtenerClientePorEmail(String email) {
         String query = "SELECT nombre, apellido, DNI, email FROM Persona where email = ? AND ROL = USER";
         Cliente cliente = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -168,7 +176,8 @@ public class PersonaModel {
         }
         return cliente;
     }
-    
+
+    @Override
     public Cliente actualizarCliente(String DNIBusqueda, String nombreActualizar, String apellidoActualizar, String DNIActualizar, String email) {
         Cliente cliente = obtenerClientePorDNI(DNIBusqueda);
         if (cliente == null) {
@@ -204,6 +213,7 @@ public class PersonaModel {
         return cliente;
     }
 
+    @Override
     public void eliminarCuentaCliente(String DNI) {
         Cliente cliente = obtenerClientePorDNI(DNI);
         if (cliente == null) {
@@ -220,16 +230,17 @@ public class PersonaModel {
             ConnectionBD.getInstance().closeConnection();
         }
     }
-    
+
+    @Override
     public List<Admin> obtenerAdmins() {
         List<Admin> admins = new ArrayList<>();
         String query = "SELECT nombre, apellido, DNI FROM Persona WHERE ROL = ADMIN";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Admin admin = new Admin(rs.getInt("persona_id"),
-                        rs.getString("nombre"), 
-                        rs.getString("apellido"), 
-                        rs.getString("DNI"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("DNI"),
                         rs.getString("email"));
                 admins.add(admin);
             }
@@ -243,6 +254,7 @@ public class PersonaModel {
         return admins;
     }
 
+    @Override
     public Admin obtenerAdminPorDNI(String DNI) {
         String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ? AND ROL = ADMIN";
         Admin admin = null;
@@ -251,9 +263,9 @@ public class PersonaModel {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 admin = new Admin(rs.getInt("persona_id"),
-                        rs.getString("nombre"), 
-                        rs.getString("apellido"), 
-                        rs.getString("DNI"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("DNI"),
                         rs.getString("email"));
                 rs.close();
             } else {
@@ -268,18 +280,19 @@ public class PersonaModel {
         }
         return admin;
     }
-    
+
+    @Override
     public Admin obtenerAdminPorId(int admin_id) {
         String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where cliente_id = ? AND ROL = ADMIN";
-        Admin admin= null;
+        Admin admin = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, admin_id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 admin = new Admin(rs.getInt("persona_id"),
-                        rs.getString("nombre"), 
-                        rs.getString("apellido"), 
-                        rs.getString("DNI"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("DNI"),
                         rs.getString("email"));
                 rs.close();
             } else {
@@ -294,7 +307,8 @@ public class PersonaModel {
         }
         return admin;
     }
-    
+
+    @Override
     public Admin obtenerAdminPorEmail(String email) {
         String query = "SELECT nombre, apellido, DNI, email FROM Persona where email = ? AND ROL = ADMIN";
         Admin admin = null;
@@ -316,9 +330,10 @@ public class PersonaModel {
         }
         return admin;
     }
-    
+
+    @Override
     public Admin actualizarAdmin(String DNIBusqueda, String nombreActualizar, String apellidoActualizar, String DNIActualizar, String email) {
-        Admin admin= obtenerAdminPorDNI(DNIBusqueda);
+        Admin admin = obtenerAdminPorDNI(DNIBusqueda);
         if (admin == null) {
             System.out.println("No se ha encontrado ningun administrador con ese DNI");
             return null;
@@ -351,7 +366,8 @@ public class PersonaModel {
         }
         return admin;
     }
-    
+
+    @Override
     public void eliminarCuentaAdmin(String DNI) {
         Admin admin = obtenerAdminPorDNI(DNI);
         if (admin == null) {
@@ -368,5 +384,5 @@ public class PersonaModel {
             ConnectionBD.getInstance().closeConnection();
         }
     }
-    
+
 }

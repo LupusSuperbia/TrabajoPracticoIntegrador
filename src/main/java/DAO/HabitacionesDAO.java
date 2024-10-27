@@ -12,12 +12,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import DAO.Interface.HabitacionesDAOInterface;
 
 /**
  *
  * @author estudiante
  */
-public class HabitacionesModel {
+public class HabitacionesDAO implements HabitacionesDAOInterface {
 
     /**
      * Metodo para crear la tabla de Habitacion en la Base de Datos SQLITE Usa
@@ -27,6 +28,7 @@ public class HabitacionesModel {
      *
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
+    @Override
     public void crearTabla() {
         String query = "CREATE TABLE IF NOT EXISTS Habitacion( "
                 + "habitacion_id INTEGER NOT NULL PRIMARY KEY,"
@@ -59,6 +61,7 @@ public class HabitacionesModel {
      *
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
+    @Override
     public void insertarHabitacion(int cant_huesped, int hotel_id) {
         String query = "INSERT INTO Habitacion(cant_huesped, hotel_id) VALUES (?, ?)";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -72,19 +75,18 @@ public class HabitacionesModel {
             ConnectionBD.getInstance().closeConnection();
         }
     }
-    
+
     // Utils
-    public List<Habitacion> procesarHabitacion(ResultSet rs) throws SQLException{
+    public List<Habitacion> procesarHabitacion(ResultSet rs) throws SQLException {
         List<Habitacion> habitaciones = new ArrayList<>();
-         while (rs.next()) {
-                Habitacion habitacion = new Habitacion(rs.getInt("habitacion_id"),
-                        rs.getInt("cant_huesped"),
-                        rs.getInt("hotel_id"));
-                habitaciones.add(habitacion);
-            }
-         return habitaciones;
+        while (rs.next()) {
+            Habitacion habitacion = new Habitacion(rs.getInt("habitacion_id"),
+                    rs.getInt("cant_huesped"),
+                    rs.getInt("hotel_id"));
+            habitaciones.add(habitacion);
+        }
+        return habitaciones;
     }
-    
 
     /**
      * Metodo para Obtener Habitaciones que contengan el mismo hotel_id en la
@@ -99,6 +101,7 @@ public class HabitacionesModel {
      *
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
+    @Override
     public List<Habitacion> obtenerHabitacionesPorHotelId(int hotel_id) {
         List<Habitacion> habitaciones = new ArrayList<>();
         String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where hotel_id = ?";
@@ -114,10 +117,7 @@ public class HabitacionesModel {
         }
         return habitaciones;
     }
-    
-    
-    
-
+    @Override
     public Habitacion obtenerHabitacionPorHabitacionId(int habitacion_id) {
         Habitacion habitacion = null;
         String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where habitacion_id = ?";
@@ -137,13 +137,12 @@ public class HabitacionesModel {
         }
         return habitacion;
     }
-    
+    @Override
     public List<Habitacion> obtenerHabitaciones() {
         List<Habitacion> habitaciones = new ArrayList<>();
         String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion";
-        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); 
-                ResultSet rs = pstmt.executeQuery();) {
-            
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery();) {
+
             habitaciones = procesarHabitacion(rs);
             System.out.println("La consulta obtener habitaciones por id ha sido un exito");
         } catch (SQLException e) {
@@ -153,8 +152,7 @@ public class HabitacionesModel {
         }
         return habitaciones;
     }
-
-
+    @Override
     public List<Habitacion> obtenerHabitacionPorTamanio(int tamanio) {
         List<Habitacion> habitaciones = new ArrayList<>();
         String query = "SELECT habitacion_id, cant_huesped, hotel_id FROM Habitacion where cant_huesped = ?";
@@ -170,23 +168,23 @@ public class HabitacionesModel {
         }
         return habitaciones;
     }
-
+    @Override
     public Habitacion actualizarHabitacionTamanio(int habitacion_id, int tamanio) {
         Habitacion habitacion = obtenerHabitacionPorHabitacionId(habitacion_id);
         String query = "UPDATE Habitacion SET cant_huesped = ? WHERE habitacion_id = ?";
-        if(habitacion == null){
+        if (habitacion == null) {
             System.out.println("No se ha encontrado ninguna habitacion con ese ID");
             return null;
-        } 
-        try(Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+        }
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setObject(1, tamanio);
             pstmt.setInt(2, habitacion_id);
-            
+
             int filasAfectadas = pstmt.executeUpdate();
-            
-            if(filasAfectadas > 0 ){
+
+            if (filasAfectadas > 0) {
                 habitacion.setCantHuespedes(tamanio);
-            } 
+            }
             System.out.println("Se ha modificado el tamaño de la habitacion correctamente");
         } catch (SQLException e) {
             System.out.println("Error al querer actualizar la habitación " + e.getSQLState());
@@ -196,14 +194,13 @@ public class HabitacionesModel {
 
         return habitacion;
     }
-    
-    
+    @Override
     public void eliminarHabitacion(int habitacion_id) {
         Habitacion habitacion = obtenerHabitacionPorHabitacionId(habitacion_id);
-        if (habitacion == null){
+        if (habitacion == null) {
             System.out.println("No se ha encontrado ninguna habitacion con ese id");
             return;
-        } 
+        }
         String query = "DELETE from Habitacion where habitacion_id = ?";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, habitacion_id);
@@ -215,6 +212,5 @@ public class HabitacionesModel {
             ConnectionBD.getInstance().closeConnection();
         }
     }
-    
-    
+
 }

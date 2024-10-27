@@ -4,11 +4,11 @@
  */
 package Service;
 
-import DAO.PersonaModel;
-import DAO.HabitacionesModel;
-import DAO.HotelModel;
-import DAO.PersonaModel;
-import DAO.ReservaModel;
+import DAO.PersonaDAO;
+import DAO.HabitacionesDAO;
+import DAO.HotelDAO;
+import DAO.PersonaDAO;
+import DAO.ReservaDAO;
 import Model.Cliente;
 import Model.Habitacion;
 import Model.Hotel;
@@ -18,16 +18,16 @@ import java.time.LocalDate;
  * @author asamsu
  */
 public class ServiceReserva {
-    private final ReservaModel reservaDAO;
-    private final PersonaModel clienteDAO;
-    private final HotelModel  hotelDAO;
-    private final HabitacionesModel habitacionDAO;
+    private final ReservaDAO reservaDAO;
+    private final PersonaDAO clienteDAO;
+    private final HotelDAO  hotelDAO;
+    private final HabitacionesDAO habitacionDAO;
     
     public ServiceReserva(){
-        this.reservaDAO = new ReservaModel();
-        this.clienteDAO = new PersonaModel();
-        this.hotelDAO = new HotelModel();
-        this.habitacionDAO = new HabitacionesModel();
+        this.reservaDAO = new ReservaDAO();
+        this.clienteDAO = new PersonaDAO();
+        this.hotelDAO = new HotelDAO();
+        this.habitacionDAO = new HabitacionesDAO();
     }
     
     public void crearTabla(){

@@ -4,8 +4,8 @@
  */
 package Service;
 
-import DAO.HabitacionesModel;
-import DAO.HotelModel;
+import DAO.HabitacionesDAO;
+import DAO.HotelDAO;
 import DTO.HotelDTO;
 import Model.Hotel;
 import java.util.ArrayList;
@@ -16,11 +16,11 @@ import java.util.List;
  * @author asamsu
  */
 public class ServiceHotel {
-    private final HotelModel hotelDAO;
-    private final HabitacionesModel habitacionDAO;
+    private final HotelDAO hotelDAO;
+    private final HabitacionesDAO habitacionDAO;
     public ServiceHotel() {
-        this.hotelDAO = new HotelModel();
-        this.habitacionDAO = new HabitacionesModel();
+        this.hotelDAO = new HotelDAO();
+        this.habitacionDAO = new HabitacionesDAO();
     }
     
     

@@ -4,8 +4,8 @@
  */
 package Service;
 
-import DAO.HabitacionesModel;
-import DAO.HotelModel;
+import DAO.HabitacionesDAO;
+import DAO.HotelDAO;
 import DTO.HabitacionDTO;
 import Model.Habitacion;
 import Model.Hotel;
@@ -19,12 +19,12 @@ import java.util.NoSuchElementException;
  */
 public class ServiceHabitacion {
 
-    private final HabitacionesModel habitacionDAO;
-    private final HotelModel hotelDAO;
+    private final HabitacionesDAO habitacionDAO;
+    private final HotelDAO hotelDAO;
 
     public ServiceHabitacion() {
-        this.habitacionDAO = new HabitacionesModel();
-        this.hotelDAO = new HotelModel();
+        this.habitacionDAO = new HabitacionesDAO();
+        this.hotelDAO = new HotelDAO();
     }
 
     public void crearTabla() {

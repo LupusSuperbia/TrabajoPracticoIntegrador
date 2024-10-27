@@ -4,10 +4,10 @@
  */
 package AppLogic;
 
-import DAO.HabitacionesModel;
-import DAO.HotelModel;
-import DAO.PersonaModel;
-import DAO.ReservaModel;
+import DAO.HabitacionesDAO;
+import DAO.HotelDAO;
+import DAO.PersonaDAO;
+import DAO.ReservaDAO;
 import DTO.ClienteDTO;
 import DTO.HabitacionDTO;
 import DTO.HotelDTO;
@@ -28,7 +28,7 @@ public class MenuCliente {
 
     ServiceHotel serviceHotel = new ServiceHotel();
     ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
-    PersonaModel modeloCliente = new PersonaModel();
+    PersonaDAO modeloCliente = new PersonaDAO();
     ServiceReserva serviceReserva = new ServiceReserva();
     List<Hotel> hoteles = new ArrayList<>();
     HabitacionDTO habitacion;

@@ -5,7 +5,7 @@
 package Service;
 
 
-import DAO.PersonaModel;
+import DAO.PersonaDAO;
 import DTO.ClienteDTO;
 import Model.Cliente;
 import Util.Rol;
@@ -17,10 +17,10 @@ import java.util.List;
  * @author asamsu
  */
 public class ServiceCliente {
-    private final PersonaModel clienteDAO ;
+    private final PersonaDAO clienteDAO ;
     
     public ServiceCliente(){
-        this.clienteDAO = new PersonaModel();
+        this.clienteDAO = new PersonaDAO();
     }
     
     public void crearTabla(){

@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import DAO.Interface.ReservaDAOInterface;
 import Model.Reserva;
 import Util.ConnectionBD;
 import java.sql.Connection;
@@ -18,9 +19,10 @@ import java.util.List;
  *
  * @author asamsu
  */
-public class ReservaModel {
+public class ReservaDAO implements ReservaDAOInterface {
 
     // CREATE
+    @Override
     public void crearTabla() {
         String query = "CREATE TABLE IF NOT EXISTS Reserva("
                 + "reserva_id INTEGER NOT NULL PRIMARY KEY, "
@@ -66,6 +68,7 @@ public class ReservaModel {
     }
 
     // INSERT
+    @Override
     public void insertarReserva(int hotel_id, int habitacion_id, int cliente_id, LocalDate fecha_inicio, LocalDate fecha_fin, String estado) {
         String query = "INSERT INTO Reserva(hotel_id, habitacion_id, cliente_id, fecha_inicio, fecha_fin, estado) VALUES (?, ?, ?, ?, ?, ? )";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -85,6 +88,7 @@ public class ReservaModel {
     }
 
     // READ
+    @Override
     public List<Reserva> obtenerReservas() {
         List<Reserva> reservaciones = new ArrayList<>();
         String query = "SELECT reserva_id, hotel_id, habitacion_id, cliente_id, fecha_inicio, fecha_fin, estado FROM Reserva";
@@ -99,6 +103,7 @@ public class ReservaModel {
         return reservaciones;
     }
 
+    @Override
     public List<Reserva> obtenerReservasConCondicion(String condicion, Object valor) {
         List<Reserva> reservaciones = new ArrayList<>();
         String query = "SELECT reserva_id, hotel_id, habitacion_id, cliente_id, fecha_inicio, fecha_fin, estado FROM Reserva WHERE " + condicion + " = ?";
@@ -115,22 +120,27 @@ public class ReservaModel {
         return reservaciones;
     }
 
+    @Override
     public List<Reserva> obtenerReservasPorEstado(String estado) {
         return obtenerReservasConCondicion("estado", estado);
     }
 
+    @Override
     public List<Reserva> obtenerReservasPorHotel(int hotel_id) {
         return obtenerReservasConCondicion("hotel_id", hotel_id);
     }
 
+    @Override
     public List<Reserva> obtenerReservasPorCliente(int cliente_id) {
         return obtenerReservasConCondicion("cliente_id", cliente_id);
     }
 
+    @Override
     public List<Reserva> obtenerReservasPorHabitacion(int habitacion_id) {
         return obtenerReservasConCondicion("habitacion_id", habitacion_id);
     }
 
+    @Override
     public Reserva obtenerReservaPorId(int reserva_id) {
         Reserva reserva = null;
         String query = "SELECT reserva_id, hotel_id, habitacion_id, cliente_id, fecha_inicio, fecha_fin, estado FROM Reserva WHERE reserva_id = ?";
@@ -160,6 +170,7 @@ public class ReservaModel {
         return reserva;
     }
 
+    @Override
     public boolean verificarReserva(int habitacion_id, String fecha_inicio, String fecha_fin) {
         boolean reservacion = false;
         String query = "SELECT COUNT(*)"
@@ -170,11 +181,11 @@ public class ReservaModel {
             pstmt.setInt(1, habitacion_id);
             pstmt.setString(2, fecha_fin);
             pstmt.setString(3, fecha_inicio);
-           ResultSet rs = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 int reservas = rs.getInt(1);
                 reservacion = reservas == 0;
-            } 
+            }
 
         } catch (SQLException e) {
             System.out.println("Error al actualizar Reserva " + e.getMessage());
@@ -185,6 +196,7 @@ public class ReservaModel {
         return reservacion;
     }
 
+    @Override
     public Reserva actualizarEstadoReserva(int reserva_id, String estado) {
         Reserva reserva = obtenerReservaPorId(reserva_id);
         if (reserva == null) {
@@ -209,6 +221,7 @@ public class ReservaModel {
         return reserva;
     }
 
+    @Override
     public void eliminarReserva(int reserva_id) {
         Reserva reserva = obtenerReservaPorId(reserva_id);
         if (reserva == null) {
@@ -227,37 +240,4 @@ public class ReservaModel {
         }
     }
 
-//     public Cliente actualizarCliente(String DNIBusqueda, String nombreActualizar, String apellidoActualizar, String DNIActualizar) {
-//        Cliente client = obtenerClientePorDNI(DNIBusqueda);
-//        if (client != null) {
-//            String query = "UPDATE CLIENTE Set nombre = ? , apellido = ?, DNI = ? WHERE DNI = ?";
-//            try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
-//
-//                pstmt.setString(1, nombreActualizar);
-//                pstmt.setString(2, apellidoActualizar);
-//                pstmt.setString(3, DNIActualizar);
-//                pstmt.setString(4, DNIBusqueda);
-//
-//                int filasAfectadas = pstmt.executeUpdate();
-//
-//                if (filasAfectadas > 0) {
-//
-//                    client.setApellido(apellidoActualizar);
-//                    client.setNombre(nombreActualizar);
-//                    client.setDNI(DNIActualizar);
-//
-//                    System.out.println("Cliente actualizado correctamente");
-//                } else {
-//                    System.out.println("Ninguna fila ha sido modificada");
-//                }
-//
-//            } catch (SQLException e) {
-//                System.out.println("No se pudo insertar el Cliente " + e.getMessage());
-//            } finally {
-//                ConnectionBD.getInstance().closeConnection();
-//
-//            }
-//            return client;
-//        }
-//        return client;
 }

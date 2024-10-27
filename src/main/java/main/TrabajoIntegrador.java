@@ -4,9 +4,9 @@
 package main;
 
 import AppLogic.MenuCliente;
-import DAO.HabitacionesModel;
-import DAO.HotelModel;
-import DAO.ReservaModel;
+import DAO.HabitacionesDAO;
+import DAO.HotelDAO;
+import DAO.ReservaDAO;
 import DTO.ClienteDTO;
 import DTO.HabitacionDTO;
 import DTO.HotelDTO;

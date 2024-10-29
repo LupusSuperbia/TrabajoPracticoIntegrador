@@ -70,7 +70,5 @@ public class TrabajoIntegrador {
             */
             inicio.IniciarSesion();
         
->>>>>>> main
->>>>>>> main
     }
 }

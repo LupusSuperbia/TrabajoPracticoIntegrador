@@ -4,6 +4,7 @@
 package main;
 
 import AppLogic.MenuCliente;
+import AppLogic.iniciarSesion;
 import DAO.HabitacionesDAO;
 import DAO.HotelDAO;
 import DAO.ReservaDAO;
@@ -37,9 +38,10 @@ public class TrabajoIntegrador {
 
     public static void main(String[] args) throws ServiceExceptions {
 
-//            Menu menu = new Menu();
-//            
-//            menu.mostrarMenu();
+        iniciarSesion inicio = new iniciarSesion();
+        
+        
+        
         ServiceCliente serviceCliente = new ServiceCliente();
         ServiceHotel serviceHotel = new ServiceHotel();
         ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
@@ -49,10 +51,33 @@ public class TrabajoIntegrador {
         serviceHabitacion.crearTabla();
         serviceHotel.crearTabla();
         serviceReserva.crearTabla();
+<<<<<<< HEAD
         boolean salir = serviceHotel.ingresarHotel("Anahse", 5);
         HotelDTO hotelPrueba = serviceHotel.buscarHotelPorNombre("Anashe");
         serviceHabitacion.ingresarHabitacion(hotelPrueba.getIdHotel(), 10);
              
 
+=======
+        boolean salir = false;
+        
+            /*serviceCliente.registrarCliente("Agustin", "Sa", "42422", "agus@gmail.com");
+            ClienteDTO cliente = serviceCliente.iniciarSesion("42422");
+            System.out.println(cliente);
+            serviceHabitacion.ingresarHabitacion(1, 3);
+            serviceHabitacion.ingresarHabitacion(1, 3);
+            serviceHabitacion.ingresarHabitacion(1, 3);
+            serviceHabitacion.ingresarHabitacion(1, 3);
+            
+            HotelDTO hotel = serviceHotel.obtenerHotelYHabitaciones(1);
+            List<HabitacionDTO> habitaciones = hotel.getHabitaciones();
+            List<HabitacionDTO> habitacionesSe = serviceHabitacion.obtenerHabitacionesPorHotelId(1);
+            for (HabitacionDTO object : habitaciones) {
+            System.out.println(object);
+            }
+            salir = true;
+            */
+            inicio.IniciarSesion();
+        
+>>>>>>> main
     }
 }

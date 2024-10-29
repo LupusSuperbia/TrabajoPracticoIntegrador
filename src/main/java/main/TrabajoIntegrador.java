@@ -36,7 +36,7 @@ import java.util.Scanner;
 //Usar comando mvn -v en la consola de comandos!
 public class TrabajoIntegrador {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ServiceExceptions {
 
         iniciarSesion inicio = new iniciarSesion();
         
@@ -51,6 +51,13 @@ public class TrabajoIntegrador {
         serviceHabitacion.crearTabla();
         serviceHotel.crearTabla();
         serviceReserva.crearTabla();
+<<<<<<< HEAD
+        boolean salir = serviceHotel.ingresarHotel("Anahse", 5);
+        HotelDTO hotelPrueba = serviceHotel.buscarHotelPorNombre("Anashe");
+        serviceHabitacion.ingresarHabitacion(hotelPrueba.getIdHotel(), 10);
+             
+
+=======
         boolean salir = false;
         
             /*serviceCliente.registrarCliente("Agustin", "Sa", "42422", "agus@gmail.com");
@@ -71,5 +78,6 @@ public class TrabajoIntegrador {
             */
             inicio.IniciarSesion();
         
+>>>>>>> main
     }
 }

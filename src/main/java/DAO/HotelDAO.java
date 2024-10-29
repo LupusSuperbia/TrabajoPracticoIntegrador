@@ -18,7 +18,7 @@ import DAO.Interface.HotelDAOInterface;
  *
  * @author asamsu
  */
-public class HotelDAO implements HotelDAOInterface{
+public class HotelDAO implements HotelDAOInterface {
 
     /**
      * Metodo para crear la tabla de Hotel en la Base de Datos SQLITE Usa un
@@ -73,6 +73,7 @@ public class HotelDAO implements HotelDAOInterface{
             ConnectionBD.getInstance().closeConnection();
         }
     }
+
     // Utils 
     public List<Hotel> procesarHotel(ResultSet rs) throws SQLException {
         List<Hotel> hoteles = new ArrayList<>();
@@ -85,12 +86,16 @@ public class HotelDAO implements HotelDAOInterface{
         }
         return hoteles;
     }
+
     @Override
     public Hotel actualizarHotelEnObjeto(Hotel hotel, String columna, Object valorModificado) {
         switch (columna) {
-            case "nombre" -> hotel.setNombre((String) valorModificado);
-            case "estrellas" -> hotel.setEstrellas((int) valorModificado);
-            default -> throw new IllegalArgumentException("Columna no válida: " + columna);
+            case "nombre" ->
+                hotel.setNombre((String) valorModificado);
+            case "estrellas" ->
+                hotel.setEstrellas((int) valorModificado);
+            default ->
+                throw new IllegalArgumentException("Columna no válida: " + columna);
         }
         return hotel;
     }
@@ -156,6 +161,7 @@ public class HotelDAO implements HotelDAOInterface{
                     System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 }
             }
+
         } catch (SQLException e) {
             System.out.println("Error al obtener Hoteles " + e.getMessage());
         } finally {
@@ -178,7 +184,7 @@ public class HotelDAO implements HotelDAOInterface{
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
     @Override
-    public Hotel obtenerHotelPorNombre(String nombre) {
+public Hotel obtenerHotelPorNombre(String nombre) {
         String query = "SELECT h.hotel_id, h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones "
                 + "FROM Hotel h "
                 + "LEFT JOIN Habitacion ha ON h.hotel_id = ha.hotel_id "
@@ -194,7 +200,7 @@ public class HotelDAO implements HotelDAOInterface{
                             rs.getInt("habitaciones"),
                             rs.getInt("hotel_id"));
                     return hotel;
-                } else {
+} else {
                     System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 }
             }
@@ -242,6 +248,7 @@ public class HotelDAO implements HotelDAOInterface{
 
         return hoteles;
     }
+
     @Override
     public Hotel actualizarHotel(String columna, Object valorModificado, int hotel_id) {
         Hotel hotel = obtenerHotelPorId(hotel_id);

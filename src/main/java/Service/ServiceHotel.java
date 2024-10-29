@@ -75,6 +75,17 @@ public class ServiceHotel {
         hotelDTO.setHabitaciones(hotel.getHabitaciones());
         return hotelDTO;
     }
+    
+        public HotelDTO obtenerHotelYHabitacionesPorNombre(String nombre) throws ServiceExceptions {
+        validador.validarDatosString(nombre, "Por favor ingrese un numero mayor a 0");
+        Hotel hotel = hotelDAO.obtenerHotelPorNombre(nombre);
+
+        hotel.setHabitaciones(habitacionDAO.obtenerHabitacionesPorHotelId(hotel.getIdHotel()));
+
+        HotelDTO hotelDTO = crearHotelDTO(hotel);
+        hotelDTO.setHabitaciones(hotel.getHabitaciones());
+        return hotelDTO;
+    }
 
     public void eliminarHotel(String nombre) throws ServiceExceptions {
         validador.validarDatosString(nombre, "Por favor ingrese un nombre");

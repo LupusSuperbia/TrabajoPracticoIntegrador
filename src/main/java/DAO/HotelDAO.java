@@ -151,6 +151,7 @@ public class HotelDAO implements HotelDAOInterface{
                             rs.getInt("estrellas"),
                             rs.getInt("habitaciones"),
                             rs.getInt("hotel_id"));
+                    return hotel;
                 } else {
                     System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 }
@@ -192,7 +193,7 @@ public class HotelDAO implements HotelDAOInterface{
                             rs.getInt("estrellas"),
                             rs.getInt("habitaciones"),
                             rs.getInt("hotel_id"));
-                    
+                    return hotel;
                 } else {
                     System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 }

@@ -177,7 +177,7 @@ public class HotelDAO implements HotelDAOInterface{
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
     @Override
-    public Hotel obtenerHotelPorNombre(String nombre) {
+public Hotel obtenerHotelPorNombre(String nombre) {
         String query = "SELECT h.hotel_id, h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones "
                 + "FROM Hotel h "
                 + "LEFT JOIN Habitacion ha ON h.hotel_id = ha.hotel_id "
@@ -192,7 +192,7 @@ public class HotelDAO implements HotelDAOInterface{
                             rs.getInt("estrellas"),
                             rs.getInt("habitaciones"),
                             rs.getInt("hotel_id"));
-                    
+                    return hotel;
                 } else {
                     System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 }

@@ -129,7 +129,8 @@ public class PersonaDAO implements PersonaDAOInterface {
 
     @Override
     public Cliente obtenerClientePorId(int cliente_id) {
-        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where cliente_id = ? AND ROL = USER";
+        String query = "SELECT persona_id, nombre, apellido, DNI, email, ROL FROM Persona where persona_id = ? AND ROL = \"USER\"" ;
+                 
         Cliente cliente = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, cliente_id);
@@ -146,7 +147,7 @@ public class PersonaDAO implements PersonaDAOInterface {
                 rs.close();
             }
         } catch (SQLException e) {
-            System.out.println("No se pudo insertar el Cliente " + e.getMessage());
+            System.out.println("No se pudo insertar el cliente " + e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 

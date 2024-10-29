@@ -20,28 +20,53 @@ public class iniciarSesion {
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
     ServiceCliente servicioCliente = new ServiceCliente();
     ClienteDTO clienteDato = null;
+    MenuCliente menu = new MenuCliente();
 
     public void IniciarSesion() {
-
+        do{
         System.out.println("¿Tienes cuenta?, si ya tienes presiona un distinto de N.");
         if (!"N".equals(leer.next().toUpperCase())) {
-            Inicio();
-        } else {
-            Registro();
-        }
+            try{
+            clienteDato = Inicio();
+            
+            if(clienteDato != null){
+            System.out.println("¡Se inició sesion correctamente!");
+            menu.mostrarMenuCliente(clienteDato);
+            }
+            
+            }catch(ServiceExceptions e){
+                System.out.println(e.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            } else {
+            try{
+            clienteDato = Registro();
+            menu.mostrarMenuCliente(clienteDato);
+            }catch(ServiceExceptions e){
+                System.out.println(e.getMessage());
+                
+            } catch (Exception ex) {
+                Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+        }while(clienteDato == null);
     }
 
     public ClienteDTO Inicio() {
-        System.out.println("Ingresa tu DNI para ver si estas en el sistema.");
-        String DNI = leer.next();
-        boolean inicio = true;
+        System.out.println("Ingresa tu DNI para ver si estas en el sistema, o 0 para salir.");
+        String DNI = "";
         do {
             try {
+                DNI = leer.next();
                 clienteDato = servicioCliente.iniciarSesion(DNI);
+                if(clienteDato == null || DNI == "0"){
+                    System.out.println("No se encontro cliente con este DNI, reintenta.");
+                }
             } catch (ServiceExceptions e) {
                 System.out.println(e);
             }
-        } while (clienteDato == null);
+        } while (clienteDato == null && DNI != "0");
         return clienteDato;
     }
 
@@ -54,7 +79,7 @@ public class iniciarSesion {
             nombre = leer.next();
             System.out.println("Ingresa el apellido.");
             apellido = leer.next();
-            System.out.println("Ingresa el nombre.");
+            System.out.println("Ingresa el DNI.");
             DNI = leer.next();
             System.out.println("Ingresa tu email.");
             email = leer.next();

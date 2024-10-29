@@ -34,7 +34,7 @@ public class ReservaDAO implements ReservaDAOInterface {
                 + "estado TEXT NOT NULL, "
                 + "FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id), "
                 + "FOREIGN KEY (habitacion_id) REFERENCES Habitacion(habitacion_id), "
-                + "FOREIGN KEY (cliente_id) REFERENCES Cliente(cliente_id) "
+                + "FOREIGN KEY (cliente_id) REFERENCES Persona(persona_id) "
                 + " )";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.execute();

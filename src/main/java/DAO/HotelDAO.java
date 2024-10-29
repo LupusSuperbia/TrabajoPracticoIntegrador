@@ -150,16 +150,16 @@ public class HotelDAO implements HotelDAOInterface {
         Hotel hotel = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, IdHotel);
-            //try (ResultSet rs = pstmt.executeQuery()) {
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                hotel = new Hotel(rs.getString("nombre"),
-                        rs.getInt("estrellas"),
-                        rs.getInt("habitaciones"),
-                        rs.getInt("hotel_id"));
-                return hotel;
-            } else {
-                System.out.println("No se ha encontrado ningun hotel con ese id.");
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    hotel = new Hotel(rs.getString("nombre"),
+                            rs.getInt("estrellas"),
+                            rs.getInt("habitaciones"),
+                            rs.getInt("hotel_id"));
+                    return hotel;
+                } else {
+                    System.out.println("No se ha encontrado ningun hotel con ese nombre");
+                }
             }
 
         } catch (SQLException e) {
@@ -199,12 +199,8 @@ public Hotel obtenerHotelPorNombre(String nombre) {
                             rs.getInt("estrellas"),
                             rs.getInt("habitaciones"),
                             rs.getInt("hotel_id"));
-<<<<<<< HEAD
                     return hotel;
-=======
-
->>>>>>> main
-                } else {
+} else {
                     System.out.println("No se ha encontrado ningun hotel con ese nombre");
                 }
             }

@@ -51,14 +51,6 @@ public class TrabajoIntegrador {
         serviceHabitacion.crearTabla();
         serviceHotel.crearTabla();
         serviceReserva.crearTabla();
-<<<<<<< HEAD
-        boolean salir = serviceHotel.ingresarHotel("Anahse", 5);
-        HotelDTO hotelPrueba = serviceHotel.buscarHotelPorNombre("Anashe");
-        serviceHabitacion.ingresarHabitacion(hotelPrueba.getIdHotel(), 10);
-             
-
-=======
-        boolean salir = false;
         
             /*serviceCliente.registrarCliente("Agustin", "Sa", "42422", "agus@gmail.com");
             ClienteDTO cliente = serviceCliente.iniciarSesion("42422");
@@ -78,6 +70,7 @@ public class TrabajoIntegrador {
             */
             inicio.IniciarSesion();
         
+>>>>>>> main
 >>>>>>> main
     }
 }

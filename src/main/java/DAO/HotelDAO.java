@@ -13,12 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import DAO.Interface.HotelDAOInterface;
+import java.util.logging.Level;
 
 /**
  *
  * @author asamsu
  */
-public class HotelDAO implements HotelDAOInterface {
+public class HotelDAO extends BaseDAO implements HotelDAOInterface {
 
     /**
      * Metodo para crear la tabla de Hotel en la Base de Datos SQLITE Usa un
@@ -37,9 +38,9 @@ public class HotelDAO implements HotelDAOInterface {
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.execute();
-            System.out.println("Se ha creado la tabla Hotel exitosamente");
+            logger.info("Se ha creado la tabla Hotel exitosamente");
         } catch (SQLException e) {
-            System.out.println("No se pudó crear la tabla Hotel " + e.getMessage());
+            logger.log(Level.INFO, "No se pudó crear la tabla Hotel {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
@@ -65,40 +66,18 @@ public class HotelDAO implements HotelDAOInterface {
             pstmt.setString(1, nombre);
             pstmt.setInt(2, estrellas);
             pstmt.executeUpdate();
-            System.out.println("Se creo un hotel exitosamente");
+            logger.info("Se creo un hotel exitosamente");
 
         } catch (SQLException e) {
-            System.out.println("No se pudo insertar el hotel " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo insertar el hotel {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
     }
 
-    // Utils 
-    public List<Hotel> procesarHotel(ResultSet rs) throws SQLException {
-        List<Hotel> hoteles = new ArrayList<>();
-        while (rs.next()) {
-            Hotel hotel = new Hotel(rs.getString("nombre"),
-                    rs.getInt("estrellas"),
-                    rs.getInt("habitaciones"),
-                    rs.getInt("hotel_id"));
-            hoteles.add(hotel);
-        }
-        return hoteles;
-    }
 
-    @Override
-    public Hotel actualizarHotelEnObjeto(Hotel hotel, String columna, Object valorModificado) {
-        switch (columna) {
-            case "nombre" ->
-                hotel.setNombre((String) valorModificado);
-            case "estrellas" ->
-                hotel.setEstrellas((int) valorModificado);
-            default ->
-                throw new IllegalArgumentException("Columna no válida: " + columna);
-        }
-        return hotel;
-    }
+
+
 
     /**
      * Metodo para Obtener Todos los hoteles en la Base de Datos SQLITE
@@ -120,7 +99,7 @@ public class HotelDAO implements HotelDAOInterface {
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
             hoteles = procesarHotel(rs);
         } catch (SQLException e) {
-            System.out.println("Error al obtener Hoteles " + e.getMessage());
+            logger.log(Level.INFO, "Error al obtener Hoteles {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
@@ -158,12 +137,12 @@ public class HotelDAO implements HotelDAOInterface {
                             rs.getInt("hotel_id"));
                     return hotel;
                 } else {
-                    System.out.println("No se ha encontrado ningun hotel con ese nombre");
+                    logger.info("No se ha encontrado ningun hotel con ese nombre");
                 }
             }
 
         } catch (SQLException e) {
-            System.out.println("Error al obtener Hoteles " + e.getMessage());
+            logger.log(Level.INFO, "Error al obtener Hoteles {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 
@@ -184,7 +163,7 @@ public class HotelDAO implements HotelDAOInterface {
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
     @Override
-public Hotel obtenerHotelPorNombre(String nombre) {
+    public Hotel obtenerHotelPorNombre(String nombre) {
         String query = "SELECT h.hotel_id, h.nombre, h.estrellas, COUNT(ha.habitacion_id) AS habitaciones "
                 + "FROM Hotel h "
                 + "LEFT JOIN Habitacion ha ON h.hotel_id = ha.hotel_id "
@@ -200,12 +179,12 @@ public Hotel obtenerHotelPorNombre(String nombre) {
                             rs.getInt("habitaciones"),
                             rs.getInt("hotel_id"));
                     return hotel;
-} else {
-                    System.out.println("No se ha encontrado ningun hotel con ese nombre");
+                } else {
+                    logger.info("No se ha encontrado ningun hotel con ese nombre");
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error al obtener Hotel " + e.getMessage());
+            logger.log(Level.INFO, "Error al obtener Hotel {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 
@@ -241,19 +220,37 @@ public Hotel obtenerHotelPorNombre(String nombre) {
             hoteles = procesarHotel(rs);
 
         } catch (SQLException e) {
-            System.out.println("Error al obtener Hoteles por estrellas" + e.getMessage());
+            logger.log(Level.INFO, "Error al obtener Hoteles por estrellas{0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
 
         return hoteles;
     }
+    
+        /**
+     * Metodo para Actualizar Hoteles que contengan la cantidad de estrellas en la
+     * tabla hotel en la Base de Datos SQLITE
+     *
+     * @param columna (Columna que vamos a querer actualizar)
+     * 
+     * @param valorModificado (Es de tipo object  para poder pasarlo cualquier tipo de dato
+     * que queremos modificar)
+     * 
+     * @param hotel_id (Parametro para buscar el hotel que queremos modificar)
+     * 
+     * @return Nos retorna un List -> ArrayList de tipo Hotel que nos va a
+     * contener todas los hoteles con las estrellas que nosotros le
+     * proporcionamos a traves de los parametros
+     *
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
 
     @Override
     public Hotel actualizarHotel(String columna, Object valorModificado, int hotel_id) {
         Hotel hotel = obtenerHotelPorId(hotel_id);
         if (hotel == null) {
-            System.out.println("No se ha encontrado ningun hotel con ese id");
+            logger.info("No se ha encontrado ningun hotel con ese id");
             return null;
         }
         String query = "UPDATE Hotel SET " + columna + " = ? WHERE hotel_id = ?";
@@ -264,13 +261,13 @@ public Hotel obtenerHotelPorNombre(String nombre) {
             int filasAfectadas = pstmt.executeUpdate();
             if (filasAfectadas > 0) {
                 hotel = actualizarHotelEnObjeto(hotel, columna, valorModificado);
-                System.out.println("Cliente actualizado correctamente");
+                logger.info("Cliente actualizado correctamente");
             } else {
-                System.out.println("Ninguna fila ha sido modificada");
+                logger.info("Ninguna fila ha sido modificada");
             }
 
         } catch (SQLException e) {
-            System.out.println("No se pudo insertar el Cliente " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo insertar el Cliente {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 
@@ -292,12 +289,46 @@ public Hotel obtenerHotelPorNombre(String nombre) {
             try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, nombre);
                 pstmt.executeUpdate();
-                System.out.println("Se ha eliminado un hotel correctamente");
+                logger.info("Se ha eliminado un hotel correctamente");
             } catch (SQLException e) {
-                System.out.println("No se ha podido eliminar al hotel " + e.getMessage());
+                logger.log(Level.INFO, "No se ha podido eliminar al hotel {0}", e.getMessage());
             } finally {
                 ConnectionBD.getInstance().closeConnection();
             }
         }
+    }
+    
+    /**
+     * Metodo para Eliminar un Hotel que contengan el nombre que le pasamos como
+     * parametro en la tabla hotel en la Base de Datos SQLITE
+     *
+     * @param rs
+     * 
+     * 
+     * @return devuelve una lista de tipo Hotel
+     */
+    public List<Hotel> procesarHotel(ResultSet rs) throws SQLException {
+        List<Hotel> hoteles = new ArrayList<>();
+        while (rs.next()) {
+            Hotel hotel = new Hotel(rs.getString("nombre"),
+                    rs.getInt("estrellas"),
+                    rs.getInt("habitaciones"),
+                    rs.getInt("hotel_id"));
+            hoteles.add(hotel);
+        }
+        return hoteles;
+    }
+    
+        @Override
+    public Hotel actualizarHotelEnObjeto(Hotel hotel, String columna, Object valorModificado) {
+        switch (columna) {
+            case "nombre" ->
+                hotel.setNombre((String) valorModificado);
+            case "estrellas" ->
+                hotel.setEstrellas((int) valorModificado);
+            default ->
+                throw new IllegalArgumentException("Columna no válida: " + columna);
+        }
+        return hotel;
     }
 }

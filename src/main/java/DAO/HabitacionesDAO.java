@@ -13,12 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import DAO.Interface.HabitacionesDAOInterface;
+import java.util.logging.Level;
 
 /**
  *
  * @author estudiante
  */
-public class HabitacionesDAO implements HabitacionesDAOInterface {
+public class HabitacionesDAO extends BaseDAO implements HabitacionesDAOInterface {
 
     /**
      * Metodo para crear la tabla de Habitacion en la Base de Datos SQLITE Usa
@@ -39,9 +40,9 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.execute();
-            System.out.println("Se ha creado la tabla Habitacion exitosamente");
+            logger.info("Se ha creado la tabla Habitacion exitosamente");
         } catch (SQLException e) {
-            System.out.println("No se pudo crear la tabla Habitacion " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo crear la tabla Habitacion {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
@@ -52,8 +53,6 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
      *
      * @param cant_huesped (esto es la cantidad que pueden entrar en una
      * habitacion)
-     * @param reservado ( nos sirve para proporcionar el estado de reservacion
-     * de la habitacion 1 : True, 0 : False )
      * @param hotel_id ( Este parametro nos ayuda a asociar diferentes
      * habitaciones con un hotel para hacer más fácil la consultas desde la base
      * de datos) El uso de PreparedStatement evita inyecciones de SQL y así
@@ -68,26 +67,15 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
             pstmt.setInt(1, cant_huesped);
             pstmt.setInt(2, hotel_id);
             pstmt.executeUpdate();
-            System.out.println("Se ha insertado una habitacion exitosamente");
+            logger.info("Se ha insertado una habitacion exitosamente");
         } catch (SQLException e) {
-            System.out.println("No se pudo insertar una Habitacion " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo insertar una Habitacion {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
     }
 
-    // Utils
-    public List<Habitacion> procesarHabitacion(ResultSet rs) throws SQLException {
-        List<Habitacion> habitaciones = new ArrayList<>();
-        while (rs.next()) {
-            Habitacion habitacion = new Habitacion(rs.getInt("habitacion_id"),
-                    rs.getInt("cant_huesped"),
-                    rs.getInt("hotel_id"));
-            habitaciones.add(habitacion);
-        }
-        return habitaciones;
-    }
-
+  
     /**
      * Metodo para Obtener Habitaciones que contengan el mismo hotel_id en la
      * Base de Datos SQLITE
@@ -109,14 +97,25 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
             pstmt.setInt(1, hotel_id);
             ResultSet rs = pstmt.executeQuery();
             habitaciones = procesarHabitacion(rs);
-            System.out.println("La consulta obtener habitaciones por id ha sido un exito");
+            logger.info("La consulta obtener habitaciones por hotel_id ha sido un exito");
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener habitaciones " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo obtener habitaciones {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
         return habitaciones;
     }
+    /**
+     * Metodo para Obtener Habitaciones que contengan el id correspondiente en la
+     * Base de Datos SQLITE
+     *
+     * @param habitacion_id ( Este parametro nos proporciona que busque todas las
+     * habitaciones que contengan habitacion_id) 
+     * @return Nos retorna un tipo de clase Habitacion 
+     *
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    
     @Override
     public Habitacion obtenerHabitacionPorHabitacionId(int habitacion_id) {
         Habitacion habitacion = null;
@@ -129,14 +128,23 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
                         rs.getInt("cant_huesped"),
                         rs.getInt("hotel_id"));
             }
-            System.out.println("La consulta obtener habitacion por id ha sido un exito");
+            logger.info("La consulta obtener habitacion por id ha sido un exito");
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener habitaciones " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo obtener habitaciones {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
         return habitacion;
     }
+    
+        /**
+     * Metodo para Obtener Habitaciones que contengan el mismo hotel_id en la
+     * Base de Datos SQLITE
+     * @return Nos retorna un List -> ArrayList de tipo Habitacion que nos va a
+     * contener todas las habitaciones
+     *
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     @Override
     public List<Habitacion> obtenerHabitaciones() {
         List<Habitacion> habitaciones = new ArrayList<>();
@@ -144,14 +152,26 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery();) {
 
             habitaciones = procesarHabitacion(rs);
-            System.out.println("La consulta obtener habitaciones por id ha sido un exito");
+            logger.info("La consulta obtener habitaciones  ha sido un exito");
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener habitaciones " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo obtener habitaciones {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
         return habitaciones;
     }
+        /**
+     * Metodo para Obtener Habitaciones que contengan el tamanio 
+     * Base de Datos SQLITE
+     *
+     * @param tamanio ( Este parametro nos proporciona que busque todas las
+     * habitaciones que contengan este tamaño) 
+     * @return Nos retorna un List -> ArrayList de tipo Habitacion que nos va a
+     * contener todas las habitaciones con el hotel_id que nosotros le
+     * proporcionamos a traves de los parametros
+     *
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     @Override
     public List<Habitacion> obtenerHabitacionPorTamanio(int tamanio) {
         List<Habitacion> habitaciones = new ArrayList<>();
@@ -160,20 +180,34 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
             pstmt.setInt(1, tamanio);
             ResultSet rs = pstmt.executeQuery();
             habitaciones = procesarHabitacion(rs);
-            System.out.println("La consulta obtener habitaciones por id ha sido un exito");
+            logger.info("La consulta obtener habitaciones por tamaño ha sido un exito");
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener habitaciones " + e.getMessage());
+            logger.log(Level.INFO, "No se pudo obtener habitaciones {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
         return habitaciones;
     }
+        /**
+     * Metodo para Actualizar una Habitacion que contenga la habitacion_idp proporcionada en los parametros 
+     * en la
+     * Base de Datos SQLITE
+     *
+     * @param habitacion_id ( Este parametro nos proporciona que busque la habitacion 
+     * que contenga el id pasado) 
+     * @param tamanio (tamaño al que se desea actualizar la habitacion_id )
+     * @return Nos retorna un List -> ArrayList de tipo Habitacion que nos va a
+     * contener todas las habitaciones con el hotel_id que nosotros le
+     * proporcionamos a traves de los parametros
+     *
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     @Override
     public Habitacion actualizarHabitacionTamanio(int habitacion_id, int tamanio) {
         Habitacion habitacion = obtenerHabitacionPorHabitacionId(habitacion_id);
         String query = "UPDATE Habitacion SET cant_huesped = ? WHERE habitacion_id = ?";
         if (habitacion == null) {
-            System.out.println("No se ha encontrado ninguna habitacion con ese ID");
+            logger.info("No se ha encontrado ninguna habitacion con ese ID");
             return null;
         }
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -185,15 +219,24 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
             if (filasAfectadas > 0) {
                 habitacion.setCantHuespedes(tamanio);
             }
-            System.out.println("Se ha modificado el tamaño de la habitacion correctamente");
+            logger.info("Se ha modificado el tamaño de la habitacion correctamente");
         } catch (SQLException e) {
-            System.out.println("Error al querer actualizar la habitación " + e.getSQLState());
+            logger.log(Level.INFO, "Error al querer actualizar la habitación {0}", e.getSQLState());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
 
         return habitacion;
     }
+        /**
+     * Metodo para eliminar Habitaciones que contenga la habitacion_id en la
+     * Base de Datos SQLITE
+     *
+     * @param habitacion_id ( Este parametro nos proporciona que busque la habitacion 
+     * que contenga el id pasado) 
+     *
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     @Override
     public void eliminarHabitacion(int habitacion_id) {
         Habitacion habitacion = obtenerHabitacionPorHabitacionId(habitacion_id);
@@ -205,12 +248,32 @@ public class HabitacionesDAO implements HabitacionesDAOInterface {
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, habitacion_id);
             pstmt.executeUpdate();
-            System.out.println("Se ha eliminado correctamente la habitacion");
+            logger.info("Se ha eliminado correctamente la habitacion");
         } catch (SQLException e) {
-            System.out.println("No se ha podido eliminar la habitacion" + e.getMessage());
+            logger.log(Level.INFO, "No se ha podido eliminar la habitacion{0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
     }
+    
+    /**
+     * Funciones de Utilidad para procesar listas
+     * Base de Datos SQLITE
+     *
+     * @param rs ( Este parametro nos pasa como una especia de lista ) 
+     * @return Nos retorna una lista llena de la clase Habitacion
+     * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
+    public List<Habitacion> procesarHabitacion(ResultSet rs) throws SQLException {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        while (rs.next()) {
+            Habitacion habitacion = new Habitacion(rs.getInt("habitacion_id"),
+                    rs.getInt("cant_huesped"),
+                    rs.getInt("hotel_id"));
+            habitaciones.add(habitacion);
+        }
+        return habitaciones;
+    }
+
 
 }

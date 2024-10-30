@@ -17,10 +17,10 @@ import java.util.List;
  *
  * @author asamsu
  */
-public class ServiceCliente {
+public class ServiceCliente extends ServiceBase{
 
     private final PersonaDAO clienteDAO;
-    private ValidarDatos validador;
+    private final ValidarDatos validador;
 
     public ServiceCliente() {
         this.clienteDAO = new PersonaDAO();
@@ -45,7 +45,7 @@ public class ServiceCliente {
             throw new ServiceExceptions("Ya existe un cliente con ese DNI");
         }
         clienteDAO.insertarCliente(nombre, apellido, DNI, email, Rol.USER);
-        System.out.println("Se ha registrado correctamente el Cliente");
+        logger.info("Se ha registrado correctamente el Cliente");
         return true;
     }
 
@@ -96,7 +96,7 @@ public class ServiceCliente {
     public void eliminarCliente(String DNI) throws ServiceExceptions {
         validador.validarDatosString(DNI, "Porfavor ingrese un DNI valido");
         clienteDAO.eliminarCuentaCliente(DNI);
-        System.out.println("Se ha eliminado el cliente correctamente");
+        logger.info("Se ha eliminado el cliente correctamente");
     }
 
     // Utils 

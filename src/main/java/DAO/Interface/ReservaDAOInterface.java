@@ -22,7 +22,7 @@ public interface ReservaDAOInterface {
             String estado);
     
     public List<Reserva> obtenerReservas();
-    public List<Reserva> obtenerReservasConCondicion(String condicion, Object valor);
+    List<Reserva> obtenerReservasConCondicion(String condicion, Object valor);
     public List<Reserva> obtenerReservasPorEstado(String estado);
     public List<Reserva> obtenerReservasPorHotel(int hotel_id);
     public List<Reserva> obtenerReservasPorCliente(int cliente_id);

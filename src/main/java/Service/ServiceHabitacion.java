@@ -7,17 +7,18 @@ package Service;
 import DAO.HabitacionesDAO;
 import DAO.HotelDAO;
 import DTO.HabitacionDTO;
+import Exceptions.ServiceExceptions;
 import Model.Habitacion;
 import Model.Hotel;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.logging.Level;
 
 /**
  *
  * @author asamsu
  */
-public class ServiceHabitacion {
+public class ServiceHabitacion extends ServiceBase{
 
     private final HabitacionesDAO habitacionDAO;
     private final HotelDAO hotelDAO;
@@ -31,18 +32,16 @@ public class ServiceHabitacion {
         habitacionDAO.crearTabla();
     }
 
-    public boolean ingresarHabitacion(int hotel_id, int tamanio) {
+    public boolean ingresarHabitacion(int hotel_id, int tamanio) throws ServiceExceptions {
         Hotel hotel = hotelDAO.obtenerHotelPorId(hotel_id);
 
         if (hotel == null) {
-            System.out.println("El hotel al que quiere ingresar la nueva habitacion "
+           throw new ServiceExceptions("El hotel al que quiere ingresar la nueva habitacion "
                     + "no existe");
-            return false;
         }
 
         habitacionDAO.insertarHabitacion(tamanio, hotel.getIdHotel());
-        System.out.println("Se ha agregado correctamente una habitacion al hotel : "
-                + +hotel.getIdHotel() + " " + hotel.getNombre());
+        logger.log(Level.INFO, "Se ha agregado correctamente una habitacion al hotel : {0} {1}", new Object[]{+hotel.getIdHotel(), hotel.getNombre()});
         return true;
     }
 
@@ -67,17 +66,17 @@ public class ServiceHabitacion {
         return procesarHabitaciones(habitacionesModel);
     }
 
-    public List<HabitacionDTO> obtenerHabitacionesPorTamaño(int tamanio) {
+    public List<HabitacionDTO> obtenerHabitacionesPorTamaño(int tamanio) throws ServiceExceptions {
         if (tamanio < 0) {
-            throw new IllegalArgumentException("Por favor, ingrese correctamente los datos pedidos");
+            throw new ServiceExceptions("Por favor, ingrese correctamente los datos pedidos");
         }
         List<Habitacion> habitacionesModel = habitacionDAO.obtenerHabitacionPorTamanio(tamanio);
         return procesarHabitaciones(habitacionesModel);
     }
 
-    public HabitacionDTO obtenerHabitacionPorId(int habitacion_id) {
+    public HabitacionDTO obtenerHabitacionPorId(int habitacion_id) throws ServiceExceptions {
         if (habitacion_id < 0) {
-            throw new IllegalArgumentException("Por favor, ingrese correctamente los datos pedidos");
+            throw new ServiceExceptions("Por favor, ingrese correctamente los datos pedidos");
         }
         Habitacion habitacion = habitacionDAO.obtenerHabitacionPorHabitacionId(habitacion_id);
 
@@ -86,12 +85,12 @@ public class ServiceHabitacion {
                 habitacion.getIdHotel());
     }
 
-    public HabitacionDTO actualizarHabitacion(int habitacion_id, int tamanio) {
+    public HabitacionDTO actualizarHabitacion(int habitacion_id, int tamanio) throws ServiceExceptions {
         if (habitacion_id < 0) {
-            throw new IllegalArgumentException("Por favor, ingrese correctamente los datos pedidos");
+            throw new ServiceExceptions("Por favor, ingrese correctamente los datos pedidos");
         }
         if (tamanio < 0) {
-            throw new IllegalArgumentException("Por favor, ingrese correctamente los datos pedidos");
+            throw new ServiceExceptions("Por favor, ingrese correctamente los datos pedidos");
         }
         Habitacion habitacionModificado = habitacionDAO.actualizarHabitacionTamanio(habitacion_id, tamanio);
 
@@ -101,13 +100,13 @@ public class ServiceHabitacion {
 
     }
 
-    public void eliminarHabitacion(int habitacion_id) {
+    public void eliminarHabitacion(int habitacion_id) throws ServiceExceptions {
         if (habitacion_id < 0) {
-            throw new IllegalArgumentException("Por favor, ingrese correctamente los datos pedidos");
+            throw new ServiceExceptions("Por favor, ingrese correctamente los datos pedidos");
         }
         Habitacion habitacion = habitacionDAO.obtenerHabitacionPorHabitacionId(habitacion_id);
         if (habitacion == null) {
-            throw new NoSuchElementException("No se ha encontrado ninguna habitacion con ese ID");
+            throw new ServiceExceptions("No se ha encontrado ninguna habitacion con ese ID");
         }
         habitacionDAO.eliminarHabitacion(habitacion.getIdHabitacion());
 

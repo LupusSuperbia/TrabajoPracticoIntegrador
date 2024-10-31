@@ -10,7 +10,7 @@ import Model.Persona;
  *
  * @author asamsu
  */
-public class ClienteDTO extends Persona{
+public class ClienteDTO extends PersonaDTO{
     protected int IdCliente;
     protected boolean Reserva = false;
     protected int IdHabitacion;

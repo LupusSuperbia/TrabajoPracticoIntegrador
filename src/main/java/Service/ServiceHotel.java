@@ -12,12 +12,13 @@ import Model.Hotel;
 import Util.ValidarDatos;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  *
  * @author asamsu
  */
-public class ServiceHotel {
+public class ServiceHotel extends ServiceBase{
 
     private final HotelDAO hotelDAO;
     private final HabitacionesDAO habitacionDAO;
@@ -39,7 +40,7 @@ public class ServiceHotel {
             throw new ServiceExceptions("Ya existe un hotel con ese nombre");
         }
         hotelDAO.insertarHotel(nombre, estrellas);
-        System.out.println("Se ha creado el hotel exitosamente");
+        logger.info("Se ha creado el hotel exitosamente");
         return true;
     }
 
@@ -52,8 +53,7 @@ public class ServiceHotel {
         validador.validarDatosString(nombre, "Por favor ingrese un nombre valido");
         Hotel hotel = hotelDAO.obtenerHotelPorNombre(nombre);
         if (hotel == null) {
-            System.out.println("No se ha encontrado ningun hotel con ese nombre");
-            return null;
+            throw new ServiceExceptions("No se ha encontrado ningun hotel con ese nombre");
         }
         return crearHotelDTO(hotel);
     }
@@ -90,7 +90,7 @@ public class ServiceHotel {
     public void eliminarHotel(String nombre) throws ServiceExceptions {
         validador.validarDatosString(nombre, "Por favor ingrese un nombre");
         hotelDAO.eliminarHotel(nombre);
-        System.out.println("Se ha eliminado correctamente el hotel: " + nombre);
+        logger.log(Level.INFO, "Se ha eliminado correctamente el hotel: {0}", nombre);
     }
 
     // Utils

@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -19,14 +21,15 @@ public class ConnectionBD {
     // Creamos una instancia para ver si existe o no la conexión
     private static ConnectionBD instance;
     private Connection connection;
+    protected final Logger logger = Logger.getLogger(this.getClass().getName());
     
     private ConnectionBD(){
         try{
             connection = DriverManager.getConnection(DATABASE_URL);
-            System.out.println("Conexión a SQLite realizada.");
+            logger.info("Conexión a SQLite realizada.");
         }catch(SQLException e)
         {
-            System.out.println("Error de conexión " + e.getMessage());
+            logger.log(Level.INFO, "Error de conexión: {0}", e.getMessage());
         }
     }
     
@@ -47,9 +50,9 @@ public class ConnectionBD {
                 connection.close();
                 connection = null;
                 instance = null; // Opcional: permite reiniciar la conexión si es necesario
-                System.out.println("Conexión a SQLite cerrada.");
+                logger.info("Conexión a SQLite cerrada.");
             } catch (SQLException e) {
-                System.out.println("Error al cerrar la conexión: " + e.getMessage());
+                logger.log(Level.INFO, "Error al cerrar la conexión: {0}", e.getMessage());
             } 
         }
     }

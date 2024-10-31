@@ -1714,7 +1714,6 @@ public class GUIMain extends javax.swing.JFrame {
 
         boolean flag = true;
         boolean aux = true;
-
         String nombreCliente = txtRegistroNombre.getText();
         String ApellidoCliente = txtRegistroApellido.getText();
         String DNICliente = txtRegistroDNI.getText();

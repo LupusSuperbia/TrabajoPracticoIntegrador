@@ -18,6 +18,7 @@ import Model.Reserva;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  *
@@ -44,6 +45,9 @@ public class ServiceReserva extends ServiceBase {
     public boolean crearReserva(int habitacion_id, int hotel_id, int cliente_id, LocalDate fecha_inicio, LocalDate fecha_fin) throws ServiceExceptions {
         if (!reservaDAO.verificarReserva(habitacion_id, fecha_inicio.toString(), fecha_fin.toString())) {
             throw new ServiceExceptions("No se puede reservar la habitacion porque ya esta reservada.");
+        }
+        if (!fecha_inicio.isBefore(fecha_fin)) {
+            throw new ServiceExceptions("No se puede reservar la habitacion, ingrese los datos correctamente.");
         }
         Cliente cliente = clienteDAO.obtenerClientePorId(cliente_id);
         Hotel hotel = hotelDAO.obtenerHotelPorId(hotel_id);
@@ -84,6 +88,17 @@ public class ServiceReserva extends ServiceBase {
         List<Reserva> reservas = reservaDAO.obtenerReservasPorHabitacion(habitacion_id);
 
         return procesarLista(reservas);
+    }
+
+    public void eliminarReserva(int reserva_id) throws ServiceExceptions {
+        Reserva reserva = reservaDAO.obtenerReservaPorId(reserva_id);
+
+        if (reserva == null) {
+            throw new ServiceExceptions("No se encontro la reserva.");
+        }
+
+        reservaDAO.eliminarReserva(reserva.getIdReserva());
+        logger.log(Level.INFO, "Se ha eliminado la reserva correctamente reserva_id eliminada : {0}", reserva_id);
     }
 
     // UTILS 

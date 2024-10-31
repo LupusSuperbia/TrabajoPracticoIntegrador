@@ -115,7 +115,7 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
     @Override
     public List<Cliente> obtenerClientes() {
         List<Cliente> clientes = new ArrayList<>();
-        String query = "SELECT nombre, apellido, DNI FROM Persona WHERE ROL = USER";
+        String query = "SELECT nombre, apellido, DNI FROM Persona WHERE ROL = \"USER\"";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Cliente cliente = new Cliente(rs.getInt("persona_id"),
@@ -224,7 +224,7 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
     
     @Override
     public Cliente obtenerClientePorEmail(String email) {
-        String query = "SELECT nombre, apellido, DNI, email FROM Persona where email = ? AND ROL = USER";
+        String query = "SELECT nombre, apellido, DNI, email FROM Persona where email = ? AND ROL = \"USER\"";
         Cliente cliente = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, email);
@@ -311,7 +311,7 @@ rametro que recibe el metodo para actualizar en la columna "nombre" en la BD el 
         if (cliente == null) {
             logger.info("No se ha encontrado ningun cliente con ese DNI");
         }
-        String query = "DELETE from Persona where DNI = ? AND ROL = USER";
+        String query = "DELETE from Persona where DNI = ? AND ROL = \"USER\"";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, DNI);
             pstmt.executeUpdate();
@@ -442,7 +442,7 @@ rametro que recibe el metodo para actualizar en la columna "nombre" en la BD el 
      */
     @Override
     public Admin obtenerAdminPorEmail(String email) {
-        String query = "SELECT nombre, apellido, DNI, email FROM Persona where email = ? AND ROL = \"ADMIN\"";
+        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where email = ? AND ROL = \"ADMIN\"";
         Admin admin = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, email);
@@ -541,5 +541,8 @@ rametro que recibe el metodo para actualizar en la columna "nombre" en la BD el 
             ConnectionBD.getInstance().closeConnection();
         }
     }
+    
+    
+    
 
 }

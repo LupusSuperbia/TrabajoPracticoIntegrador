@@ -4,8 +4,11 @@
  */
 package AppLogic;
 
+import DTO.AdminDTO;
 import DTO.ClienteDTO;
+import DTO.PersonaDTO;
 import Exceptions.ServiceExceptions;
+import Service.ServiceAdmin;
 import Service.ServiceCliente;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -19,55 +22,69 @@ public class iniciarSesion {
 
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
     ServiceCliente servicioCliente = new ServiceCliente();
+    ServiceAdmin servicioAdmin = new ServiceAdmin();
     ClienteDTO clienteDato = null;
-    MenuCliente menu = new MenuCliente();
-
+    AdminDTO AdminDato = null;
+    PersonaDTO PersonaDato = null;
+    MenuCliente menuCliente = new MenuCliente();
+    menuAdmin AdminMenu = new menuAdmin();
+    String Rol = "";
+    String DNI;
+    
     public void IniciarSesion() {
-        do{
-        System.out.println("¿Tienes cuenta?, si ya tienes presiona un distinto de N.");
-        if (!"N".equals(leer.next().toUpperCase())) {
-            try{
-            clienteDato = Inicio();
-            
-            if(clienteDato != null){
-            System.out.println("¡Se inició sesion correctamente!");
-            menu.mostrarMenuCliente(clienteDato);
-            }
-            
-            }catch(ServiceExceptions e){
-                System.out.println(e.getMessage());
-            } catch (Exception ex) {
-                Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        do {
+            System.out.println("¿Tienes cuenta?, si ya tienes presiona un distinto de N.");
+            if (!"N".equals(leer.next().toUpperCase())) {
+                try {
+                    Rol = Inicio();
+
+                    if (Rol != "") {
+                        System.out.println("¡Se inició sesion correctamente!");
+                        if(Rol == "USER")
+                        clienteDato = servicioCliente.buscarClienteDNI(DNI);
+                        menuCliente.mostrarMenuCliente(clienteDato);
+                        if(Rol == "ADMIN")
+                        AdminDato = servicioAdmin.buscarAdminDNI(DNI);
+                        AdminMenu.menu(AdminDato);
+                    }else{
+                    }
+                } catch (ServiceExceptions e) {
+                    System.out.println(e.getMessage());
+                } catch (Exception ex) {
+                    Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
-            try{
-            clienteDato = Registro();
-            menu.mostrarMenuCliente(clienteDato);
-            }catch(ServiceExceptions e){
-                System.out.println(e.getMessage());
-                
-            } catch (Exception ex) {
-                Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    clienteDato = Registro();
+                    menuCliente.mostrarMenuCliente(clienteDato);
+                } catch (ServiceExceptions e) {
+                    System.out.println(e.getMessage());
+
+                } catch (Exception ex) {
+                    Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            }
-        }while(clienteDato == null);
+        } while (clienteDato == null);
     }
 
-    public ClienteDTO Inicio() {
-        System.out.println("Ingresa tu DNI para ver si estas en el sistema, o 0 para salir.");
-        String DNI = "";
+    public String Inicio() {
+        String Rol = "";
         do {
             try {
+                System.out.println("Ingresa tu DNI para ver si estas en el sistema, o 0 para salir.");
                 DNI = leer.next();
-                clienteDato = servicioCliente.iniciarSesion(DNI);
-                if(clienteDato == null || DNI == "0"){
-                    System.out.println("No se encontro cliente con este DNI, reintenta.");
+                Rol = servicioCliente.obtenerRol(DNI);
+                if(Rol == "" && DNI != "0"){
+                    System.out.println("No se encontro persona por DNI");
                 }
             } catch (ServiceExceptions e) {
                 System.out.println(e);
             }
-        } while (clienteDato == null && DNI != "0");
-        return clienteDato;
+        } while (Rol == "" && DNI != "0");
+        if(DNI == "0"){
+            return "";
+        }
+        return Rol;
     }
 
     public ClienteDTO Registro() {
@@ -103,5 +120,3 @@ public class iniciarSesion {
 
     }
 }
-
-

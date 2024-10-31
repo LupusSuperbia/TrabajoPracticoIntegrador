@@ -4,7 +4,8 @@
  */
 package DTO;
 
-import Model.Persona;
+import Util.Rol;
+
 
 /**
  *
@@ -16,10 +17,12 @@ public class ClienteDTO extends PersonaDTO{
     protected int IdHabitacion;
     protected  String email;
 
-    public ClienteDTO(int IdCliente, String nombre, String apellido, String DNI, String email) {
+
+    public ClienteDTO(int IdCliente, String nombre, String apellido, String DNI,String email, Rol rol) {
         super(nombre, apellido, DNI);
         this.IdCliente = IdCliente;
         this.email = email;
+        this.rol = rol;
     }
 
     public int getIdCliente() {

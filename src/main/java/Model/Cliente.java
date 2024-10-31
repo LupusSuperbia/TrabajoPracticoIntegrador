@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Util.Rol;
+
 /**
  *
  * @author mateo
@@ -19,7 +21,7 @@ public class Cliente extends Persona {
         super(nombre, apellido, DNI);
         this.IdCliente = IdCliente;
         this.email = email;
-        this.rol = rol.USER;
+        this.rol = Rol.USER;
     }
 
     public int getIdCliente() {
@@ -74,6 +76,14 @@ public class Cliente extends Persona {
     @Override
     public void setDNI(String DNI) {
         this.DNI = DNI;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
     
     

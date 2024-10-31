@@ -38,6 +38,9 @@ public class ServiceHotel extends ServiceBase{
         Hotel hotel = hotelDAO.obtenerHotelPorNombre(nombre);
         if (hotel != null) {
             throw new ServiceExceptions("Ya existe un hotel con ese nombre");
+        } 
+        if(estrellas < 0 || estrellas > 5){
+           throw new ServiceExceptions("Ingrese una cantidad de estrellas logica");
         }
         hotelDAO.insertarHotel(nombre, estrellas);
         logger.info("Se ha creado el hotel exitosamente");

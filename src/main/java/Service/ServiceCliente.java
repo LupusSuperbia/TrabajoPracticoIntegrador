@@ -75,8 +75,7 @@ public class ServiceCliente extends ServiceBase{
         for (Cliente cliente : clientes) {
             ClienteDTO clienteDTO = new ClienteDTO(cliente.getIdCliente(),
                     cliente.getNombre(),
-                    cliente.getApellido(), cliente.getDNI(),
-                    cliente.getEmail());
+                    cliente.getApellido(), cliente.getDNI(),cliente.getEmail(), Rol.USER);
             clientesDTO.add(clienteDTO);
         }
         return clientesDTO;
@@ -109,8 +108,9 @@ public class ServiceCliente extends ServiceBase{
         return new ClienteDTO(cliente.getIdCliente(),
                 cliente.getNombre(),
                 cliente.getApellido(),
-                cliente.getDNI(),
-                cliente.getEmail());
+                cliente.getDNI(), 
+               cliente.getEmail()
+                cliente.getRol());
     }
     
     public String obtenerRol(String DNI) throws ServiceExceptions{

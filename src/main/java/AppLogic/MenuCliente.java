@@ -54,7 +54,7 @@ public class MenuCliente {
 
             switch (eleccion) {
                 case 0:
-                    System.out.println("¡Gracias por utilizar nuestro servicio!.");
+                    System.out.println("¡Gracias por utilizar nuestro servicio, "+ cliente.getNombre() + "!.");
                     break;
                 case 1:
                     mostrarHoteles();

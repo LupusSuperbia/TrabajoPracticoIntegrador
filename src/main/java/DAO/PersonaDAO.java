@@ -337,7 +337,7 @@ rametro que recibe el metodo para actualizar en la columna "nombre" en la BD el 
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, DNI);
             pstmt.executeUpdate();
-            logger.info("Se a eliminado correctamente");
+            logger.info("Se ha eliminado correctamente");
         } catch (SQLException e) {
             logger.log(Level.INFO, "No se ha podido eliminar al cliente {0}", e.getMessage());
         } finally {

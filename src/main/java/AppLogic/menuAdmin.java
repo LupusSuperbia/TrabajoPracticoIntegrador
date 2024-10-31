@@ -5,12 +5,21 @@
  */
 package AppLogic;
 
+import DAO.ReservaDAO;
 import DTO.AdminDTO;
+import DTO.ClienteDTO;
 import DTO.HotelDTO;
+import DTO.ReservaDTO;
 import Exceptions.ServiceExceptions;
+import Model.Reserva;
 import Service.ServiceAdmin;
+import Service.ServiceCliente;
 import Service.ServiceHotel;
+import Service.ServiceReserva;
+import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,12 +28,17 @@ import java.util.Scanner;
 public class menuAdmin {
 
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
+    ServiceCliente servicioCliente = new ServiceCliente();
     ServiceAdmin servicioAdmin = new ServiceAdmin();
     ServiceHotel servicioHotel = new ServiceHotel();
+    ServiceReserva servicioReserva = new ServiceReserva();
+    ReservaDAO reservaDAO = new ReservaDAO();
+    ReservaDTO reserva;
     boolean flag = true;
     int option = 0;
+    AdminDTO admin;
 
-    public void menu(AdminDTO admin) throws ServiceExceptions {
+    public void menu(AdminDTO admin) throws ServiceExceptions, Exception {
 
         do {
 
@@ -37,13 +51,17 @@ public class menuAdmin {
             System.out.println("5 Eliminar Cliente.");
             System.out.println("6 Crear Usuario Administrador.");
             System.out.println("7 Eliminar Usuario Administrador. ");
+            System.out.println("0 Para salir.");
 
             option = leer.nextInt();
 
             switch (option) {
-
+                case 0:
+                    System.out.println("Gracias por usar el servicio, " + admin.getNombre() + "." );
+                    break;
                 case 1:
                     crearHotel();
+                    break;  
                 case 2:
                     System.out.println("Ingrese el nombre del hotel");
                     String nombre = leer.next();
@@ -51,6 +69,18 @@ public class menuAdmin {
                     break;
                 case 3:
                     modificarHotel();
+                    break;
+                case 4:
+                    modificarEstadoReserva();
+                    break;
+                case 5:
+                    eliminarCliente();
+                    break;
+                case 6:
+                    registrarAdmin();
+                    break;
+                case 7:
+                    eliminarAdmin();
                 default:
                     System.out.println("Valor ingresado no valido.");
                     break;
@@ -124,5 +154,112 @@ public class menuAdmin {
 
         } while (opcion != 0);
 
+    }
+
+    public void modificarEstadoReserva() {
+        int numeroReserva;
+        String estado;
+        System.out.println("Ingresa el id de la reserva que necesitas modificar");
+        System.out.println("Si no conoces el numero de la reserva, ingresa 0, sino ingresala directamente.");
+        numeroReserva = leer.nextInt();
+        if (numeroReserva == 0) {
+            List<Reserva> lista = reservaDAO.obtenerReservas();
+            for (Reserva reserva : lista) {
+                System.out.println(reserva);
+            }
+            System.out.println("Ahora si, elija la reserva que desea cambiar su estado.");
+            numeroReserva = leer.nextInt();
+        }
+        reserva = servicioReserva.obtenerReservaId(numeroReserva);
+        if (reserva != null) {
+            do {
+                System.out.println("1 Cambiar a \"Activado\" .");
+                System.out.println("2 Cambiar a \"Desactivado\".");
+                System.out.println("0 Salir.");
+                                          
+                option = leer.nextInt();
+
+                switch (option) {
+                    case 1:
+                        estado = "Activado";
+                        servicioReserva.ActualizarEstadoReserva(reserva, estado);
+                        break;
+                    case 2:
+                        estado = "Desactivado";
+                        servicioReserva.ActualizarEstadoReserva(reserva, estado);
+                        break;
+                    case 0:
+                        System.out.println("Eligio salir.");
+                        break;
+                    default:
+                        System.out.println("Valor invalido.");
+                        break;
+
+                }
+
+            } while (option < 0 || option > 2);
+
+        }
+    }
+
+    public void eliminarAdmin() throws Exception {
+        String DNI;
+        do {
+            System.out.println("Ingrese el DNI del Admin a eliminar, o 0 para salir.");
+            DNI = leer.next();
+            admin = servicioAdmin.buscarAdminDNI(DNI);
+            if (admin != null) {
+                servicioAdmin.eliminarAdmin(DNI);
+            } else {
+                System.out.println("No se encontró admin con ese DNI.");
+                DNI = "0";
+            }
+        } while (DNI != "0");
+
+    }
+
+    public void eliminarCliente() throws ServiceExceptions, Exception {
+        String DNI;
+        do {
+            System.out.println("Ingrese el DNI del cliente a eliminar.");
+            DNI = leer.next();
+            ClienteDTO cliente = servicioCliente.buscarClienteDNI(DNI);
+            if (cliente != null) {
+                servicioCliente.eliminarCliente(DNI);
+            } else {
+                System.out.println("No se ha encontrado cliente con ese DNI.");
+            }
+        } while (DNI != "0");
+    }
+
+    public void registrarAdmin() {
+        boolean resultado = true;
+        String nombre, apellido, email, DNI;
+        System.out.println("Crea tu cuenta.");
+        do {
+            System.out.println("Ingresa el nombre.");
+            nombre = leer.next();
+            System.out.println("Ingresa el apellido.");
+            apellido = leer.next();
+            System.out.println("Ingresa el DNI.");
+            DNI = leer.next();
+            System.out.println("Ingresa tu email.");
+            email = leer.next();
+            try {
+                resultado = servicioAdmin.registrarAdmin(nombre, apellido, DNI, email);
+
+            } catch (ServiceExceptions e) {
+                System.out.println(e);
+            }
+            if (resultado == false) {
+                System.out.println("Intenta de vuelta");
+            } else {
+                try {
+                    admin = servicioAdmin.buscarAdminDNI(DNI);
+                } catch (Exception ex) {
+                    Logger.getLogger(iniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } while (resultado == false);
     }
 }

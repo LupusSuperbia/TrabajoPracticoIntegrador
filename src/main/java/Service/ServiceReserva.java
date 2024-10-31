@@ -116,4 +116,21 @@ public class ServiceReserva extends ServiceBase {
         }
         return reservasDTO;
     }
+    
+    public ReservaDTO obtenerReservaId(int reserva_id) {
+        Reserva reserva = reservaDAO.obtenerReservaPorId(reserva_id);
+
+        return new ReservaDTO(reserva.getIdReserva(),
+                    reserva.getIdCliente(),
+                    reserva.getIdHotel(),
+                    reserva.getIdHabitacion(),
+                    reserva.getFechaInicio(),
+                    reserva.getFechaFin(), reserva.getEstado());
+    }
+    
+    public Reserva ActualizarEstadoReserva(ReservaDTO reserva, String estado){
+        Reserva reservaModificada = reservaDAO.actualizarEstadoReserva(reserva.getIdReserva(), estado);
+       
+        return reservaModificada;
+    }
 }

@@ -16,7 +16,7 @@ public class menuAdmin {
     Scanner scanner = new Scanner(System.in).useDelimiter("\n");
     boolean flag = true;
     int option = 0;
-
+    
     public void menu() {
 
         while (flag) {

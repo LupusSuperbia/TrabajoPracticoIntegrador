@@ -114,5 +114,23 @@ public class ServiceHotel extends ServiceBase{
                     hotel.getEstrellas(),
                     hotel.getCantidadHabitaciones());
     }
-
+    
+    public HotelDTO ActualizarNombreHotel(String nombre, String Modificacion){
+        
+        Hotel hotel = hotelDAO.obtenerHotelPorNombre(nombre);
+        Hotel HotelModificado = hotelDAO.actualizarHotel("nombre", Modificacion, hotel.getIdHotel());
+        
+        
+        return crearHotelDTO(HotelModificado); 
+    }
+    
+    public HotelDTO ActualizarEstrellasHotel(String nombre, int Modificacion){
+        
+        Hotel hotel = hotelDAO.obtenerHotelPorNombre(nombre);
+        Hotel HotelModificado = hotelDAO.actualizarHotel("estrellas", Modificacion, hotel.getIdHotel());
+        
+        
+        return crearHotelDTO(HotelModificado); 
+    }
+    
 }

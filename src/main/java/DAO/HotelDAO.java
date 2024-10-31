@@ -220,7 +220,7 @@ public class HotelDAO extends BaseDAO implements HotelDAOInterface {
             hoteles = procesarHotel(rs);
 
         } catch (SQLException e) {
-            logger.log(Level.INFO, "Error al obtener Hoteles por estrellas{0}", e.getMessage());
+            logger.log(Level.INFO, "Error al obtener hoteles por estrellas{0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
         }
@@ -267,7 +267,7 @@ public class HotelDAO extends BaseDAO implements HotelDAOInterface {
             }
 
         } catch (SQLException e) {
-            logger.log(Level.INFO, "No se pudo insertar el Cliente {0}", e.getMessage());
+            logger.log(Level.INFO, "No se pudo insertar el hotel {0}", e.getMessage());
         } finally {
             ConnectionBD.getInstance().closeConnection();
 

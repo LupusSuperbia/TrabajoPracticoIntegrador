@@ -63,6 +63,28 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
      * @param email
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
+    public String obtenerRolPorDNI(String DNI) {
+        String Rol = "";
+        String query = "SELECT Rol FROM Persona where DNI = ?";
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, DNI);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+           Rol = rs.getString("Rol");
+                rs.close();
+            } else {
+                logger.info("No se ha encontrado ningun Rol con ese DNI");
+                rs.close();
+            }
+        } catch (SQLException e) {
+            logger.log(Level.INFO, "No se pudo obtener Rol", e.getMessage());
+        } finally {
+            ConnectionBD.getInstance().closeConnection();
+
+        }
+        return Rol;
+    }
+    
     @Override
     public void insertarCliente(String nombre, String apellido, String DNI, String email, Rol rol) {
         insertarPersona(nombre, apellido, DNI, email, rol);
@@ -148,7 +170,7 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
     
     @Override
     public Cliente obtenerClientePorDNI(String DNI) {
-        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ?";
+        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ? AND ROL = \"USER\"";
         Cliente cliente = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, DNI);
@@ -267,14 +289,14 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
             System.out.println("No se ha encontrado ningun cliente con ese DNI");
             return null;
         }
-        String query = "UPDATE Persona Set nombre = ? , apellido = ?, DNI = ?, email = ? WHERE DNI = ?";
+        String query = "UPDATE Persona Set nombre = ? , apellido = ?, email = ? WHERE DNI = ?";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
-
+            
             pstmt.setString(1, nombreActualizar);
             pstmt.setString(2, apellidoActualizar);
-            pstmt.setString(3, DNIActualizar);
+            pstmt.setString(3, email);
             pstmt.setString(4, DNIBusqueda);
-
+            
             int filasAfectadas = pstmt.executeUpdate();
 
             if (filasAfectadas > 0) {

@@ -75,7 +75,7 @@ public class ServiceCliente extends ServiceBase{
         for (Cliente cliente : clientes) {
             ClienteDTO clienteDTO = new ClienteDTO(cliente.getIdCliente(),
                     cliente.getNombre(),
-                    cliente.getApellido(), cliente.getDNI(), Rol.USER);
+                    cliente.getApellido(), cliente.getDNI(),cliente.getEmail(), Rol.USER);
             clientesDTO.add(clienteDTO);
         }
         return clientesDTO;
@@ -109,7 +109,14 @@ public class ServiceCliente extends ServiceBase{
                 cliente.getNombre(),
                 cliente.getApellido(),
                 cliente.getDNI(), 
+               cliente.getEmail()
                 cliente.getRol());
+    }
+    
+    public String obtenerRol(String DNI) throws ServiceExceptions{
+        String Rol = clienteDAO.obtenerRolPorDNI(DNI);
+        validador.validarDatosString(Rol, "No se encontro persona para este DNI");
+        return Rol;
     }
 
 }

@@ -63,6 +63,28 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
      * @param email
      * @throw SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
+    public String obtenerRolPorDNI(String DNI) {
+        String Rol = "";
+        String query = "SELECT Rol FROM Persona where DNI = ?";
+        try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, DNI);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+           Rol = rs.getString("Rol");
+                rs.close();
+            } else {
+                logger.info("No se ha encontrado ningun Rol con ese DNI");
+                rs.close();
+            }
+        } catch (SQLException e) {
+            logger.log(Level.INFO, "No se pudo obtener Rol", e.getMessage());
+        } finally {
+            ConnectionBD.getInstance().closeConnection();
+
+        }
+        return Rol;
+    }
+    
     @Override
     public void insertarCliente(String nombre, String apellido, String DNI, String email, Rol rol) {
         insertarPersona(nombre, apellido, DNI, email, rol);

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface PersonaDAOInterface {
     public void crearTabla();
-    
+    public String obtenerRolPorDNI(String DNI);
     public void insertarCliente(String nombre, 
             String apellido, String DNI, 
             String email, 
@@ -51,5 +51,6 @@ public interface PersonaDAOInterface {
             String DNIActualizar, 
             String email);
     public void eliminarCuentaAdmin(String DNI);
+    
     
 }

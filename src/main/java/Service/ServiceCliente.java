@@ -110,5 +110,11 @@ public class ServiceCliente extends ServiceBase{
                 cliente.getApellido(),
                 cliente.getDNI());
     }
+    
+    public String obtenerRol(String DNI) throws ServiceExceptions{
+        String Rol = clienteDAO.obtenerRolPorDNI(DNI);
+        validador.validarDatosString(Rol, "No se encontro persona para este DNI");
+        return Rol;
+    }
 
 }

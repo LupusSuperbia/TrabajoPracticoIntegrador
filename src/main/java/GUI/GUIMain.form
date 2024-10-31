@@ -20,6 +20,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[972, 600]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -41,15 +44,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="pnInicioSesion1" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Component id="pnInicioSesion2" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -60,163 +54,129 @@
               <Component id="pnMostrarHotelesCliente" alignment="1" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
-              <Component id="pnHabitacionesCliente" alignment="0" max="32767" attributes="0"/>
+              <Component id="pnHabitacionesCliente" alignment="1" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="5" groupAlignment="0" attributes="0">
-              <Component id="pnCrearReservaCliente" alignment="0" max="32767" attributes="0"/>
+              <Component id="pnRegistro" alignment="1" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="6" groupAlignment="0" attributes="0">
-              <Component id="pnRegistro" alignment="0" max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="7" groupAlignment="0" attributes="0">
               <Component id="pnCancelarReservaCliente" alignment="0" max="32767" attributes="0"/>
           </Group>
+          <Group type="103" rootIndex="7" groupAlignment="0" attributes="0">
+              <Component id="pnCrearHotelAdmin" alignment="1" max="32767" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="8" groupAlignment="0" attributes="0">
-              <Component id="pnMenuAdmin" alignment="0" max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="9" groupAlignment="0" attributes="0">
-              <Component id="pnCrearHotelAdmin" alignment="0" max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="10" groupAlignment="0" attributes="0">
               <Component id="pnEliminarHotelAdmin" alignment="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="11" groupAlignment="0" attributes="0">
+          <Group type="103" rootIndex="9" groupAlignment="0" attributes="0">
               <Component id="pnModificarHotelAdmin" alignment="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="12" groupAlignment="0" attributes="0">
+          <Group type="103" rootIndex="10" groupAlignment="0" attributes="0">
               <Component id="pnModificarReservaAdmin_NoTocar" alignment="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="13" groupAlignment="0" attributes="0">
+          <Group type="103" rootIndex="11" groupAlignment="0" attributes="0">
               <Component id="pnEliminarClienteAdmin" alignment="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="14" groupAlignment="0" attributes="0">
+          <Group type="103" rootIndex="12" groupAlignment="0" attributes="0">
               <Component id="pnCrearAdminAdmin" alignment="0" max="32767" attributes="0"/>
           </Group>
+          <Group type="103" rootIndex="13" groupAlignment="0" attributes="0">
+              <Component id="pnModificarClienteCliente" alignment="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="14" groupAlignment="0" attributes="0">
+              <Component id="pnEliminarAdminAdmin" alignment="0" max="32767" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="15" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pnModificarClienteCliente" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
+              <Component id="pnMenuAdmin" alignment="1" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="16" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pnEliminarAdminAdmin" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
+              <Component id="pnCrearReservaCliente" alignment="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="pnInicioSesion1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-          </Group>
+          <Component id="pnInicioSesion1" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnInicioSesion2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnInicioSesion2" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnMenuCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnMenuCliente" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnMostrarHotelesCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnMostrarHotelesCliente" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnHabitacionesCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
-              </Group>
+              <Component id="pnHabitacionesCliente" alignment="0" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="5" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnCrearReservaCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
-              </Group>
+              <Component id="pnRegistro" alignment="0" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="6" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnRegistro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnCancelarReservaCliente" pref="608" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="7" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnCancelarReservaCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
-              </Group>
+              <Component id="pnCrearHotelAdmin" alignment="0" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="8" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnMenuAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnEliminarHotelAdmin" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="9" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnCrearHotelAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnModificarHotelAdmin" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="10" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnEliminarHotelAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnModificarReservaAdmin_NoTocar" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="11" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnModificarHotelAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnEliminarClienteAdmin" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="12" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnModificarReservaAdmin_NoTocar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnCrearAdminAdmin" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="13" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnEliminarClienteAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnModificarClienteCliente" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="14" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnCrearAdminAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                  <Component id="pnEliminarAdminAdmin" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="15" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pnModificarClienteCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
-              </Group>
+              <Component id="pnMenuAdmin" alignment="0" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="16" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pnEliminarAdminAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
-              </Group>
+              <Component id="pnCrearReservaCliente" alignment="0" pref="608" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -236,7 +196,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                   <Component id="btnSi" min="-2" pref="130" max="-2" attributes="0"/>
-                  <EmptySpace pref="361" max="32767" attributes="0"/>
+                  <EmptySpace pref="385" max="32767" attributes="0"/>
                   <Component id="btnNo" min="-2" pref="128" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
               </Group>
@@ -247,7 +207,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                   <Component id="tgTienesCuenta" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="233" max="32767" attributes="0"/>
+                  <EmptySpace pref="241" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSi" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="btnNo" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
@@ -295,20 +255,23 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="tgDniPresente" alignment="0" pref="948" max="32767" attributes="0"/>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="tgDniCheck" min="-2" pref="63" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnVerificarDni" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDniCheck" min="-2" pref="214" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="369" max="-2" attributes="0"/>
-              </Group>
+              <Component id="tgDniPresente" alignment="0" pref="972" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                  <Component id="btnAtrasIS2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="btnVerificarDni" min="-2" pref="88" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnAtrasIS2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="328" max="-2" attributes="0"/>
+                              <Component id="tgDniCheck" min="-2" pref="63" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtDniCheck" min="-2" pref="221" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -318,16 +281,16 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                   <Component id="tgDniPresente" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDniCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tgDniCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="btnVerificarDni" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="194" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnVerificarDni" min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace pref="324" max="32767" attributes="0"/>
                   <Component id="btnAtrasIS2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -347,7 +310,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDniCheck">
           <Properties>
-            <Property name="text" type="java.lang.String" value="11.111.111"/>
+            <Property name="text" type="java.lang.String" value="11111111"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDniCheckActionPerformed"/>
@@ -386,21 +349,17 @@
     <Container class="javax.swing.JPanel" name="pnRegistro">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="99" red="ff" type="rgb"/>
+          <Color blue="99" green="ff" red="99" type="rgb"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="tgRegistro" alignment="0" pref="948" max="32767" attributes="0"/>
+              <Component id="tgRegistro" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="btnAtrasRegistro" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnRegistro" min="-2" pref="551" max="-2" attributes="0"/>
@@ -421,8 +380,12 @@
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnAtrasRegistro" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="224" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -453,9 +416,9 @@
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="btnRegistro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="162" max="32767" attributes="0"/>
+                  <EmptySpace pref="209" max="32767" attributes="0"/>
                   <Component id="btnAtrasRegistro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -535,6 +498,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasRegistroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegistro">
           <Properties>
@@ -556,19 +522,19 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="btnAtrasMenuCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="841" max="32767" attributes="0"/>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="370" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnRealizarReserva" max="32767" attributes="0"/>
                       <Component id="btnEliminarReserva" max="32767" attributes="0"/>
                       <Component id="btnModificarPerfilCliente" min="-2" pref="264" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="338" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnAtrasMenuCliente" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -581,9 +547,9 @@
                   <Component id="btnEliminarReserva" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnModificarPerfilCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                  <EmptySpace pref="233" max="32767" attributes="0"/>
                   <Component id="btnAtrasMenuCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="78" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -609,6 +575,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Reserva"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarReservaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnModificarPerfilCliente">
           <Properties>
@@ -620,10 +589,10 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="java.awt.Panel" name="pnMenuAdmin">
+    <Container class="javax.swing.JPanel" name="pnMenuAdmin">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="0" red="66" type="rgb"/>
+          <Color blue="66" green="ff" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -632,7 +601,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnCrearHotelAdmin" max="32767" attributes="0"/>
@@ -645,11 +614,11 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnAtrasMenuAdmin" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="365" max="32767" attributes="0"/>
+                  <EmptySpace pref="389" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -670,9 +639,9 @@
                   <Component id="btnCrearAdminAdmin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnEliminarAdminAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="143" max="32767" attributes="0"/>
+                  <EmptySpace pref="174" max="32767" attributes="0"/>
                   <Component id="btnAtrasMenuAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -690,31 +659,49 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Hotel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarHotelAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnModificarHotelAdmin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar Hotel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarHotelAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnModificarReservasAdmin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar Reservas (clientes)"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarReservasAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEliminarClienteAdmin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Cliente"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarClienteAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCrearAdminAdmin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear Usuario Administrador"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAdminAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEliminarAdminAdmin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Usuario Administrador"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarAdminAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAtrasMenuAdmin">
           <Properties>
@@ -738,22 +725,27 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="tgCrearHotel" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnAtrasCrearHotelAdmin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="183" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tgEstrellasHotel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="tgNombreHotel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="tgCantHabitacionesHotel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtCantidadHabitaciones" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
-                      <Component id="txtNombreHotel" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
-                      <Component id="txtEstrellasHotel" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
+                  <EmptySpace pref="207" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="btnIngresarHotel" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tgEstrellasHotel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="tgNombreHotel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="tgCantHabitacionesHotel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtCantidadHabitaciones" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
+                              <Component id="txtNombreHotel" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
+                              <Component id="txtEstrellasHotel" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               </Group>
@@ -779,9 +771,11 @@
                       <Component id="txtCantidadHabitaciones" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tgCantHabitacionesHotel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="268" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnIngresarHotel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="270" max="32767" attributes="0"/>
                   <Component id="btnAtrasCrearHotelAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -848,6 +842,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasCrearHotelAdminActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnIngresarHotel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ingresar Hotel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarHotelActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -861,20 +866,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tgSeleccionaHotel2" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAtrasEliminarHotelAdmin" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="tgSeleccionaHotel2" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane4" alignment="1" pref="942" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" alignment="1" pref="966" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnAtrasEliminarHotelAdmin" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -886,9 +889,9 @@
                   <Component id="tgSeleccionaHotel2" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jScrollPane4" min="-2" pref="449" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="btnAtrasEliminarHotelAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -970,20 +973,20 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tgSeleccionaHotel3" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAtrasModificarHotelAdmin" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Component id="btnAtrasModificarHotelAdmin" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tgSeleccionaHotel3" pref="960" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane5" alignment="1" pref="942" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -995,9 +998,9 @@
                   <Component id="tgSeleccionaHotel3" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jScrollPane5" min="-2" pref="449" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="btnAtrasModificarHotelAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1079,20 +1082,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tgSeleccionaHotel4" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAtrasMostrarHoteles3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="tgSeleccionaHotel4" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane6" alignment="1" pref="942" max="32767" attributes="0"/>
+                      <Component id="jScrollPane6" alignment="1" pref="966" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnAtrasMostrarHoteles3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -1104,9 +1105,9 @@
                   <Component id="tgSeleccionaHotel4" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jScrollPane6" min="-2" pref="449" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="btnAtrasMostrarHoteles3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1188,20 +1189,20 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tgSeleccionaCliente" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAtrasEliminarClienteAdmin" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Component id="btnAtrasEliminarClienteAdmin" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tgSeleccionaCliente" pref="960" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane7" alignment="1" pref="942" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -1213,9 +1214,9 @@
                   <Component id="tgSeleccionaCliente" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jScrollPane7" min="-2" pref="449" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="btnAtrasEliminarClienteAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1298,7 +1299,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="tgCreacionAdmin" alignment="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
@@ -1317,11 +1318,11 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnAtrasCrearAdmin" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="200" max="32767" attributes="0"/>
+                  <EmptySpace pref="224" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1350,9 +1351,9 @@
                       <Component id="txtCrearAdminEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tgCrearAdminEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="224" max="32767" attributes="0"/>
+                  <EmptySpace pref="270" max="32767" attributes="0"/>
                   <Component id="btnAtrasCrearAdmin" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1435,6 +1436,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasCrearAdminActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1448,20 +1452,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tgEliminarAdminAdmin" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAtrasEliminarClienteAdmin1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="tgEliminarAdminAdmin" pref="960" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane9" alignment="1" pref="942" max="32767" attributes="0"/>
+                      <Component id="jScrollPane9" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnAtrasEliminarClienteAdmin1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -1473,9 +1475,9 @@
                   <Component id="tgEliminarAdminAdmin" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jScrollPane9" min="-2" pref="449" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="btnAtrasEliminarClienteAdmin1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1557,21 +1559,42 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tgModificarCliente" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAtrasModificarClienteCliente" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="tgModificarCliente" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane8" alignment="1" pref="942" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnAtrasModificarClienteCliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnModificarCliente" min="-2" pref="551" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="tgModificarClienteEmail" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txtModificarClienteEmail" min="-2" pref="330" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="tgModificarClienteNombre" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="101" max="32767" attributes="0"/>
+                              <Component id="txtModificarClienteNombre" min="-2" pref="330" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="tgModificarClienteApellido" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txtModificarClienteApellido" min="-2" pref="330" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="0" pref="220" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1580,11 +1603,26 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="tgModificarCliente" min="-2" pref="62" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="jScrollPane8" min="-2" pref="449" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="118" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tgModificarClienteNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtModificarClienteNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtModificarClienteApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tgModificarClienteApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tgModificarClienteEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtModificarClienteEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnModificarCliente" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
                   <Component id="btnAtrasModificarClienteCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1599,53 +1637,6 @@
             <Property name="text" type="java.lang.String" value="Seleccione los datos que desea modificar"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane8">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="tblClientesCliente">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
-                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                    <Column editable="false" title="Apellido" type="java.lang.Object"/>
-                    <Column editable="false" title="DNI" type="java.lang.Object"/>
-                    <Column editable="false" title="E-mail" type="java.lang.Object"/>
-                  </Table>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                  <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                  </TableColumnModel>
-                </Property>
-                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblClientesClienteMousePressed"/>
-              </Events>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="javax.swing.JButton" name="btnAtrasModificarClienteCliente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
@@ -1653,6 +1644,56 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasModificarClienteClienteActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnModificarCliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modificar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarClienteActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tgModificarClienteNombre">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Google Sans" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ingrese su nombre:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tgModificarClienteApellido">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Google Sans" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ingrese su apellido:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tgModificarClienteEmail">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Google Sans" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ingrese su e-mail:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtModificarClienteApellido">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtModificarClienteNombre">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtModificarClienteNombreActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtModificarClienteEmail">
         </Component>
       </SubComponents>
     </Container>
@@ -1670,16 +1711,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tgSeleccionaHotel" alignment="0" pref="936" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAtrasMostrarHoteles" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="tgSeleccionaHotel" pref="960" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnAtrasMostrarHoteles" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -1691,9 +1730,9 @@
                   <Component id="tgSeleccionaHotel" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="449" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="btnAtrasMostrarHoteles" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1777,7 +1816,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tgSeleccionaHabitacion" pref="936" max="32767" attributes="0"/>
+                      <Component id="tgSeleccionaHabitacion" pref="960" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnAtrasHabitaciones" min="-2" max="-2" attributes="0"/>
@@ -1795,9 +1834,9 @@
                   <Component id="tgSeleccionaHabitacion" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Component id="btnAtrasHabitaciones" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1823,10 +1862,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="0">
-                    <Column editable="true" title="Habitaci&#xf3;n N&#xb0;" type="java.lang.Object"/>
-                    <Column editable="true" title="Cantidad de huespedes" type="java.lang.Object"/>
+                    <Column editable="false" title="Habitaci&#xf3;n N&#xb0;" type="java.lang.Object"/>
+                    <Column editable="false" title="Cantidad de huespedes" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="fillsViewportHeight" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblHabitacionesMouseClicked"/>
@@ -1844,56 +1884,164 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="java.awt.Panel" name="pnCrearReservaCliente">
+    <Container class="javax.swing.JPanel" name="pnCancelarReservaCliente">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="0" type="rgb"/>
+          <Color blue="3c" green="24" red="24" type="rgb"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[972, 600]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[972, 600]"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jScrollPane3" max="32767" attributes="0"/>
+                      <Component id="tgCancelarReserva" alignment="0" pref="960" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnAtrasCancelarReserva" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tgSetReserva" pref="942" max="32767" attributes="0"/>
+                  <Component id="tgCancelarReserva" min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" min="-2" pref="450" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="btnAtrasCancelarReserva" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="tgCancelarReserva">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Google Sans" size="24" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="71" green="3b" red="f5" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Seleccione la reserva que desea cancelar !"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="jTable1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="4c" green="2c" red="30" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="8" rowCount="4">
+                    <Column editable="true" title="Dia Inicio" type="java.lang.Object"/>
+                    <Column editable="true" title="Mes Inicio" type="java.lang.Object"/>
+                    <Column editable="true" title="A&#xf1;o Inicio" type="java.lang.Object"/>
+                    <Column editable="true" title="Dia Fin" type="java.lang.Object"/>
+                    <Column editable="true" title="Mes Fin" type="java.lang.Object"/>
+                    <Column editable="true" title="A&#xf1;o Fin" type="java.lang.Object"/>
+                    <Column editable="true" title="Hotel" type="java.lang.Object"/>
+                    <Column editable="true" title="Habitacion" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="btnAtrasCancelarReserva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasCancelarReservaActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="pnCrearReservaCliente">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="ff" red="99" type="rgb"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[972, 600]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[972, 600]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tgSetReserva" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnAtrasCrearReserva" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="367" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnCrearReserva" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tgMesReservaFin" max="32767" attributes="0"/>
-                              <Component id="tgDiaReservaFin" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tgAnioReservaFin" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tgAnioReservaInicio" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="spnDiaFinal" min="-2" max="-2" attributes="0"/>
-                              <Component id="spnAnioInicio" min="-2" max="-2" attributes="0"/>
-                              <Component id="spnMesFinal" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="spnAnioFinal" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tgMesReservaInicio" max="32767" attributes="0"/>
-                              <Component id="tgDiaReserva" min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="spnDiaInicio" min="-2" max="-2" attributes="0"/>
-                              <Component id="spnMesInicio" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tgMesReservaFin" max="32767" attributes="0"/>
+                                  <Component id="tgDiaReservaFin" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tgAnioReservaFin" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tgAnioReservaInicio" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tgMesReservaInicio" max="32767" attributes="0"/>
+                                  <Component id="tgDiaReserva" min="-2" pref="210" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="spnAnioFinal" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="spnMesFinal" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="spnDiaFinal" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="spnAnioInicio" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="spnDiaInicio" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="spnMesInicio" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnAtrasCrearReserva" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1902,39 +2050,40 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="tgSetReserva" min="-2" pref="62" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tgDiaReserva" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="spnDiaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tgMesReservaInicio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="spnMesInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tgAnioReservaInicio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="spnAnioInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tgDiaReservaFin" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="spnDiaFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tgMesReservaFin" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="spnMesFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tgAnioReservaFin" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="spnAnioFinal" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="tgDiaReserva" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="tgMesReservaInicio" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="tgAnioReservaInicio" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                          <Component id="tgDiaReservaFin" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="tgMesReservaFin" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="tgAnioReservaFin" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="spnDiaInicio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="spnMesInicio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="spnAnioInicio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="spnDiaFinal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="spnMesFinal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="spnAnioFinal" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="102" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btnCrearReserva" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="71" max="32767" attributes="0"/>
                   <Component id="btnAtrasCrearReserva" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1995,114 +2144,19 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasCrearReservaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCrearReserva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Crear Reserva"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearReservaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnCancelarReservaCliente">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="0" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tgCancelarReserva" pref="936" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="btnAtrasCancelarReserva" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tgCancelarReserva" min="-2" pref="62" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" min="-2" pref="478" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnAtrasCancelarReserva" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="tgCancelarReserva">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Google Sans" size="24" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Seleccione la reserva que desea cancelar !"/>
-          </Properties>
-        </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="4">
-                    <Column editable="true" title="Dia Inicio" type="java.lang.Object"/>
-                    <Column editable="true" title="Mes Inicio" type="java.lang.Object"/>
-                    <Column editable="true" title="A&#xf1;o Inicio" type="java.lang.Object"/>
-                    <Column editable="true" title="Dia Fin" type="java.lang.Object"/>
-                    <Column editable="true" title="Mes Fin" type="java.lang.Object"/>
-                    <Column editable="true" title="A&#xf1;o Fin" type="java.lang.Object"/>
-                    <Column editable="true" title="Hotel" type="java.lang.Object"/>
-                    <Column editable="true" title="Habitacion" type="java.lang.Object"/>
-                  </Table>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Component class="javax.swing.JButton" name="btnAtrasCancelarReserva">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jButton2"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jButton3"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>

@@ -45,6 +45,11 @@ public class ServiceReserva extends ServiceBase {
         if (!reservaDAO.verificarReserva(habitacion_id, fecha_inicio.toString(), fecha_fin.toString())) {
             throw new ServiceExceptions("No se puede reservar la habitacion porque ya esta reservada.");
         }
+        
+        if(!fecha_inicio.isBefore(fecha_fin)){
+            throw new ServiceExceptions("No se puede reservar la habitacion, ingrese los datos correctamente.");
+        }
+        
         Cliente cliente = clienteDAO.obtenerClientePorId(cliente_id);
         Hotel hotel = hotelDAO.obtenerHotelPorId(hotel_id);
         Habitacion habitacion = habitacionDAO.obtenerHabitacionPorHabitacionId(habitacion_id);

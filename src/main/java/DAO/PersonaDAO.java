@@ -148,7 +148,7 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
     
     @Override
     public Cliente obtenerClientePorDNI(String DNI) {
-        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ?";
+        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona where DNI = ? AND ROL = \"USER\"";
         Cliente cliente = null;
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, DNI);
@@ -267,14 +267,14 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
             System.out.println("No se ha encontrado ningun cliente con ese DNI");
             return null;
         }
-        String query = "UPDATE Persona Set nombre = ? , apellido = ?, DNI = ?, email = ? WHERE DNI = ?";
+        String query = "UPDATE Persona Set nombre = ? , apellido = ?, email = ? WHERE DNI = ?";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
-
+            
             pstmt.setString(1, nombreActualizar);
             pstmt.setString(2, apellidoActualizar);
-            pstmt.setString(3, DNIActualizar);
+            pstmt.setString(3, email);
             pstmt.setString(4, DNIBusqueda);
-
+            
             int filasAfectadas = pstmt.executeUpdate();
 
             if (filasAfectadas > 0) {

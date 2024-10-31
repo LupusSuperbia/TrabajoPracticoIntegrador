@@ -5,18 +5,22 @@
 package GUI;
 
 import DAO.PersonaDAO;
+import DTO.AdminDTO;
 import DTO.ClienteDTO;
 import DTO.HabitacionDTO;
 import DTO.HotelDTO;
+import DTO.PersonaDTO;
 import DTO.ReservaDTO;
 import Exceptions.ServiceExceptions;
 import Model.Cliente;
+import Service.ServiceAdmin;
 import Service.ServiceCliente;
 import Service.ServiceHabitacion;
 import Service.ServiceHotel;
 import Service.ServiceReserva;
 import java.awt.Color;
 import static java.awt.Event.DELETE;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -95,7 +99,7 @@ public class GUIMain extends javax.swing.JFrame {
         btnRealizarReserva = new javax.swing.JButton();
         btnEliminarReserva = new javax.swing.JButton();
         btnModificarPerfilCliente = new javax.swing.JButton();
-        pnMenuAdmin = new java.awt.Panel();
+        pnMenuAdmin = new javax.swing.JPanel();
         btnCrearHotelAdmin = new javax.swing.JButton();
         btnEliminarHotelAdmin = new javax.swing.JButton();
         btnModificarHotelAdmin = new javax.swing.JButton();
@@ -113,6 +117,7 @@ public class GUIMain extends javax.swing.JFrame {
         txtCantidadHabitaciones = new javax.swing.JTextField();
         tgCrearHotel = new javax.swing.JLabel();
         btnAtrasCrearHotelAdmin = new javax.swing.JButton();
+        btnIngresarHotel = new javax.swing.JButton();
         pnEliminarHotelAdmin = new javax.swing.JPanel();
         tgSeleccionaHotel2 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -151,9 +156,14 @@ public class GUIMain extends javax.swing.JFrame {
         btnAtrasEliminarClienteAdmin1 = new javax.swing.JButton();
         pnModificarClienteCliente = new javax.swing.JPanel();
         tgModificarCliente = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        tblClientesCliente = new javax.swing.JTable();
         btnAtrasModificarClienteCliente = new javax.swing.JButton();
+        btnModificarCliente = new javax.swing.JButton();
+        tgModificarClienteNombre = new javax.swing.JLabel();
+        tgModificarClienteApellido = new javax.swing.JLabel();
+        tgModificarClienteEmail = new javax.swing.JLabel();
+        txtModificarClienteApellido = new javax.swing.JTextField();
+        txtModificarClienteNombre = new javax.swing.JTextField();
+        txtModificarClienteEmail = new javax.swing.JTextField();
         pnMostrarHotelesCliente = new javax.swing.JPanel();
         tgSeleccionaHotel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -164,7 +174,12 @@ public class GUIMain extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHabitaciones = new javax.swing.JTable();
         btnAtrasHabitaciones = new javax.swing.JButton();
-        pnCrearReservaCliente = new java.awt.Panel();
+        pnCancelarReservaCliente = new javax.swing.JPanel();
+        tgCancelarReserva = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnAtrasCancelarReserva = new javax.swing.JButton();
+        pnCrearReservaCliente = new javax.swing.JPanel();
         tgDiaReserva = new javax.swing.JLabel();
         spnDiaInicio = new javax.swing.JSpinner();
         spnMesInicio = new javax.swing.JSpinner();
@@ -179,14 +194,7 @@ public class GUIMain extends javax.swing.JFrame {
         tgDiaReservaFin = new javax.swing.JLabel();
         tgSetReserva = new javax.swing.JLabel();
         btnAtrasCrearReserva = new javax.swing.JButton();
-        pnCancelarReservaCliente = new javax.swing.JPanel();
-        tgCancelarReserva = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnAtrasCancelarReserva = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCrearReserva = new javax.swing.JButton();
 
         javax.swing.GroupLayout dlgNoSeEncontroPersonaLayout = new javax.swing.GroupLayout(dlgNoSeEncontroPersona.getContentPane());
         dlgNoSeEncontroPersona.getContentPane().setLayout(dlgNoSeEncontroPersonaLayout);
@@ -200,6 +208,7 @@ public class GUIMain extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(972, 600));
 
         pnInicioSesion1.setBackground(new java.awt.Color(0, 255, 102));
 
@@ -229,7 +238,7 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(pnInicioSesion1Layout.createSequentialGroup()
                 .addGap(157, 157, 157)
                 .addComponent(btnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
                 .addComponent(btnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(172, 172, 172))
         );
@@ -238,7 +247,7 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(pnInicioSesion1Layout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(tgTienesCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
                 .addGroup(pnInicioSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -252,7 +261,7 @@ public class GUIMain extends javax.swing.JFrame {
         tgDniPresente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgDniPresente.setText("Ingrese su DNI para iniciar sesión");
 
-        txtDniCheck.setText("11.111.111");
+        txtDniCheck.setText("11111111");
         txtDniCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDniCheckActionPerformed(evt);
@@ -282,18 +291,19 @@ public class GUIMain extends javax.swing.JFrame {
         pnInicioSesion2.setLayout(pnInicioSesion2Layout);
         pnInicioSesion2Layout.setHorizontalGroup(
             pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tgDniPresente, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnInicioSesion2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tgDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVerificarDni)
-                    .addComponent(txtDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(369, 369, 369))
+            .addComponent(tgDniPresente, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
             .addGroup(pnInicioSesion2Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(btnAtrasIS2)
+                .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnVerificarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnInicioSesion2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btnAtrasIS2))
+                        .addGroup(pnInicioSesion2Layout.createSequentialGroup()
+                            .addGap(328, 328, 328)
+                            .addComponent(tgDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnInicioSesion2Layout.setVerticalGroup(
@@ -301,18 +311,18 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(pnInicioSesion2Layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addComponent(tgDniPresente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(51, 51, 51)
                 .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgDniCheck))
-                .addGap(60, 60, 60)
-                .addComponent(btnVerificarDni)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVerificarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addComponent(btnAtrasIS2)
-                .addGap(102, 102, 102))
+                .addContainerGap())
         );
 
-        pnRegistro.setBackground(new java.awt.Color(255, 153, 0));
+        pnRegistro.setBackground(new java.awt.Color(153, 255, 153));
 
         tgRegistroNombre.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
         tgRegistroNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -348,6 +358,11 @@ public class GUIMain extends javax.swing.JFrame {
         tgRegistro.setText("Bienvenido! Ingrese sus datos:");
 
         btnAtrasRegistro.setText("Atrás");
+        btnAtrasRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasRegistroActionPerformed(evt);
+            }
+        });
 
         btnRegistro.setText("Registrarse");
         btnRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -360,12 +375,9 @@ public class GUIMain extends javax.swing.JFrame {
         pnRegistro.setLayout(pnRegistroLayout);
         pnRegistroLayout.setHorizontalGroup(
             pnRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tgRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
+            .addComponent(tgRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnRegistroLayout.createSequentialGroup()
                 .addGroup(pnRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnRegistroLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(btnAtrasRegistro))
                     .addGroup(pnRegistroLayout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addGroup(pnRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,8 +393,11 @@ public class GUIMain extends javax.swing.JFrame {
                                     .addComponent(txtRegistroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtRegistroEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtRegistroNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRegistroApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtRegistroApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(pnRegistroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnAtrasRegistro)))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         pnRegistroLayout.setVerticalGroup(
             pnRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,9 +422,9 @@ public class GUIMain extends javax.swing.JFrame {
                     .addComponent(tgRegistroEmail))
                 .addGap(35, 35, 35)
                 .addComponent(btnRegistro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addComponent(btnAtrasRegistro)
-                .addGap(45, 45, 45))
+                .addContainerGap())
         );
 
         pnMenuCliente.setBackground(new java.awt.Color(255, 51, 0));
@@ -429,6 +444,11 @@ public class GUIMain extends javax.swing.JFrame {
         });
 
         btnEliminarReserva.setText("Eliminar Reserva");
+        btnEliminarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarReservaActionPerformed(evt);
+            }
+        });
 
         btnModificarPerfilCliente.setText("Modificar Perfil");
         btnModificarPerfilCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -441,17 +461,17 @@ public class GUIMain extends javax.swing.JFrame {
         pnMenuCliente.setLayout(pnMenuClienteLayout);
         pnMenuClienteLayout.setHorizontalGroup(
             pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnMenuClienteLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnAtrasMenuCliente)
-                .addContainerGap(841, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMenuClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(370, Short.MAX_VALUE)
                 .addGroup(pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRealizarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModificarPerfilCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(338, 338, 338))
+            .addGroup(pnMenuClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAtrasMenuCliente)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnMenuClienteLayout.setVerticalGroup(
             pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,12 +482,12 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(btnEliminarReserva)
                 .addGap(18, 18, 18)
                 .addComponent(btnModificarPerfilCliente)
-                .addGap(154, 154, 154)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                 .addComponent(btnAtrasMenuCliente)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        pnMenuAdmin.setBackground(new java.awt.Color(102, 0, 51));
+        pnMenuAdmin.setBackground(new java.awt.Color(0, 255, 102));
 
         btnCrearHotelAdmin.setText("Crear Hotel");
         btnCrearHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -477,16 +497,46 @@ public class GUIMain extends javax.swing.JFrame {
         });
 
         btnEliminarHotelAdmin.setText("Eliminar Hotel");
+        btnEliminarHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarHotelAdminActionPerformed(evt);
+            }
+        });
 
         btnModificarHotelAdmin.setText("Modificar Hotel");
+        btnModificarHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarHotelAdminActionPerformed(evt);
+            }
+        });
 
         btnModificarReservasAdmin.setText("Modificar Reservas (clientes)");
+        btnModificarReservasAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarReservasAdminActionPerformed(evt);
+            }
+        });
 
         btnEliminarClienteAdmin.setText("Eliminar Cliente");
+        btnEliminarClienteAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarClienteAdminActionPerformed(evt);
+            }
+        });
 
         btnCrearAdminAdmin.setText("Crear Usuario Administrador");
+        btnCrearAdminAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearAdminAdminActionPerformed(evt);
+            }
+        });
 
         btnEliminarAdminAdmin.setText("Eliminar Usuario Administrador");
+        btnEliminarAdminAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAdminAdminActionPerformed(evt);
+            }
+        });
 
         btnAtrasMenuAdmin.setText("Atrás");
         btnAtrasMenuAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -512,9 +562,9 @@ public class GUIMain extends javax.swing.JFrame {
                             .addComponent(btnCrearAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)))
                     .addGroup(pnMenuAdminLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addContainerGap()
                         .addComponent(btnAtrasMenuAdmin)))
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(389, Short.MAX_VALUE))
         );
         pnMenuAdminLayout.setVerticalGroup(
             pnMenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,9 +583,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(btnCrearAdminAdmin)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarAdminAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addComponent(btnAtrasMenuAdmin)
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
 
         pnCrearHotelAdmin.setBackground(new java.awt.Color(255, 51, 102));
@@ -570,6 +620,18 @@ public class GUIMain extends javax.swing.JFrame {
         tgCrearHotel.setText("Ingrese los datos del hotel: ");
 
         btnAtrasCrearHotelAdmin.setText("Atrás");
+        btnAtrasCrearHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasCrearHotelAdminActionPerformed(evt);
+            }
+        });
+
+        btnIngresarHotel.setText("Ingresar Hotel");
+        btnIngresarHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarHotelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnCrearHotelAdminLayout = new javax.swing.GroupLayout(pnCrearHotelAdmin);
         pnCrearHotelAdmin.setLayout(pnCrearHotelAdminLayout);
@@ -577,20 +639,23 @@ public class GUIMain extends javax.swing.JFrame {
             pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tgCrearHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnCrearHotelAdminLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addContainerGap()
                 .addComponent(btnAtrasCrearHotelAdmin)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCrearHotelAdminLayout.createSequentialGroup()
-                .addContainerGap(183, Short.MAX_VALUE)
-                .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tgEstrellasHotel)
-                    .addComponent(tgNombreHotel)
-                    .addComponent(tgCantHabitacionesHotel))
-                .addGap(101, 101, 101)
-                .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCantidadHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombreHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstrellasHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(207, Short.MAX_VALUE)
+                .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnIngresarHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnCrearHotelAdminLayout.createSequentialGroup()
+                        .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tgEstrellasHotel)
+                            .addComponent(tgNombreHotel)
+                            .addComponent(tgCantHabitacionesHotel))
+                        .addGap(101, 101, 101)
+                        .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCantidadHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEstrellasHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(82, 82, 82))
         );
         pnCrearHotelAdminLayout.setVerticalGroup(
@@ -610,9 +675,11 @@ public class GUIMain extends javax.swing.JFrame {
                 .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantidadHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgCantHabitacionesHotel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnIngresarHotel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                 .addComponent(btnAtrasCrearHotelAdmin)
-                .addGap(45, 45, 45))
+                .addContainerGap())
         );
 
         pnEliminarHotelAdmin.setBackground(new java.awt.Color(0, 102, 102));
@@ -660,13 +727,12 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnEliminarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnEliminarHotelAdminLayout.createSequentialGroup()
-                        .addGroup(pnEliminarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgSeleccionaHotel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnEliminarHotelAdminLayout.createSequentialGroup()
-                                .addComponent(btnAtrasEliminarHotelAdmin)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tgSeleccionaHotel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
+                    .addGroup(pnEliminarHotelAdminLayout.createSequentialGroup()
+                        .addComponent(btnAtrasEliminarHotelAdmin)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnEliminarHotelAdminLayout.setVerticalGroup(
             pnEliminarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -675,9 +741,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(tgSeleccionaHotel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnAtrasEliminarHotelAdmin)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnModificarHotelAdmin.setBackground(new java.awt.Color(51, 0, 204));
@@ -725,13 +791,13 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnModificarHotelAdminLayout.createSequentialGroup()
-                        .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgSeleccionaHotel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnModificarHotelAdminLayout.createSequentialGroup()
-                                .addComponent(btnAtrasModificarHotelAdmin)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)))
+                        .addComponent(btnAtrasModificarHotelAdmin)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarHotelAdminLayout.createSequentialGroup()
+                        .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tgSeleccionaHotel3, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         pnModificarHotelAdminLayout.setVerticalGroup(
             pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,9 +806,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(tgSeleccionaHotel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnAtrasModificarHotelAdmin)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnModificarReservaAdmin_NoTocar.setBackground(new java.awt.Color(51, 0, 204));
@@ -790,13 +856,12 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnModificarReservaAdmin_NoTocarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnModificarReservaAdmin_NoTocarLayout.createSequentialGroup()
-                        .addGroup(pnModificarReservaAdmin_NoTocarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgSeleccionaHotel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnModificarReservaAdmin_NoTocarLayout.createSequentialGroup()
-                                .addComponent(btnAtrasMostrarHoteles3)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tgSeleccionaHotel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
+                    .addGroup(pnModificarReservaAdmin_NoTocarLayout.createSequentialGroup()
+                        .addComponent(btnAtrasMostrarHoteles3)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnModificarReservaAdmin_NoTocarLayout.setVerticalGroup(
             pnModificarReservaAdmin_NoTocarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -805,9 +870,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(tgSeleccionaHotel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnAtrasMostrarHoteles3)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnEliminarClienteAdmin.setBackground(new java.awt.Color(102, 102, 102));
@@ -855,13 +920,13 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnEliminarClienteAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnEliminarClienteAdminLayout.createSequentialGroup()
-                        .addGroup(pnEliminarClienteAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgSeleccionaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnEliminarClienteAdminLayout.createSequentialGroup()
-                                .addComponent(btnAtrasEliminarClienteAdmin)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)))
+                        .addComponent(btnAtrasEliminarClienteAdmin)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnEliminarClienteAdminLayout.createSequentialGroup()
+                        .addGroup(pnEliminarClienteAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tgSeleccionaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         pnEliminarClienteAdminLayout.setVerticalGroup(
             pnEliminarClienteAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -870,9 +935,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(tgSeleccionaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnAtrasEliminarClienteAdmin)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnCrearAdminAdmin.setBackground(new java.awt.Color(255, 204, 204));
@@ -912,6 +977,11 @@ public class GUIMain extends javax.swing.JFrame {
         tgCreacionAdmin.setText("Ingrese los datos del nuevo administrador:");
 
         btnAtrasCrearAdmin.setText("Atrás");
+        btnAtrasCrearAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasCrearAdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnCrearAdminAdminLayout = new javax.swing.GroupLayout(pnCrearAdminAdmin);
         pnCrearAdminAdmin.setLayout(pnCrearAdminAdminLayout);
@@ -934,9 +1004,9 @@ public class GUIMain extends javax.swing.JFrame {
                             .addComponent(txtCrearAdminNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCrearAdminApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnCrearAdminAdminLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addContainerGap()
                         .addComponent(btnAtrasCrearAdmin)))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         pnCrearAdminAdminLayout.setVerticalGroup(
             pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -959,9 +1029,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCrearAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgCrearAdminEmail))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                 .addComponent(btnAtrasCrearAdmin)
-                .addGap(45, 45, 45))
+                .addContainerGap())
         );
 
         pnEliminarAdminAdmin.setBackground(new java.awt.Color(102, 102, 102));
@@ -1009,13 +1079,12 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnEliminarAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnEliminarAdminAdminLayout.createSequentialGroup()
-                        .addGroup(pnEliminarAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnEliminarAdminAdminLayout.createSequentialGroup()
-                                .addComponent(btnAtrasEliminarClienteAdmin1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tgEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnEliminarAdminAdminLayout.createSequentialGroup()
+                        .addComponent(btnAtrasEliminarClienteAdmin1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnEliminarAdminAdminLayout.setVerticalGroup(
             pnEliminarAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1024,9 +1093,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(tgEliminarAdminAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnAtrasEliminarClienteAdmin1)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnModificarClienteCliente.setBackground(new java.awt.Color(102, 102, 102));
@@ -1035,34 +1104,35 @@ public class GUIMain extends javax.swing.JFrame {
         tgModificarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgModificarCliente.setText("Seleccione los datos que desea modificar");
 
-        tblClientesCliente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "Apellido", "DNI", "E-mail"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblClientesCliente.setToolTipText("");
-        tblClientesCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblClientesClienteMousePressed(evt);
-            }
-        });
-        jScrollPane8.setViewportView(tblClientesCliente);
-
         btnAtrasModificarClienteCliente.setText("Atrás");
         btnAtrasModificarClienteCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasModificarClienteClienteActionPerformed(evt);
+            }
+        });
+
+        btnModificarCliente.setText("Modificar");
+        btnModificarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarClienteActionPerformed(evt);
+            }
+        });
+
+        tgModificarClienteNombre.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgModificarClienteNombre.setForeground(new java.awt.Color(0, 0, 0));
+        tgModificarClienteNombre.setText("Ingrese su nombre:");
+
+        tgModificarClienteApellido.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgModificarClienteApellido.setForeground(new java.awt.Color(0, 0, 0));
+        tgModificarClienteApellido.setText("Ingrese su apellido:");
+
+        tgModificarClienteEmail.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgModificarClienteEmail.setForeground(new java.awt.Color(0, 0, 0));
+        tgModificarClienteEmail.setText("Ingrese su e-mail:");
+
+        txtModificarClienteNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtModificarClienteNombreActionPerformed(evt);
             }
         });
 
@@ -1074,24 +1144,52 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
-                        .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgModificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
-                                .addComponent(btnAtrasModificarClienteCliente)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tgModificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)))
+                    .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
+                        .addComponent(btnAtrasModificarClienteCliente)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
+                            .addComponent(tgModificarClienteEmail)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtModificarClienteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
+                            .addComponent(tgModificarClienteNombre)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                            .addComponent(txtModificarClienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
+                            .addComponent(tgModificarClienteApellido)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtModificarClienteApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 220, Short.MAX_VALUE))
         );
         pnModificarClienteClienteLayout.setVerticalGroup(
             pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarClienteClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tgModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tgModificarClienteNombre)
+                    .addComponent(txtModificarClienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtModificarClienteApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tgModificarClienteApellido))
+                .addGap(18, 18, 18)
+                .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tgModificarClienteEmail)
+                    .addComponent(txtModificarClienteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnModificarCliente)
+                .addGap(229, 229, 229)
                 .addComponent(btnAtrasModificarClienteCliente)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnMostrarHotelesCliente.setBackground(new java.awt.Color(0, 0, 255));
@@ -1139,13 +1237,12 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnMostrarHotelesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnMostrarHotelesClienteLayout.createSequentialGroup()
-                        .addGroup(pnMostrarHotelesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgSeleccionaHotel, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
-                            .addGroup(pnMostrarHotelesClienteLayout.createSequentialGroup()
-                                .addComponent(btnAtrasMostrarHoteles)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tgSeleccionaHotel, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnMostrarHotelesClienteLayout.createSequentialGroup()
+                        .addComponent(btnAtrasMostrarHoteles)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnMostrarHotelesClienteLayout.setVerticalGroup(
             pnMostrarHotelesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1154,9 +1251,9 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(tgSeleccionaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnAtrasMostrarHoteles)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnHabitacionesCliente.setBackground(new java.awt.Color(153, 0, 153));
@@ -1172,7 +1269,16 @@ public class GUIMain extends javax.swing.JFrame {
             new String [] {
                 "Habitación N°", "Cantidad de huespedes"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblHabitaciones.setFillsViewportHeight(true);
         tblHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHabitacionesMouseClicked(evt);
@@ -1194,7 +1300,7 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(pnHabitacionesClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnHabitacionesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tgSeleccionaHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
+                    .addComponent(tgSeleccionaHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addGroup(pnHabitacionesClienteLayout.createSequentialGroup()
                         .addComponent(btnAtrasHabitaciones)
@@ -1208,12 +1314,72 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(tgSeleccionaHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(btnAtrasHabitaciones)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        pnCrearReservaCliente.setBackground(new java.awt.Color(0, 51, 51));
+        pnCancelarReservaCliente.setBackground(new java.awt.Color(36, 36, 60));
+        pnCancelarReservaCliente.setMaximumSize(new java.awt.Dimension(972, 600));
+        pnCancelarReservaCliente.setPreferredSize(new java.awt.Dimension(972, 600));
+
+        tgCancelarReserva.setBackground(new java.awt.Color(0, 0, 0));
+        tgCancelarReserva.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgCancelarReserva.setForeground(new java.awt.Color(245, 59, 113));
+        tgCancelarReserva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tgCancelarReserva.setText("Seleccione la reserva que desea cancelar !");
+
+        jTable1.setBackground(new java.awt.Color(48, 44, 76));
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Dia Inicio", "Mes Inicio", "Año Inicio", "Dia Fin", "Mes Fin", "Año Fin", "Hotel", "Habitacion"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        btnAtrasCancelarReserva.setText("Atrás");
+        btnAtrasCancelarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasCancelarReservaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnCancelarReservaClienteLayout = new javax.swing.GroupLayout(pnCancelarReservaCliente);
+        pnCancelarReservaCliente.setLayout(pnCancelarReservaClienteLayout);
+        pnCancelarReservaClienteLayout.setHorizontalGroup(
+            pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCancelarReservaClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addComponent(tgCancelarReserva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCancelarReservaClienteLayout.createSequentialGroup()
+                        .addComponent(btnAtrasCancelarReserva)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnCancelarReservaClienteLayout.setVerticalGroup(
+            pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnCancelarReservaClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tgCancelarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(btnAtrasCancelarReserva)
+                .addContainerGap())
+        );
+
+        pnCrearReservaCliente.setBackground(new java.awt.Color(153, 255, 153));
+        pnCrearReservaCliente.setMaximumSize(new java.awt.Dimension(972, 600));
+        pnCrearReservaCliente.setPreferredSize(new java.awt.Dimension(972, 600));
 
         tgDiaReserva.setText("Dia de inicio de la reserva:");
 
@@ -1232,6 +1398,18 @@ public class GUIMain extends javax.swing.JFrame {
         tgSetReserva.setText("Ingrese la fecha de inicio y finalizacion de la reserva");
 
         btnAtrasCrearReserva.setText("Atrás");
+        btnAtrasCrearReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasCrearReservaActionPerformed(evt);
+            }
+        });
+
+        btnCrearReserva.setText("Crear Reserva");
+        btnCrearReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearReservaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnCrearReservaClienteLayout = new javax.swing.GroupLayout(pnCrearReservaCliente);
         pnCrearReservaCliente.setLayout(pnCrearReservaClienteLayout);
@@ -1239,152 +1417,78 @@ public class GUIMain extends javax.swing.JFrame {
             pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tgSetReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCrearReservaClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tgSetReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
-                        .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tgMesReservaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tgDiaReservaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tgAnioReservaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tgAnioReservaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61)
-                        .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(spnDiaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnAnioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnAnioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAtrasCrearReserva)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCrearReservaClienteLayout.createSequentialGroup()
+                .addContainerGap(367, Short.MAX_VALUE)
+                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCrearReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
-                        .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tgMesReservaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tgDiaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61)
                         .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spnDiaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(266, 266, 266))
-            .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(btnAtrasCrearReserva)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tgMesReservaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tgDiaReservaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tgAnioReservaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tgAnioReservaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tgMesReservaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tgDiaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spnAnioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnMesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnDiaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnAnioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnDiaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnMesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(245, 245, 245))
         );
         pnCrearReservaClienteLayout.setVerticalGroup(
             pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(tgSetReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tgDiaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnDiaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tgMesReservaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnMesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tgAnioReservaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnAnioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
-                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tgDiaReservaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnDiaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tgMesReservaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnMesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tgAnioReservaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnAnioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                    .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
+                        .addComponent(tgDiaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tgMesReservaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tgAnioReservaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82)
+                        .addComponent(tgDiaReservaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tgMesReservaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tgAnioReservaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
+                        .addComponent(spnDiaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(spnMesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(spnAnioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81)
+                        .addComponent(spnDiaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(spnMesFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(spnAnioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(btnCrearReserva)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(btnAtrasCrearReserva)
-                .addGap(25, 25, 25))
-        );
-
-        pnCancelarReservaCliente.setBackground(new java.awt.Color(0, 204, 255));
-
-        tgCancelarReserva.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
-        tgCancelarReserva.setForeground(new java.awt.Color(0, 0, 0));
-        tgCancelarReserva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tgCancelarReserva.setText("Seleccione la reserva que desea cancelar !");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Dia Inicio", "Mes Inicio", "Año Inicio", "Dia Fin", "Mes Fin", "Año Fin", "Hotel", "Habitacion"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
-
-        btnAtrasCancelarReserva.setText("Atrás");
-
-        javax.swing.GroupLayout pnCancelarReservaClienteLayout = new javax.swing.GroupLayout(pnCancelarReservaCliente);
-        pnCancelarReservaCliente.setLayout(pnCancelarReservaClienteLayout);
-        pnCancelarReservaClienteLayout.setHorizontalGroup(
-            pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCancelarReservaClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tgCancelarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(pnCancelarReservaClienteLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(btnAtrasCancelarReserva)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnCancelarReservaClienteLayout.setVerticalGroup(
-            pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCancelarReservaClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tgCancelarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAtrasCancelarReserva)
-                .addGap(11, 11, 11))
-        );
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnInicioSesion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(269, 269, 269)
-                .addComponent(jButton3)
-                .addGap(59, 59, 59))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnInicioSesion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1392,17 +1496,13 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnMostrarHotelesCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnHabitacionesCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnHabitacionesCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnCrearReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCancelarReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnMenuAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnCrearHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnCrearHotelAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnEliminarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1414,109 +1514,76 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCrearAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(pnModificarClienteCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(pnModificarClienteCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(pnEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(pnEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnMenuAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnCrearReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnInicioSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(22, 22, 22))
+            .addComponent(pnInicioSesion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnInicioSesion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnInicioSesion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnMenuCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnMostrarHotelesCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnMostrarHotelesCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnHabitacionesCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnHabitacionesCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnCancelarReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnCrearHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnCrearReservaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnEliminarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnModificarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnCancelarReservaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnModificarReservaAdmin_NoTocar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnEliminarClienteAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnCrearHotelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnCrearAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnEliminarHotelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnModificarClienteCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnModificarHotelAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                    .addComponent(pnEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnModificarReservaAdmin_NoTocar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
+                .addComponent(pnMenuAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnEliminarClienteAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnCrearAdminAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 56, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(pnModificarClienteCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(46, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(pnEliminarAdminAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(46, Short.MAX_VALUE)))
+                .addComponent(pnCrearReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        seleccionarVista(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        seleccionarVista(1);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        seleccionarVista(2);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiActionPerformed
 
@@ -1530,27 +1597,39 @@ public class GUIMain extends javax.swing.JFrame {
 
     private void btnVerificarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarDniActionPerformed
 
-        String dni = txtDniCheck.getSelectedText();
-        
+        String dni = txtDniCheck.getText();
+
         try {
             
-            clienteSesionActual = serviceCliente.buscarClienteDNI(dni); //
+            ClienteDTO clienteDTO = serviceCliente.buscarClienteDNI(dni);
+            clienteSesionActual = clienteDTO;
             seleccionarVista(2);
             
         } catch (Exception ex) {
             
-            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "No se encontró una persona con ese DNI en la bd", "ERROR", JOptionPane.ERROR_MESSAGE);
+            try {
+                
+                AdminDTO adminDTO = serviceAdmin.buscarAdminDNI(dni);
+                adminSesionActual = adminDTO;
+                seleccionarVista(11);
+                
+            } catch (Exception e) {
+                
+             Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             seleccionarVista(1);
+                
+            }
             
         }
-
+        
     }//GEN-LAST:event_btnVerificarDniActionPerformed
 
     private void btnAtrasMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasMenuClienteActionPerformed
 
         seleccionarVista(1);
-
+        txtDniCheck.setText("11111111");
+        
     }//GEN-LAST:event_btnAtrasMenuClienteActionPerformed
 
     private void btnRealizarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarReservaActionPerformed
@@ -1589,9 +1668,10 @@ public class GUIMain extends javax.swing.JFrame {
         DefaultTableModel tModel = (DefaultTableModel) this.tblHabitaciones.getModel();
 
         String nombreHotel = tblHoteles.getValueAt(tblHoteles.getSelectedRow(), 0).toString();
-        HotelDTO hotelSeleccionado = null;
         try {
-            hotelSeleccionado = serviceHotel.buscarHotelPorNombre(nombreHotel);
+            
+           hotelSeleccionado = serviceHotel.obtenerHotelYHabitacionesPorNombre(nombreHotel);
+            
         } catch (ServiceExceptions ex) {
             Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1615,7 +1695,31 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHotelesMousePressed
 
     private void tblHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHabitacionesMouseClicked
-        // TODO add your handling code here:
+        
+        seleccionarVista(5);
+        
+        spnAnioInicio.setValue(2024);
+        spnAnioFinal.setValue(2024);
+        
+        DefaultTableModel tModel = (DefaultTableModel) this.tblHabitaciones.getModel();
+
+        String idHabitacionString = tblHabitaciones.getValueAt(tblHabitaciones.getSelectedRow(), 0).toString();
+        int idHabitacion = Integer.parseInt(idHabitacionString);
+        
+        try {
+            
+            habitacionSeleccionada = serviceHabitacion.obtenerHabitacionPorId(idHabitacion);
+            
+        } catch (ServiceExceptions ex) {
+            
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        int hotelId = hotelSeleccionado.getIdHotel();
+
+        tModel.setRowCount(0);
+        
     }//GEN-LAST:event_tblHabitacionesMouseClicked
 
     private void txtRegistroNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegistroNombreActionPerformed
@@ -1626,20 +1730,12 @@ public class GUIMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRegistroDNIActionPerformed
 
-    private void btnCrearHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearHotelAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearHotelAdminActionPerformed
-
     private void btnAtrasMostrarHotelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasMostrarHotelesActionPerformed
-        // TODO add your handling code here:
+        seleccionarVista(2);
     }//GEN-LAST:event_btnAtrasMostrarHotelesActionPerformed
 
-    private void btnAtrasMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasMenuAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtrasMenuAdminActionPerformed
-
     private void btnAtrasHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasHabitacionesActionPerformed
-        // TODO add your handling code here:
+        seleccionarVista(3);
     }//GEN-LAST:event_btnAtrasHabitacionesActionPerformed
 
     private void txtNombreHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreHotelActionPerformed
@@ -1655,7 +1751,7 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_tblEliminarHotelesAdminMousePressed
 
     private void btnAtrasEliminarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasEliminarHotelAdminActionPerformed
-        // TODO add your handling code here:
+        seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasEliminarHotelAdminActionPerformed
 
     private void tblModificarHotelesAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblModificarHotelesAdminMousePressed
@@ -1663,7 +1759,7 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_tblModificarHotelesAdminMousePressed
 
     private void btnAtrasModificarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasModificarHotelAdminActionPerformed
-        // TODO add your handling code here:
+        seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasModificarHotelAdminActionPerformed
 
     private void tblHoteles3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoteles3MousePressed
@@ -1671,7 +1767,7 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHoteles3MousePressed
 
     private void btnAtrasMostrarHoteles3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasMostrarHoteles3ActionPerformed
-        // TODO add your handling code here:
+        seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasMostrarHoteles3ActionPerformed
 
     private void tblClientesAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesAdminMousePressed
@@ -1679,7 +1775,7 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_tblClientesAdminMousePressed
 
     private void btnAtrasEliminarClienteAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasEliminarClienteAdminActionPerformed
-        // TODO add your handling code here:
+        seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasEliminarClienteAdminActionPerformed
 
     private void txtCrearAdminNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCrearAdminNombreActionPerformed
@@ -1691,23 +1787,21 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCrearAdminDNIActionPerformed
 
     private void btnModificarPerfilClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPerfilClienteActionPerformed
-        // TODO add your handling code here:
+
+        seleccionarVista(12);
+        
+        txtModificarClienteNombre.setText(clienteSesionActual.getNombre());
+        txtModificarClienteApellido.setText(clienteSesionActual.getApellido());
+        txtModificarClienteEmail.setText(clienteSesionActual.getEmail());
+        
     }//GEN-LAST:event_btnModificarPerfilClienteActionPerformed
-
-    private void tblClientesClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesClienteMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblClientesClienteMousePressed
-
-    private void btnAtrasModificarClienteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasModificarClienteClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtrasModificarClienteClienteActionPerformed
 
     private void tblAdminAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAdminAdminMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_tblAdminAdminMousePressed
 
     private void btnAtrasEliminarClienteAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasEliminarClienteAdmin1ActionPerformed
-        // TODO add your handling code here:
+        seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasEliminarClienteAdmin1ActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
@@ -1726,7 +1820,7 @@ public class GUIMain extends javax.swing.JFrame {
         } catch (ServiceExceptions ex) {
 
             System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, "Algun Dato Ingresado No Es Válido.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             flag = false;
         }
 
@@ -1747,6 +1841,169 @@ public class GUIMain extends javax.swing.JFrame {
     private void btnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoActionPerformed
         seleccionarVista(14);
     }//GEN-LAST:event_btnNoActionPerformed
+
+    private void btnAtrasRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasRegistroActionPerformed
+       
+        seleccionarVista(0);
+        
+    }//GEN-LAST:event_btnAtrasRegistroActionPerformed
+
+    private void btnAtrasCrearHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCrearHotelAdminActionPerformed
+        seleccionarVista(11);
+    }//GEN-LAST:event_btnAtrasCrearHotelAdminActionPerformed
+
+    private void btnAtrasCrearAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCrearAdminActionPerformed
+        seleccionarVista(11);
+    }//GEN-LAST:event_btnAtrasCrearAdminActionPerformed
+
+    private void btnAtrasCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCrearReservaActionPerformed
+        
+        seleccionarVista(4);
+
+        DefaultTableModel tModel = (DefaultTableModel) this.tblHabitaciones.getModel();
+
+        String nombreHotel = tblHoteles.getValueAt(tblHoteles.getSelectedRow(), 0).toString();
+        try {
+            
+           hotelSeleccionado = serviceHotel.obtenerHotelYHabitacionesPorNombre(nombreHotel);
+            
+        } catch (ServiceExceptions ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int hotelId = hotelSeleccionado.getIdHotel();
+
+        List<HabitacionDTO> habitaciones = serviceHabitacion.obtenerHabitacionesPorHotelId(hotelId);
+
+        tModel.setRowCount(0);
+
+        for (HabitacionDTO habitacion : habitaciones) {
+
+            int IdHabitacion = habitacion.getIdHabitacion();
+            int cantHabitaciones = habitacion.getCantHuespedes();
+
+            Object[] objetoTabla = new Object[]{IdHabitacion, cantHabitaciones};
+
+            tModel.addRow(objetoTabla);
+
+        }
+        
+    }//GEN-LAST:event_btnAtrasCrearReservaActionPerformed
+
+    private void btnEliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarReservaActionPerformed
+        seleccionarVista(16);
+    }//GEN-LAST:event_btnEliminarReservaActionPerformed
+
+    private void btnAtrasModificarClienteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasModificarClienteClienteActionPerformed
+        
+        seleccionarVista(2);
+    }//GEN-LAST:event_btnAtrasModificarClienteClienteActionPerformed
+
+    private void btnModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClienteActionPerformed
+        
+        String nombreNuevo = txtModificarClienteNombre.getText();
+        String apellidoNuevo = txtModificarClienteApellido.getText();
+        String emailNuevo = txtModificarClienteEmail.getText();
+        
+        try {
+            
+            System.out.println(clienteSesionActual.getDNI());
+            
+            serviceCliente.actualizarCliente(clienteSesionActual.getDNI(), nombreNuevo, apellidoNuevo, clienteSesionActual.getDNI(), emailNuevo);
+            JOptionPane.showMessageDialog(this, "Cuenta Modificada Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        txtModificarClienteNombre.setText(clienteSesionActual.getNombre());
+        txtModificarClienteApellido.setText(clienteSesionActual.getApellido());
+        txtModificarClienteEmail.setText(clienteSesionActual.getEmail());
+        
+    }//GEN-LAST:event_btnModificarClienteActionPerformed
+
+    private void txtModificarClienteNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModificarClienteNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtModificarClienteNombreActionPerformed
+
+    private void btnAtrasMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasMenuAdminActionPerformed
+
+        seleccionarVista(1);
+        txtDniCheck.setText("11111111");
+
+    }//GEN-LAST:event_btnAtrasMenuAdminActionPerformed
+
+    private void btnEliminarAdminAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAdminAdminActionPerformed
+        seleccionarVista(8);
+    }//GEN-LAST:event_btnEliminarAdminAdminActionPerformed
+
+    private void btnCrearAdminAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAdminAdminActionPerformed
+        seleccionarVista(6);
+    }//GEN-LAST:event_btnCrearAdminAdminActionPerformed
+
+    private void btnEliminarClienteAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteAdminActionPerformed
+        seleccionarVista(9);
+    }//GEN-LAST:event_btnEliminarClienteAdminActionPerformed
+
+    private void btnModificarReservasAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarReservasAdminActionPerformed
+        seleccionarVista(15);
+    }//GEN-LAST:event_btnModificarReservasAdminActionPerformed
+
+    private void btnModificarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarHotelAdminActionPerformed
+        seleccionarVista(13); // PREGUNTAR SAMPE
+    }//GEN-LAST:event_btnModificarHotelAdminActionPerformed
+
+    private void btnEliminarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHotelAdminActionPerformed
+
+        seleccionarVista(10);
+
+    }//GEN-LAST:event_btnEliminarHotelAdminActionPerformed
+
+    private void btnCrearHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearHotelAdminActionPerformed
+        seleccionarVista(7);
+    }//GEN-LAST:event_btnCrearHotelAdminActionPerformed
+
+    private void btnAtrasCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCancelarReservaActionPerformed
+        seleccionarVista(11);
+    }//GEN-LAST:event_btnAtrasCancelarReservaActionPerformed
+
+    private void btnIngresarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarHotelActionPerformed
+        
+        String nombreHotel = txtNombreHotel.getText();
+        String cantidadEstrellasHotelString = txtEstrellasHotel.getText();
+        int cantidadEstrellasHotel = Integer.parseInt(nombreHotel);
+        String cantidadHabitacionesString = txtCantidadHabitaciones.getText();
+        int cantidadHabitaciones = Integer.parseInt(cantidadEstrellasHotelString);
+        
+        try {
+            serviceHotel.ingresarHotel(nombreHotel, cantidadEstrellasHotel);
+            JOptionPane.showMessageDialog(this, "Hotel Creado Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ServiceExceptions ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnIngresarHotelActionPerformed
+
+    private void btnCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservaActionPerformed
+        
+        int diaInicio = (int) spnDiaInicio.getValue();
+        int mesInicio = (int) spnMesInicio.getValue();
+        int anioInicio = (int) spnAnioInicio.getValue();
+        
+        int diaFinal = (int) spnDiaFinal.getValue();
+        int mesFinal = (int) spnMesFinal.getValue();
+        int anioFinal = (int) spnAnioFinal.getValue();
+        
+        try {
+            serviceReserva.crearReserva(habitacionSeleccionada.getIdHabitacion(), habitacionSeleccionada.getIdHotel(), clienteSesionActual.getIdCliente(),
+                    LocalDate.of(anioInicio, mesInicio, diaInicio), LocalDate.of(anioFinal, mesFinal, diaFinal));
+            JOptionPane.showMessageDialog(this, "La Reserva Ha Sido Creada Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_btnCrearReservaActionPerformed
 
     private void seleccionarVista(int index) {
 
@@ -1896,7 +2153,11 @@ public class GUIMain extends javax.swing.JFrame {
     }
 
     
+    private static HotelDTO hotelSeleccionado;
+    private static HabitacionDTO habitacionSeleccionada;
     private static ClienteDTO clienteSesionActual = null;
+    private static AdminDTO adminSesionActual = null;
+    private ServiceAdmin serviceAdmin = new ServiceAdmin();
     private ServiceHotel serviceHotel = new ServiceHotel();
     private ServiceReserva serviceReserva = new ServiceReserva();
     private ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
@@ -1921,10 +2182,13 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JButton btnAtrasRegistro;
     private javax.swing.JButton btnCrearAdminAdmin;
     private javax.swing.JButton btnCrearHotelAdmin;
+    private javax.swing.JButton btnCrearReserva;
     private javax.swing.JButton btnEliminarAdminAdmin;
     private javax.swing.JButton btnEliminarClienteAdmin;
     private javax.swing.JButton btnEliminarHotelAdmin;
     private javax.swing.JButton btnEliminarReserva;
+    private javax.swing.JButton btnIngresarHotel;
+    private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnModificarHotelAdmin;
     private javax.swing.JButton btnModificarPerfilCliente;
     private javax.swing.JButton btnModificarReservasAdmin;
@@ -1934,9 +2198,6 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JButton btnSi;
     private javax.swing.JButton btnVerificarDni;
     private javax.swing.JDialog dlgNoSeEncontroPersona;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1944,20 +2205,19 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel pnCancelarReservaCliente;
     private javax.swing.JPanel pnCrearAdminAdmin;
     private javax.swing.JPanel pnCrearHotelAdmin;
-    private java.awt.Panel pnCrearReservaCliente;
+    private javax.swing.JPanel pnCrearReservaCliente;
     private javax.swing.JPanel pnEliminarAdminAdmin;
     private javax.swing.JPanel pnEliminarClienteAdmin;
     private javax.swing.JPanel pnEliminarHotelAdmin;
     private javax.swing.JPanel pnHabitacionesCliente;
     private javax.swing.JPanel pnInicioSesion1;
     private javax.swing.JPanel pnInicioSesion2;
-    private java.awt.Panel pnMenuAdmin;
+    private javax.swing.JPanel pnMenuAdmin;
     private javax.swing.JPanel pnMenuCliente;
     private javax.swing.JPanel pnModificarClienteCliente;
     private javax.swing.JPanel pnModificarHotelAdmin;
@@ -1972,7 +2232,6 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JSpinner spnMesInicio;
     private javax.swing.JTable tblAdminAdmin;
     private javax.swing.JTable tblClientesAdmin;
-    private javax.swing.JTable tblClientesCliente;
     private javax.swing.JTable tblEliminarHotelesAdmin;
     private javax.swing.JTable tblHabitaciones;
     private javax.swing.JTable tblHoteles;
@@ -1997,6 +2256,9 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JLabel tgMesReservaFin;
     private javax.swing.JLabel tgMesReservaInicio;
     private javax.swing.JLabel tgModificarCliente;
+    private javax.swing.JLabel tgModificarClienteApellido;
+    private javax.swing.JLabel tgModificarClienteEmail;
+    private javax.swing.JLabel tgModificarClienteNombre;
     private javax.swing.JLabel tgNombreHotel;
     private javax.swing.JLabel tgRegistro;
     private javax.swing.JLabel tgRegistroApellido;
@@ -2018,6 +2280,9 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JTextField txtCrearAdminNombre;
     private javax.swing.JTextField txtDniCheck;
     private javax.swing.JTextField txtEstrellasHotel;
+    private javax.swing.JTextField txtModificarClienteApellido;
+    private javax.swing.JTextField txtModificarClienteEmail;
+    private javax.swing.JTextField txtModificarClienteNombre;
     private javax.swing.JTextField txtNombreHotel;
     private javax.swing.JTextField txtRegistroApellido;
     private javax.swing.JTextField txtRegistroDNI;

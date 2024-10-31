@@ -75,7 +75,8 @@ public class ServiceCliente extends ServiceBase{
         for (Cliente cliente : clientes) {
             ClienteDTO clienteDTO = new ClienteDTO(cliente.getIdCliente(),
                     cliente.getNombre(),
-                    cliente.getApellido(), cliente.getDNI());
+                    cliente.getApellido(), cliente.getDNI(),
+                    cliente.getEmail());
             clientesDTO.add(clienteDTO);
         }
         return clientesDTO;
@@ -108,7 +109,8 @@ public class ServiceCliente extends ServiceBase{
         return new ClienteDTO(cliente.getIdCliente(),
                 cliente.getNombre(),
                 cliente.getApellido(),
-                cliente.getDNI());
+                cliente.getDNI(),
+                cliente.getEmail());
     }
 
 }

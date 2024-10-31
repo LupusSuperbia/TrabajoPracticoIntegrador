@@ -14,10 +14,12 @@ public class ClienteDTO extends PersonaDTO{
     protected int IdCliente;
     protected boolean Reserva = false;
     protected int IdHabitacion;
+    protected  String email;
 
-    public ClienteDTO(int IdCliente, String nombre, String apellido, String DNI) {
+    public ClienteDTO(int IdCliente, String nombre, String apellido, String DNI, String email) {
         super(nombre, apellido, DNI);
         this.IdCliente = IdCliente;
+        this.email = email;
     }
 
     public int getIdCliente() {
@@ -36,7 +38,14 @@ public class ClienteDTO extends PersonaDTO{
         this.Reserva = Reserva;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     @Override
     public String toString() {
         return "{ Nombre : " + this.nombre + " "

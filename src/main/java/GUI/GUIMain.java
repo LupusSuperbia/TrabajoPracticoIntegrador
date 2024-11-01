@@ -20,12 +20,18 @@ import Service.ServiceHotel;
 import Service.ServiceReserva;
 import java.awt.Color;
 import static java.awt.Event.DELETE;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import static javax.swing.event.TableModelEvent.ALL_COLUMNS;
 import javax.swing.table.DefaultTableModel;
 
@@ -76,6 +82,7 @@ public class GUIMain extends javax.swing.JFrame {
         tgTienesCuenta = new javax.swing.JLabel();
         btnSi = new javax.swing.JButton();
         btnNo = new javax.swing.JButton();
+        tgTienesCuenta1 = new javax.swing.JLabel();
         pnInicioSesion2 = new javax.swing.JPanel();
         tgDniPresente = new javax.swing.JLabel();
         txtDniCheck = new javax.swing.JTextField();
@@ -99,15 +106,16 @@ public class GUIMain extends javax.swing.JFrame {
         btnRealizarReserva = new javax.swing.JButton();
         btnEliminarReserva = new javax.swing.JButton();
         btnModificarPerfilCliente = new javax.swing.JButton();
+        tgMenuCliente = new javax.swing.JLabel();
         pnMenuAdmin = new javax.swing.JPanel();
         btnCrearHotelAdmin = new javax.swing.JButton();
         btnEliminarHotelAdmin = new javax.swing.JButton();
         btnModificarHotelAdmin = new javax.swing.JButton();
-        btnModificarReservasAdmin = new javax.swing.JButton();
         btnEliminarClienteAdmin = new javax.swing.JButton();
         btnCrearAdminAdmin = new javax.swing.JButton();
         btnEliminarAdminAdmin = new javax.swing.JButton();
         btnAtrasMenuAdmin = new javax.swing.JButton();
+        tgMenuAdmin = new javax.swing.JLabel();
         pnCrearHotelAdmin = new javax.swing.JPanel();
         tgNombreHotel = new javax.swing.JLabel();
         tgEstrellasHotel = new javax.swing.JLabel();
@@ -124,15 +132,15 @@ public class GUIMain extends javax.swing.JFrame {
         tblEliminarHotelesAdmin = new javax.swing.JTable();
         btnAtrasEliminarHotelAdmin = new javax.swing.JButton();
         pnModificarHotelAdmin = new javax.swing.JPanel();
-        tgSeleccionaHotel3 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblModificarHotelesAdmin = new javax.swing.JTable();
+        tgModificarHotel = new javax.swing.JLabel();
         btnAtrasModificarHotelAdmin = new javax.swing.JButton();
-        pnModificarReservaAdmin_NoTocar = new javax.swing.JPanel();
-        tgSeleccionaHotel4 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tblHoteles3 = new javax.swing.JTable();
-        btnAtrasMostrarHoteles3 = new javax.swing.JButton();
+        cbSelectorHotel = new javax.swing.JComboBox<>();
+        tgNombreModificarHotel = new javax.swing.JLabel();
+        txtNombreHotelModificar = new javax.swing.JTextField();
+        tgEstrellasModificarHotel = new javax.swing.JLabel();
+        txtEstrellasHotelModificar = new javax.swing.JTextField();
+        btnModificarHotelChk = new javax.swing.JButton();
+        tgMenuAdmin1 = new javax.swing.JLabel();
         pnEliminarClienteAdmin = new javax.swing.JPanel();
         tgSeleccionaCliente = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -149,6 +157,7 @@ public class GUIMain extends javax.swing.JFrame {
         txtCrearAdminDNI = new javax.swing.JTextField();
         tgCreacionAdmin = new javax.swing.JLabel();
         btnAtrasCrearAdmin = new javax.swing.JButton();
+        btnRegistroAdmin = new javax.swing.JButton();
         pnEliminarAdminAdmin = new javax.swing.JPanel();
         tgEliminarAdminAdmin = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -177,7 +186,7 @@ public class GUIMain extends javax.swing.JFrame {
         pnCancelarReservaCliente = new javax.swing.JPanel();
         tgCancelarReserva = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCancelarReserva = new javax.swing.JTable();
         btnAtrasCancelarReserva = new javax.swing.JButton();
         pnCrearReservaCliente = new javax.swing.JPanel();
         tgDiaReserva = new javax.swing.JLabel();
@@ -210,12 +219,16 @@ public class GUIMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(972, 600));
 
-        pnInicioSesion1.setBackground(new java.awt.Color(0, 255, 102));
+        pnInicioSesion1.setBackground(new java.awt.Color(36, 36, 60));
 
         tgTienesCuenta.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgTienesCuenta.setForeground(new java.awt.Color(243, 59, 115));
         tgTienesCuenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgTienesCuenta.setText("¿Ya tienes una cuenta?");
 
+        btnSi.setBackground(new java.awt.Color(59, 243, 187));
+        btnSi.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        btnSi.setForeground(new java.awt.Color(0, 0, 0));
         btnSi.setText("Si");
         btnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,6 +236,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnNo.setBackground(new java.awt.Color(59, 243, 187));
+        btnNo.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        btnNo.setForeground(new java.awt.Color(0, 0, 0));
         btnNo.setText("No");
         btnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,34 +246,48 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        tgTienesCuenta1.setFont(new java.awt.Font("Google Sans", 0, 36)); // NOI18N
+        tgTienesCuenta1.setForeground(new java.awt.Color(243, 59, 115));
+        tgTienesCuenta1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tgTienesCuenta1.setText("¡Bienvenido a El Templo!");
+
         javax.swing.GroupLayout pnInicioSesion1Layout = new javax.swing.GroupLayout(pnInicioSesion1);
         pnInicioSesion1.setLayout(pnInicioSesion1Layout);
         pnInicioSesion1Layout.setHorizontalGroup(
             pnInicioSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tgTienesCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnInicioSesion1Layout.createSequentialGroup()
-                .addGap(157, 157, 157)
+                .addGap(172, 172, 172)
                 .addComponent(btnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
                 .addComponent(btnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(172, 172, 172))
+            .addGroup(pnInicioSesion1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tgTienesCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(pnInicioSesion1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tgTienesCuenta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnInicioSesion1Layout.setVerticalGroup(
             pnInicioSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnInicioSesion1Layout.createSequentialGroup()
-                .addGap(114, 114, 114)
+                .addGap(67, 67, 67)
+                .addComponent(tgTienesCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(tgTienesCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addGap(163, 163, 163)
                 .addGroup(pnInicioSesion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(165, 165, 165))
         );
 
-        pnInicioSesion2.setBackground(new java.awt.Color(255, 255, 0));
+        pnInicioSesion2.setBackground(new java.awt.Color(36, 36, 60));
 
         tgDniPresente.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
-        tgDniPresente.setForeground(new java.awt.Color(0, 0, 0));
+        tgDniPresente.setForeground(new java.awt.Color(243, 59, 115));
         tgDniPresente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgDniPresente.setText("Ingrese su DNI para iniciar sesión");
 
@@ -269,10 +299,13 @@ public class GUIMain extends javax.swing.JFrame {
         });
 
         tgDniCheck.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgDniCheck.setForeground(new java.awt.Color(0, 0, 0));
+        tgDniCheck.setForeground(new java.awt.Color(243, 59, 115));
         tgDniCheck.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgDniCheck.setText("DNI:");
 
+        btnVerificarDni.setBackground(new java.awt.Color(59, 243, 187));
+        btnVerificarDni.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnVerificarDni.setForeground(new java.awt.Color(0, 0, 0));
         btnVerificarDni.setText("Verificar");
         btnVerificarDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,6 +313,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnAtrasIS2.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasIS2.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasIS2.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasIS2.setText("Atrás");
         btnAtrasIS2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,17 +329,18 @@ public class GUIMain extends javax.swing.JFrame {
             pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tgDniPresente, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
             .addGroup(pnInicioSesion2Layout.createSequentialGroup()
-                .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVerificarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnInicioSesion2Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(btnAtrasIS2))
-                        .addGroup(pnInicioSesion2Layout.createSequentialGroup()
-                            .addGap(328, 328, 328)
-                            .addComponent(tgDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnInicioSesion2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnAtrasIS2))
+                    .addGroup(pnInicioSesion2Layout.createSequentialGroup()
+                        .addGap(334, 334, 334)
+                        .addGroup(pnInicioSesion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnVerificarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnInicioSesion2Layout.createSequentialGroup()
+                                .addComponent(tgDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnInicioSesion2Layout.setVerticalGroup(
@@ -316,28 +353,28 @@ public class GUIMain extends javax.swing.JFrame {
                     .addComponent(txtDniCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgDniCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVerificarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVerificarDni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addComponent(btnAtrasIS2)
                 .addContainerGap())
         );
 
-        pnRegistro.setBackground(new java.awt.Color(153, 255, 153));
+        pnRegistro.setBackground(new java.awt.Color(36, 36, 60));
 
         tgRegistroNombre.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgRegistroNombre.setForeground(new java.awt.Color(0, 0, 0));
+        tgRegistroNombre.setForeground(new java.awt.Color(243, 59, 115));
         tgRegistroNombre.setText("Ingrese su nombre:");
 
         tgRegistroApellido.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgRegistroApellido.setForeground(new java.awt.Color(0, 0, 0));
+        tgRegistroApellido.setForeground(new java.awt.Color(243, 59, 115));
         tgRegistroApellido.setText("Ingrese su apellido:");
 
         tgRegistroDNI.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgRegistroDNI.setForeground(new java.awt.Color(0, 0, 0));
+        tgRegistroDNI.setForeground(new java.awt.Color(243, 59, 115));
         tgRegistroDNI.setText("Ingrese su DNI:");
 
         tgRegistroEmail.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgRegistroEmail.setForeground(new java.awt.Color(0, 0, 0));
+        tgRegistroEmail.setForeground(new java.awt.Color(243, 59, 115));
         tgRegistroEmail.setText("Ingrese su e-mail:");
 
         txtRegistroNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -353,10 +390,13 @@ public class GUIMain extends javax.swing.JFrame {
         });
 
         tgRegistro.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
-        tgRegistro.setForeground(new java.awt.Color(0, 0, 0));
+        tgRegistro.setForeground(new java.awt.Color(243, 59, 115));
         tgRegistro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tgRegistro.setText("Bienvenido! Ingrese sus datos:");
+        tgRegistro.setText("¡Crea tu cuenta!");
 
+        btnAtrasRegistro.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasRegistro.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasRegistro.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasRegistro.setText("Atrás");
         btnAtrasRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,6 +404,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnRegistro.setBackground(new java.awt.Color(59, 243, 187));
+        btnRegistro.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnRegistro.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistro.setText("Registrarse");
         btnRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,13 +465,16 @@ public class GUIMain extends javax.swing.JFrame {
                     .addComponent(tgRegistroEmail))
                 .addGap(35, 35, 35)
                 .addComponent(btnRegistro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addComponent(btnAtrasRegistro)
                 .addContainerGap())
         );
 
-        pnMenuCliente.setBackground(new java.awt.Color(255, 51, 0));
+        pnMenuCliente.setBackground(new java.awt.Color(36, 36, 60));
 
+        btnAtrasMenuCliente.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasMenuCliente.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasMenuCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasMenuCliente.setText("Atrás");
         btnAtrasMenuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -436,6 +482,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnRealizarReserva.setBackground(new java.awt.Color(59, 243, 187));
+        btnRealizarReserva.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnRealizarReserva.setForeground(new java.awt.Color(0, 0, 0));
         btnRealizarReserva.setText("Hacer Reserva");
         btnRealizarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -443,6 +492,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnEliminarReserva.setBackground(new java.awt.Color(59, 243, 187));
+        btnEliminarReserva.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnEliminarReserva.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarReserva.setText("Eliminar Reserva");
         btnEliminarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,6 +502,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnModificarPerfilCliente.setBackground(new java.awt.Color(59, 243, 187));
+        btnModificarPerfilCliente.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnModificarPerfilCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnModificarPerfilCliente.setText("Modificar Perfil");
         btnModificarPerfilCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -457,38 +512,50 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        tgMenuCliente.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgMenuCliente.setForeground(new java.awt.Color(243, 59, 115));
+        tgMenuCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tgMenuCliente.setText("¡Crea tu cuenta!");
+
         javax.swing.GroupLayout pnMenuClienteLayout = new javax.swing.GroupLayout(pnMenuCliente);
         pnMenuCliente.setLayout(pnMenuClienteLayout);
         pnMenuClienteLayout.setHorizontalGroup(
             pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMenuClienteLayout.createSequentialGroup()
-                .addContainerGap(370, Short.MAX_VALUE)
-                .addGroup(pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRealizarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModificarPerfilCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(338, 338, 338))
             .addGroup(pnMenuClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAtrasMenuCliente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnMenuClienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnAtrasMenuCliente))
+                    .addGroup(pnMenuClienteLayout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addGroup(pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRealizarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnModificarPerfilCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(355, Short.MAX_VALUE))
+            .addComponent(tgMenuCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnMenuClienteLayout.setVerticalGroup(
             pnMenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMenuClienteLayout.createSequentialGroup()
-                .addGap(224, 224, 224)
+                .addGap(52, 52, 52)
+                .addComponent(tgMenuCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addComponent(btnRealizarReserva)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarReserva)
                 .addGap(18, 18, 18)
                 .addComponent(btnModificarPerfilCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addGap(204, 204, 204)
                 .addComponent(btnAtrasMenuCliente)
                 .addContainerGap())
         );
 
-        pnMenuAdmin.setBackground(new java.awt.Color(0, 255, 102));
+        pnMenuAdmin.setBackground(new java.awt.Color(36, 36, 60));
 
+        btnCrearHotelAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnCrearHotelAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnCrearHotelAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnCrearHotelAdmin.setText("Crear Hotel");
         btnCrearHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -496,6 +563,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnEliminarHotelAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnEliminarHotelAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnEliminarHotelAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarHotelAdmin.setText("Eliminar Hotel");
         btnEliminarHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -503,6 +573,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnModificarHotelAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnModificarHotelAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnModificarHotelAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnModificarHotelAdmin.setText("Modificar Hotel");
         btnModificarHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -510,13 +583,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
-        btnModificarReservasAdmin.setText("Modificar Reservas (clientes)");
-        btnModificarReservasAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarReservasAdminActionPerformed(evt);
-            }
-        });
-
+        btnEliminarClienteAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnEliminarClienteAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnEliminarClienteAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarClienteAdmin.setText("Eliminar Cliente");
         btnEliminarClienteAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -524,6 +593,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnCrearAdminAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnCrearAdminAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnCrearAdminAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnCrearAdminAdmin.setText("Crear Usuario Administrador");
         btnCrearAdminAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,6 +603,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnEliminarAdminAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnEliminarAdminAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnEliminarAdminAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarAdminAdmin.setText("Eliminar Usuario Administrador");
         btnEliminarAdminAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -538,12 +613,20 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnAtrasMenuAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasMenuAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasMenuAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasMenuAdmin.setText("Atrás");
         btnAtrasMenuAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasMenuAdminActionPerformed(evt);
             }
         });
+
+        tgMenuAdmin.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgMenuAdmin.setForeground(new java.awt.Color(243, 59, 115));
+        tgMenuAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tgMenuAdmin.setText("¡Crea tu cuenta!");
 
         javax.swing.GroupLayout pnMenuAdminLayout = new javax.swing.GroupLayout(pnMenuAdmin);
         pnMenuAdmin.setLayout(pnMenuAdminLayout);
@@ -552,54 +635,57 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(pnMenuAdminLayout.createSequentialGroup()
                 .addGroup(pnMenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnMenuAdminLayout.createSequentialGroup()
-                        .addGap(322, 322, 322)
-                        .addGroup(pnMenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCrearHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnModificarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnModificarReservasAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarClienteAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCrearAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)))
-                    .addGroup(pnMenuAdminLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnAtrasMenuAdmin)))
-                .addContainerGap(389, Short.MAX_VALUE))
+                        .addGroup(pnMenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnMenuAdminLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnAtrasMenuAdmin))
+                            .addGroup(pnMenuAdminLayout.createSequentialGroup()
+                                .addGap(354, 354, 354)
+                                .addGroup(pnMenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnCrearHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnModificarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarClienteAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCrearAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarAdminAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 351, Short.MAX_VALUE))
+                    .addComponent(tgMenuAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnMenuAdminLayout.setVerticalGroup(
             pnMenuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnMenuAdminLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(67, 67, 67)
+                .addComponent(tgMenuAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
                 .addComponent(btnCrearHotelAdmin)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarHotelAdmin)
                 .addGap(18, 18, 18)
                 .addComponent(btnModificarHotelAdmin)
                 .addGap(18, 18, 18)
-                .addComponent(btnModificarReservasAdmin)
-                .addGap(18, 18, 18)
                 .addComponent(btnEliminarClienteAdmin)
                 .addGap(18, 18, 18)
                 .addComponent(btnCrearAdminAdmin)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarAdminAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(btnAtrasMenuAdmin)
                 .addContainerGap())
         );
 
-        pnCrearHotelAdmin.setBackground(new java.awt.Color(255, 51, 102));
+        pnCrearHotelAdmin.setBackground(new java.awt.Color(36, 36, 60));
 
         tgNombreHotel.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgNombreHotel.setForeground(new java.awt.Color(0, 0, 0));
+        tgNombreHotel.setForeground(new java.awt.Color(243, 59, 115));
         tgNombreHotel.setText("Ingrese el nombre del hotel:");
 
         tgEstrellasHotel.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgEstrellasHotel.setForeground(new java.awt.Color(0, 0, 0));
+        tgEstrellasHotel.setForeground(new java.awt.Color(243, 59, 115));
         tgEstrellasHotel.setText("Ingrese la cantidad de estrellas del hotel:");
 
         tgCantHabitacionesHotel.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgCantHabitacionesHotel.setForeground(new java.awt.Color(0, 0, 0));
+        tgCantHabitacionesHotel.setForeground(new java.awt.Color(243, 59, 115));
         tgCantHabitacionesHotel.setText("Ingrese la cantidad de habitaciones:");
 
         txtNombreHotel.addActionListener(new java.awt.event.ActionListener() {
@@ -615,10 +701,13 @@ public class GUIMain extends javax.swing.JFrame {
         });
 
         tgCrearHotel.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
-        tgCrearHotel.setForeground(new java.awt.Color(0, 0, 0));
+        tgCrearHotel.setForeground(new java.awt.Color(243, 59, 115));
         tgCrearHotel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgCrearHotel.setText("Ingrese los datos del hotel: ");
 
+        btnAtrasCrearHotelAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasCrearHotelAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasCrearHotelAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasCrearHotelAdmin.setText("Atrás");
         btnAtrasCrearHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -626,6 +715,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnIngresarHotel.setBackground(new java.awt.Color(59, 243, 187));
+        btnIngresarHotel.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnIngresarHotel.setForeground(new java.awt.Color(0, 0, 0));
         btnIngresarHotel.setText("Ingresar Hotel");
         btnIngresarHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -637,57 +729,63 @@ public class GUIMain extends javax.swing.JFrame {
         pnCrearHotelAdmin.setLayout(pnCrearHotelAdminLayout);
         pnCrearHotelAdminLayout.setHorizontalGroup(
             pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tgCrearHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnCrearHotelAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAtrasCrearHotelAdmin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCrearHotelAdminLayout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
+                .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnCrearHotelAdminLayout.createSequentialGroup()
+                        .addComponent(btnAtrasCrearHotelAdmin)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCrearHotelAdminLayout.createSequentialGroup()
+                        .addComponent(tgCrearHotel, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(pnCrearHotelAdminLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
                 .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnIngresarHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnCrearHotelAdminLayout.createSequentialGroup()
                         .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tgCantHabitacionesHotel)
                             .addComponent(tgEstrellasHotel)
-                            .addComponent(tgNombreHotel)
-                            .addComponent(tgCantHabitacionesHotel))
-                        .addGap(101, 101, 101)
+                            .addComponent(tgNombreHotel))
+                        .addGap(105, 105, 105)
                         .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCantidadHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombreHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEstrellasHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(82, 82, 82))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnCrearHotelAdminLayout.setVerticalGroup(
             pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCrearHotelAdminLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(25, 25, 25)
                 .addComponent(tgCrearHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(72, 72, 72)
+                .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tgNombreHotel)
                     .addComponent(txtNombreHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tgEstrellasHotel)
-                    .addComponent(txtEstrellasHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstrellasHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tgEstrellasHotel))
                 .addGap(18, 18, 18)
                 .addGroup(pnCrearHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantidadHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgCantHabitacionesHotel))
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresarHotel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
                 .addComponent(btnAtrasCrearHotelAdmin)
                 .addContainerGap())
         );
 
-        pnEliminarHotelAdmin.setBackground(new java.awt.Color(0, 102, 102));
+        pnEliminarHotelAdmin.setBackground(new java.awt.Color(36, 36, 60));
 
         tgSeleccionaHotel2.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgSeleccionaHotel2.setForeground(new java.awt.Color(243, 59, 115));
         tgSeleccionaHotel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgSeleccionaHotel2.setText("Selecciona el hotel que desea eliminar");
 
+        tblEliminarHotelesAdmin.setBackground(new java.awt.Color(243, 59, 115));
         tblEliminarHotelesAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -712,6 +810,9 @@ public class GUIMain extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tblEliminarHotelesAdmin);
 
+        btnAtrasEliminarHotelAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasEliminarHotelAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasEliminarHotelAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasEliminarHotelAdmin.setText("Atrás");
         btnAtrasEliminarHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -729,10 +830,13 @@ public class GUIMain extends javax.swing.JFrame {
                     .addGroup(pnEliminarHotelAdminLayout.createSequentialGroup()
                         .addComponent(tgSeleccionaHotel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
                     .addGroup(pnEliminarHotelAdminLayout.createSequentialGroup()
                         .addComponent(btnAtrasEliminarHotelAdmin)
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnEliminarHotelAdminLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         pnEliminarHotelAdminLayout.setVerticalGroup(
             pnEliminarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,42 +844,22 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tgSeleccionaHotel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnAtrasEliminarHotelAdmin)
                 .addContainerGap())
         );
 
-        pnModificarHotelAdmin.setBackground(new java.awt.Color(51, 0, 204));
+        pnModificarHotelAdmin.setBackground(new java.awt.Color(36, 36, 60));
 
-        tgSeleccionaHotel3.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
-        tgSeleccionaHotel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tgSeleccionaHotel3.setText("Selecciona el hotel que desea modificar");
+        tgModificarHotel.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgModificarHotel.setForeground(new java.awt.Color(243, 59, 115));
+        tgModificarHotel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tgModificarHotel.setText("Seleccione el hotel que desea modificar:");
 
-        tblModificarHotelesAdmin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "Estrellas", "Habitaciones", "Hotel id"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblModificarHotelesAdmin.setToolTipText("");
-        tblModificarHotelesAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblModificarHotelesAdminMousePressed(evt);
-            }
-        });
-        jScrollPane5.setViewportView(tblModificarHotelesAdmin);
-
+        btnAtrasModificarHotelAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasModificarHotelAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasModificarHotelAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasModificarHotelAdmin.setText("Atrás");
         btnAtrasModificarHotelAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -783,104 +867,103 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        cbSelectorHotel.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                cbSelectorHotelPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+
+        tgNombreModificarHotel.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgNombreModificarHotel.setForeground(new java.awt.Color(243, 59, 115));
+        tgNombreModificarHotel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tgNombreModificarHotel.setText("Ingrese el nuevo nombre del hotel:");
+
+        tgEstrellasModificarHotel.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgEstrellasModificarHotel.setForeground(new java.awt.Color(243, 59, 115));
+        tgEstrellasModificarHotel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tgEstrellasModificarHotel.setText("Seleccione la cantidad de estrellas del hotel:");
+
+        btnModificarHotelChk.setBackground(new java.awt.Color(59, 243, 187));
+        btnModificarHotelChk.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnModificarHotelChk.setForeground(new java.awt.Color(0, 0, 0));
+        btnModificarHotelChk.setText("Modificar");
+        btnModificarHotelChk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarHotelChkActionPerformed(evt);
+            }
+        });
+
+        tgMenuAdmin1.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgMenuAdmin1.setForeground(new java.awt.Color(243, 59, 115));
+        tgMenuAdmin1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tgMenuAdmin1.setText("Modifica el hotel que quieras");
+
         javax.swing.GroupLayout pnModificarHotelAdminLayout = new javax.swing.GroupLayout(pnModificarHotelAdmin);
         pnModificarHotelAdmin.setLayout(pnModificarHotelAdminLayout);
         pnModificarHotelAdminLayout.setHorizontalGroup(
             pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnModificarHotelAdminLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnModificarHotelAdminLayout.createSequentialGroup()
-                        .addComponent(btnAtrasModificarHotelAdmin)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarHotelAdminLayout.createSequentialGroup()
-                        .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgSeleccionaHotel3, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap()
+                        .addComponent(btnAtrasModificarHotelAdmin))
+                    .addGroup(pnModificarHotelAdminLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnModificarHotelChk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tgModificarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pnModificarHotelAdminLayout.createSequentialGroup()
+                                    .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tgNombreModificarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tgEstrellasModificarHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(115, 115, 115)
+                                    .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtEstrellasHotelModificar)
+                                        .addComponent(txtNombreHotelModificar)
+                                        .addComponent(cbSelectorHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(0, 97, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarHotelAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tgMenuAdmin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnModificarHotelAdminLayout.setVerticalGroup(
             pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarHotelAdminLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tgSeleccionaHotel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(tgMenuAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tgModificarHotel)
+                    .addComponent(cbSelectorHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tgNombreModificarHotel)
+                    .addComponent(txtNombreHotelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnModificarHotelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tgEstrellasModificarHotel)
+                    .addComponent(txtEstrellasHotelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnModificarHotelChk)
+                .addGap(199, 199, 199)
                 .addComponent(btnAtrasModificarHotelAdmin)
                 .addContainerGap())
         );
 
-        pnModificarReservaAdmin_NoTocar.setBackground(new java.awt.Color(51, 0, 204));
-
-        tgSeleccionaHotel4.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
-        tgSeleccionaHotel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tgSeleccionaHotel4.setText("Selecciona el hotel que desea modificar");
-
-        tblHoteles3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "Estrellas", "Habitaciones", "Hotel id"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblHoteles3.setToolTipText("");
-        tblHoteles3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblHoteles3MousePressed(evt);
-            }
-        });
-        jScrollPane6.setViewportView(tblHoteles3);
-
-        btnAtrasMostrarHoteles3.setText("Atrás");
-        btnAtrasMostrarHoteles3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasMostrarHoteles3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnModificarReservaAdmin_NoTocarLayout = new javax.swing.GroupLayout(pnModificarReservaAdmin_NoTocar);
-        pnModificarReservaAdmin_NoTocar.setLayout(pnModificarReservaAdmin_NoTocarLayout);
-        pnModificarReservaAdmin_NoTocarLayout.setHorizontalGroup(
-            pnModificarReservaAdmin_NoTocarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnModificarReservaAdmin_NoTocarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnModificarReservaAdmin_NoTocarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnModificarReservaAdmin_NoTocarLayout.createSequentialGroup()
-                        .addComponent(tgSeleccionaHotel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
-                    .addGroup(pnModificarReservaAdmin_NoTocarLayout.createSequentialGroup()
-                        .addComponent(btnAtrasMostrarHoteles3)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        pnModificarReservaAdmin_NoTocarLayout.setVerticalGroup(
-            pnModificarReservaAdmin_NoTocarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarReservaAdmin_NoTocarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tgSeleccionaHotel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(btnAtrasMostrarHoteles3)
-                .addContainerGap())
-        );
-
-        pnEliminarClienteAdmin.setBackground(new java.awt.Color(102, 102, 102));
+        pnEliminarClienteAdmin.setBackground(new java.awt.Color(36, 36, 60));
 
         tgSeleccionaCliente.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgSeleccionaCliente.setForeground(new java.awt.Color(243, 59, 115));
         tgSeleccionaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgSeleccionaCliente.setText("Selecciona el cliente que desea eliminar");
 
+        tblClientesAdmin.setBackground(new java.awt.Color(243, 59, 115));
         tblClientesAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -899,12 +982,15 @@ public class GUIMain extends javax.swing.JFrame {
         });
         tblClientesAdmin.setToolTipText("");
         tblClientesAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblClientesAdminMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblClientesAdminMouseClicked(evt);
             }
         });
         jScrollPane7.setViewportView(tblClientesAdmin);
 
+        btnAtrasEliminarClienteAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasEliminarClienteAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasEliminarClienteAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasEliminarClienteAdmin.setText("Atrás");
         btnAtrasEliminarClienteAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -922,11 +1008,11 @@ public class GUIMain extends javax.swing.JFrame {
                     .addGroup(pnEliminarClienteAdminLayout.createSequentialGroup()
                         .addComponent(btnAtrasEliminarClienteAdmin)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnEliminarClienteAdminLayout.createSequentialGroup()
-                        .addGroup(pnEliminarClienteAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgSeleccionaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE))
-                        .addContainerGap())))
+                    .addComponent(tgSeleccionaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnEliminarClienteAdminLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         pnEliminarClienteAdminLayout.setVerticalGroup(
             pnEliminarClienteAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -934,28 +1020,28 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tgSeleccionaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnAtrasEliminarClienteAdmin)
                 .addContainerGap())
         );
 
-        pnCrearAdminAdmin.setBackground(new java.awt.Color(255, 204, 204));
+        pnCrearAdminAdmin.setBackground(new java.awt.Color(36, 36, 60));
 
         tgCrearAdminNombre.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgCrearAdminNombre.setForeground(new java.awt.Color(0, 0, 0));
+        tgCrearAdminNombre.setForeground(new java.awt.Color(243, 59, 115));
         tgCrearAdminNombre.setText("Ingrese su nombre:");
 
         tgCrearAdminApellido.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgCrearAdminApellido.setForeground(new java.awt.Color(0, 0, 0));
+        tgCrearAdminApellido.setForeground(new java.awt.Color(243, 59, 115));
         tgCrearAdminApellido.setText("Ingrese su apellido:");
 
         tgCrearAdminDNI.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgCrearAdminDNI.setForeground(new java.awt.Color(0, 0, 0));
+        tgCrearAdminDNI.setForeground(new java.awt.Color(243, 59, 115));
         tgCrearAdminDNI.setText("Ingrese su DNI:");
 
         tgCrearAdminEmail.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgCrearAdminEmail.setForeground(new java.awt.Color(0, 0, 0));
+        tgCrearAdminEmail.setForeground(new java.awt.Color(243, 59, 115));
         tgCrearAdminEmail.setText("Ingrese su e-mail:");
 
         txtCrearAdminNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -972,10 +1058,13 @@ public class GUIMain extends javax.swing.JFrame {
 
         tgCreacionAdmin.setBackground(new java.awt.Color(255, 255, 255));
         tgCreacionAdmin.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
-        tgCreacionAdmin.setForeground(new java.awt.Color(0, 0, 0));
+        tgCreacionAdmin.setForeground(new java.awt.Color(243, 59, 115));
         tgCreacionAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgCreacionAdmin.setText("Ingrese los datos del nuevo administrador:");
 
+        btnAtrasCrearAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasCrearAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasCrearAdmin.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasCrearAdmin.setText("Atrás");
         btnAtrasCrearAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -983,42 +1072,55 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnRegistroAdmin.setBackground(new java.awt.Color(59, 243, 187));
+        btnRegistroAdmin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnRegistroAdmin.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistroAdmin.setText("Registrar");
+        btnRegistroAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnCrearAdminAdminLayout = new javax.swing.GroupLayout(pnCrearAdminAdmin);
         pnCrearAdminAdmin.setLayout(pnCrearAdminAdminLayout);
         pnCrearAdminAdminLayout.setHorizontalGroup(
             pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tgCreacionAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tgCreacionAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
             .addGroup(pnCrearAdminAdminLayout.createSequentialGroup()
                 .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCrearAdminAdminLayout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tgCrearAdminApellido)
-                            .addComponent(tgCrearAdminNombre)
-                            .addComponent(tgCrearAdminEmail)
-                            .addComponent(tgCrearAdminDNI))
-                        .addGap(101, 101, 101)
-                        .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCrearAdminDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCrearAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCrearAdminNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCrearAdminApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnCrearAdminAdminLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnAtrasCrearAdmin)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                        .addComponent(btnAtrasCrearAdmin))
+                    .addGroup(pnCrearAdminAdminLayout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnRegistroAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnCrearAdminAdminLayout.createSequentialGroup()
+                                .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tgCrearAdminApellido)
+                                    .addComponent(tgCrearAdminNombre)
+                                    .addComponent(tgCrearAdminDNI)
+                                    .addComponent(tgCrearAdminEmail))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCrearAdminDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCrearAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCrearAdminNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCrearAdminApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnCrearAdminAdminLayout.setVerticalGroup(
             pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCrearAdminAdminLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(tgCreacionAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(71, 71, 71)
+                .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tgCrearAdminNombre)
                     .addComponent(txtCrearAdminNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tgCrearAdminApellido)
                     .addComponent(txtCrearAdminApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -1029,17 +1131,21 @@ public class GUIMain extends javax.swing.JFrame {
                 .addGroup(pnCrearAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCrearAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tgCrearAdminEmail))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegistroAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
                 .addComponent(btnAtrasCrearAdmin)
                 .addContainerGap())
         );
 
-        pnEliminarAdminAdmin.setBackground(new java.awt.Color(102, 102, 102));
+        pnEliminarAdminAdmin.setBackground(new java.awt.Color(36, 36, 60));
 
         tgEliminarAdminAdmin.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgEliminarAdminAdmin.setForeground(new java.awt.Color(243, 59, 115));
         tgEliminarAdminAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgEliminarAdminAdmin.setText("Selecciona el administrador que desea eliminar");
 
+        tblAdminAdmin.setBackground(new java.awt.Color(243, 59, 115));
         tblAdminAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1058,12 +1164,15 @@ public class GUIMain extends javax.swing.JFrame {
         });
         tblAdminAdmin.setToolTipText("");
         tblAdminAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblAdminAdminMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAdminAdminMouseClicked(evt);
             }
         });
         jScrollPane9.setViewportView(tblAdminAdmin);
 
+        btnAtrasEliminarClienteAdmin1.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasEliminarClienteAdmin1.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasEliminarClienteAdmin1.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasEliminarClienteAdmin1.setText("Atrás");
         btnAtrasEliminarClienteAdmin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1079,12 +1188,15 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnEliminarAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnEliminarAdminAdminLayout.createSequentialGroup()
-                        .addComponent(tgEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                        .addComponent(tgEliminarAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnEliminarAdminAdminLayout.createSequentialGroup()
                         .addComponent(btnAtrasEliminarClienteAdmin1)
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnEliminarAdminAdminLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 923, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         pnEliminarAdminAdminLayout.setVerticalGroup(
             pnEliminarAdminAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1092,18 +1204,22 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tgEliminarAdminAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnAtrasEliminarClienteAdmin1)
                 .addContainerGap())
         );
 
-        pnModificarClienteCliente.setBackground(new java.awt.Color(102, 102, 102));
+        pnModificarClienteCliente.setBackground(new java.awt.Color(36, 36, 60));
 
         tgModificarCliente.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgModificarCliente.setForeground(new java.awt.Color(243, 59, 115));
         tgModificarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgModificarCliente.setText("Seleccione los datos que desea modificar");
 
+        btnAtrasModificarClienteCliente.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasModificarClienteCliente.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasModificarClienteCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasModificarClienteCliente.setText("Atrás");
         btnAtrasModificarClienteCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1111,6 +1227,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnModificarCliente.setBackground(new java.awt.Color(59, 243, 187));
+        btnModificarCliente.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnModificarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnModificarCliente.setText("Modificar");
         btnModificarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1119,15 +1238,15 @@ public class GUIMain extends javax.swing.JFrame {
         });
 
         tgModificarClienteNombre.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgModificarClienteNombre.setForeground(new java.awt.Color(0, 0, 0));
+        tgModificarClienteNombre.setForeground(new java.awt.Color(243, 59, 115));
         tgModificarClienteNombre.setText("Ingrese su nombre:");
 
         tgModificarClienteApellido.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgModificarClienteApellido.setForeground(new java.awt.Color(0, 0, 0));
+        tgModificarClienteApellido.setForeground(new java.awt.Color(243, 59, 115));
         tgModificarClienteApellido.setText("Ingrese su apellido:");
 
         tgModificarClienteEmail.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
-        tgModificarClienteEmail.setForeground(new java.awt.Color(0, 0, 0));
+        tgModificarClienteEmail.setForeground(new java.awt.Color(243, 59, 115));
         tgModificarClienteEmail.setText("Ingrese su e-mail:");
 
         txtModificarClienteNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -1144,13 +1263,13 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
-                        .addComponent(tgModificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tgModificarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
                         .addComponent(btnAtrasModificarClienteCliente)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(pnModificarClienteClienteLayout.createSequentialGroup()
-                .addGap(201, 201, 201)
+                .addGap(211, 211, 211)
                 .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1166,14 +1285,14 @@ public class GUIMain extends javax.swing.JFrame {
                             .addComponent(tgModificarClienteApellido)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtModificarClienteApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 220, Short.MAX_VALUE))
+                .addGap(0, 211, Short.MAX_VALUE))
         );
         pnModificarClienteClienteLayout.setVerticalGroup(
             pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarClienteClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tgModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addGap(105, 105, 105)
                 .addGroup(pnModificarClienteClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tgModificarClienteNombre)
                     .addComponent(txtModificarClienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1187,17 +1306,19 @@ public class GUIMain extends javax.swing.JFrame {
                     .addComponent(txtModificarClienteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnModificarCliente)
-                .addGap(229, 229, 229)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addComponent(btnAtrasModificarClienteCliente)
                 .addContainerGap())
         );
 
-        pnMostrarHotelesCliente.setBackground(new java.awt.Color(0, 0, 255));
+        pnMostrarHotelesCliente.setBackground(new java.awt.Color(36, 36, 60));
 
         tgSeleccionaHotel.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgSeleccionaHotel.setForeground(new java.awt.Color(243, 59, 115));
         tgSeleccionaHotel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgSeleccionaHotel.setText("Selecciona el Hotel que deseas reservar!");
 
+        tblHoteles.setBackground(new java.awt.Color(243, 59, 115));
         tblHoteles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1222,6 +1343,9 @@ public class GUIMain extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblHoteles);
 
+        btnAtrasMostrarHoteles.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasMostrarHoteles.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAtrasMostrarHoteles.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasMostrarHoteles.setText("Atrás");
         btnAtrasMostrarHoteles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1237,12 +1361,15 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnMostrarHotelesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnMostrarHotelesClienteLayout.createSequentialGroup()
-                        .addComponent(tgSeleccionaHotel, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                        .addComponent(tgSeleccionaHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnMostrarHotelesClienteLayout.createSequentialGroup()
                         .addComponent(btnAtrasMostrarHoteles)
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMostrarHotelesClienteLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 923, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         pnMostrarHotelesClienteLayout.setVerticalGroup(
             pnMostrarHotelesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1250,18 +1377,20 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tgSeleccionaHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(btnAtrasMostrarHoteles)
                 .addContainerGap())
         );
 
-        pnHabitacionesCliente.setBackground(new java.awt.Color(153, 0, 153));
+        pnHabitacionesCliente.setBackground(new java.awt.Color(36, 36, 60));
 
         tgSeleccionaHabitacion.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgSeleccionaHabitacion.setForeground(new java.awt.Color(243, 59, 115));
         tgSeleccionaHabitacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgSeleccionaHabitacion.setText("Selecciona la habitación que deseas reservar!");
 
+        tblHabitaciones.setBackground(new java.awt.Color(243, 59, 115));
         tblHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1286,6 +1415,9 @@ public class GUIMain extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblHabitaciones);
 
+        btnAtrasHabitaciones.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasHabitaciones.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasHabitaciones.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasHabitaciones.setText("Atrás");
         btnAtrasHabitaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1301,11 +1433,14 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnHabitacionesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tgSeleccionaHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
                     .addGroup(pnHabitacionesClienteLayout.createSequentialGroup()
                         .addComponent(btnAtrasHabitaciones)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHabitacionesClienteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 924, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         pnHabitacionesClienteLayout.setVerticalGroup(
             pnHabitacionesClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1313,8 +1448,8 @@ public class GUIMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tgSeleccionaHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(btnAtrasHabitaciones)
                 .addContainerGap())
         );
@@ -1329,21 +1464,36 @@ public class GUIMain extends javax.swing.JFrame {
         tgCancelarReserva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgCancelarReserva.setText("Seleccione la reserva que desea cancelar !");
 
-        jTable1.setBackground(new java.awt.Color(48, 44, 76));
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCancelarReserva.setBackground(new java.awt.Color(243, 59, 115));
+        tblCancelarReserva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblCancelarReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Dia Inicio", "Mes Inicio", "Año Inicio", "Dia Fin", "Mes Fin", "Año Fin", "Hotel", "Habitacion"
+                "Dia Inicio", "Mes Inicio", "Año Inicio", "Dia Fin", "Mes Fin", "Año Fin", "Hotel", "Habitacion", "Id Reserva"
             }
-        ));
-        jScrollPane3.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
 
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblCancelarReserva.setCellSelectionEnabled(true);
+        tblCancelarReserva.setFocusable(false);
+        tblCancelarReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCancelarReservaMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblCancelarReserva);
+
+        btnAtrasCancelarReserva.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasCancelarReserva.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasCancelarReserva.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasCancelarReserva.setText("Atrás");
         btnAtrasCancelarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1356,11 +1506,14 @@ public class GUIMain extends javax.swing.JFrame {
         pnCancelarReservaClienteLayout.setHorizontalGroup(
             pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCancelarReservaClienteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(pnCancelarReservaClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(tgCancelarReserva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCancelarReservaClienteLayout.createSequentialGroup()
+                .addGroup(pnCancelarReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tgCancelarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE)
+                    .addGroup(pnCancelarReservaClienteLayout.createSequentialGroup()
                         .addComponent(btnAtrasCancelarReserva)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -1370,33 +1523,49 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(pnCancelarReservaClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tgCancelarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(btnAtrasCancelarReserva)
                 .addContainerGap())
         );
 
-        pnCrearReservaCliente.setBackground(new java.awt.Color(153, 255, 153));
+        pnCrearReservaCliente.setBackground(new java.awt.Color(36, 36, 60));
         pnCrearReservaCliente.setMaximumSize(new java.awt.Dimension(972, 600));
         pnCrearReservaCliente.setPreferredSize(new java.awt.Dimension(972, 600));
 
+        tgDiaReserva.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgDiaReserva.setForeground(new java.awt.Color(243, 59, 115));
         tgDiaReserva.setText("Dia de inicio de la reserva:");
 
+        tgMesReservaInicio.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgMesReservaInicio.setForeground(new java.awt.Color(243, 59, 115));
         tgMesReservaInicio.setText("Mes de inicio de la reserva:");
 
+        tgAnioReservaInicio.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgAnioReservaInicio.setForeground(new java.awt.Color(243, 59, 115));
         tgAnioReservaInicio.setText("Año de inicio de la reserva:");
 
+        tgMesReservaFin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgMesReservaFin.setForeground(new java.awt.Color(243, 59, 115));
         tgMesReservaFin.setText("Mes de finalizacion de la reserva:");
 
+        tgAnioReservaFin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgAnioReservaFin.setForeground(new java.awt.Color(243, 59, 115));
         tgAnioReservaFin.setText("Año de finalizacion de la reserva:");
 
+        tgDiaReservaFin.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        tgDiaReservaFin.setForeground(new java.awt.Color(243, 59, 115));
         tgDiaReservaFin.setText("Dia de finalizacion de la reserva:");
 
         tgSetReserva.setFont(new java.awt.Font("Google Sans", 0, 24)); // NOI18N
+        tgSetReserva.setForeground(new java.awt.Color(243, 59, 115));
         tgSetReserva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tgSetReserva.setText("Ingrese la fecha de inicio y finalizacion de la reserva");
 
+        btnAtrasCrearReserva.setBackground(new java.awt.Color(59, 243, 187));
+        btnAtrasCrearReserva.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnAtrasCrearReserva.setForeground(new java.awt.Color(0, 0, 0));
         btnAtrasCrearReserva.setText("Atrás");
         btnAtrasCrearReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1404,6 +1573,9 @@ public class GUIMain extends javax.swing.JFrame {
             }
         });
 
+        btnCrearReserva.setBackground(new java.awt.Color(59, 243, 187));
+        btnCrearReserva.setFont(new java.awt.Font("Google Sans", 0, 14)); // NOI18N
+        btnCrearReserva.setForeground(new java.awt.Color(0, 0, 0));
         btnCrearReserva.setText("Crear Reserva");
         btnCrearReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1418,14 +1590,14 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tgSetReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tgSetReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
                     .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
                         .addComponent(btnAtrasCrearReserva)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCrearReservaClienteLayout.createSequentialGroup()
-                .addContainerGap(367, Short.MAX_VALUE)
-                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCrearReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnCrearReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
                         .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1444,14 +1616,14 @@ public class GUIMain extends javax.swing.JFrame {
                             .addComponent(spnAnioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spnDiaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spnMesInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(245, 245, 245))
+                .addGap(305, 305, 305))
         );
         pnCrearReservaClienteLayout.setVerticalGroup(
             pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(tgSetReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(50, 50, 50)
                 .addGroup(pnCrearReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCrearReservaClienteLayout.createSequentialGroup()
                         .addComponent(tgDiaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1479,7 +1651,7 @@ public class GUIMain extends javax.swing.JFrame {
                         .addComponent(spnAnioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addComponent(btnCrearReserva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(btnAtrasCrearReserva)
                 .addContainerGap())
         );
@@ -1508,8 +1680,6 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnModificarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnModificarReservaAdmin_NoTocar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnEliminarClienteAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCrearAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1528,11 +1698,9 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(pnInicioSesion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 1, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(pnMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(pnMostrarHotelesCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1543,26 +1711,22 @@ public class GUIMain extends javax.swing.JFrame {
                 .addComponent(pnRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnCancelarReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                    .addComponent(pnCancelarReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnCrearHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(pnEliminarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 2, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(pnModificarHotelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(pnModificarReservaAdmin_NoTocar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 2, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(pnEliminarClienteAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 2, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(pnCrearAdminAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1578,7 +1742,7 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnMenuAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnCrearReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE))
+                .addComponent(pnCrearReservaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
         );
 
         pack();
@@ -1603,6 +1767,7 @@ public class GUIMain extends javax.swing.JFrame {
             
             ClienteDTO clienteDTO = serviceCliente.buscarClienteDNI(dni);
             clienteSesionActual = clienteDTO;
+            tgMenuCliente.setText("Bienvenido/a " + clienteSesionActual.getNombre() + ". ¿Qué harás hoy?");
             seleccionarVista(2);
             
         } catch (Exception ex) {
@@ -1611,6 +1776,7 @@ public class GUIMain extends javax.swing.JFrame {
                 
                 AdminDTO adminDTO = serviceAdmin.buscarAdminDNI(dni);
                 adminSesionActual = adminDTO;
+                 tgMenuAdmin.setText("Bienvenido/a " + adminSesionActual.getNombre() + ". ¿Qué harás hoy?");
                 seleccionarVista(11);
                 
             } catch (Exception e) {
@@ -1747,32 +1913,60 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantidadHabitacionesActionPerformed
 
     private void tblEliminarHotelesAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEliminarHotelesAdminMousePressed
-        // TODO add your handling code here:
+        
+        List <HabitacionDTO> habitaciones = serviceHabitacion.obtenerHabitacionesPorHotelId( 
+                Integer.parseInt(tblEliminarHotelesAdmin.getValueAt(tblEliminarHotelesAdmin.getSelectedRow(), 3).toString()));
+        
+        List <ReservaDTO> reservas = serviceReserva.obtenerReservasPorHotelId(
+                Integer.parseInt(tblEliminarHotelesAdmin.getValueAt(tblEliminarHotelesAdmin.getSelectedRow(), 3).toString()));
+        
+        try {
+            serviceHotel.eliminarHotel(tblEliminarHotelesAdmin.getValueAt(tblEliminarHotelesAdmin.getSelectedRow(), 0).toString());
+            
+            for (int i = 0; i < habitaciones.size(); i++){
+                serviceHabitacion.eliminarHabitacion( habitaciones.get(i).getIdHabitacion());    
+            }
+            
+            for (ReservaDTO reserva : reservas){
+                
+                serviceReserva.eliminarReserva(reserva.getIdReserva());
+                
+            }
+            
+            JOptionPane.showMessageDialog(this, "Se Ha Eliminado El Hotel Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ServiceExceptions ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        DefaultTableModel tModel = (DefaultTableModel) this.tblEliminarHotelesAdmin.getModel();
+
+        List<HotelDTO> hoteles = serviceHotel.obtenerHoteles();
+
+        tModel.setRowCount(0);
+
+        for (HotelDTO hotel : hoteles) {
+
+            String nombre = hotel.getNombre();
+            int cantidadEstrellas = hotel.getEstrellas();
+            int cantidadHabitaciones = hotel.getCantidadHabitaciones();
+            int hotelId = hotel.getIdHotel();
+
+            Object[] objetoTabla = new Object[]{nombre, cantidadEstrellas, cantidadHabitaciones, hotelId};
+
+            tModel.addRow(objetoTabla);
+
+        }
+        
     }//GEN-LAST:event_tblEliminarHotelesAdminMousePressed
 
     private void btnAtrasEliminarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasEliminarHotelAdminActionPerformed
         seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasEliminarHotelAdminActionPerformed
 
-    private void tblModificarHotelesAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblModificarHotelesAdminMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblModificarHotelesAdminMousePressed
-
     private void btnAtrasModificarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasModificarHotelAdminActionPerformed
         seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasModificarHotelAdminActionPerformed
-
-    private void tblHoteles3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoteles3MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblHoteles3MousePressed
-
-    private void btnAtrasMostrarHoteles3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasMostrarHoteles3ActionPerformed
-        seleccionarVista(11);
-    }//GEN-LAST:event_btnAtrasMostrarHoteles3ActionPerformed
-
-    private void tblClientesAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesAdminMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblClientesAdminMousePressed
 
     private void btnAtrasEliminarClienteAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasEliminarClienteAdminActionPerformed
         seleccionarVista(11);
@@ -1796,17 +1990,12 @@ public class GUIMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnModificarPerfilClienteActionPerformed
 
-    private void tblAdminAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAdminAdminMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblAdminAdminMousePressed
-
     private void btnAtrasEliminarClienteAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasEliminarClienteAdmin1ActionPerformed
         seleccionarVista(11);
     }//GEN-LAST:event_btnAtrasEliminarClienteAdmin1ActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
 
-        boolean flag = true;
         boolean aux = true;
         String nombreCliente = txtRegistroNombre.getText();
         String ApellidoCliente = txtRegistroApellido.getText();
@@ -1816,24 +2005,24 @@ public class GUIMain extends javax.swing.JFrame {
         try {
 
             aux = serviceCliente.registrarCliente(nombreCliente, ApellidoCliente, DNICliente, emailCliente);
-
+            
+            clienteSesionActual = serviceCliente.buscarClienteDNI(DNICliente);
+            
+            seleccionarVista(2);
+            JOptionPane.showMessageDialog(this, "Cuenta Registrada Con Éxito", "ÉXITO   ", JOptionPane.INFORMATION_MESSAGE);
+            
+            tgMenuCliente.setText("Bienvenido/a " + clienteSesionActual.getNombre() + ". ¿Qué harás hoy?");
+            
         } catch (ServiceExceptions ex) {
 
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            flag = false;
-        }
-
-        if (flag) {
-
-            seleccionarVista(2);
-
-            JOptionPane.showMessageDialog(this, "Cuenta Registrada Con Éxito", "ÉXITO   ", JOptionPane.INFORMATION_MESSAGE);
-
-        } else {
-
             seleccionarVista(14);
-
+            
+        } catch (Exception ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            seleccionarVista(14);
         }
 
     }//GEN-LAST:event_btnRegistroActionPerformed
@@ -1891,34 +2080,66 @@ public class GUIMain extends javax.swing.JFrame {
 
     private void btnEliminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarReservaActionPerformed
         seleccionarVista(16);
+
+        DefaultTableModel tModel = (DefaultTableModel) this.tblCancelarReserva.getModel();
+
+        List<ReservaDTO> reservas = serviceReserva.obtenerReservasClienteId(clienteSesionActual.getIdCliente());
+
+        tModel.setRowCount(0);
+
+        for (ReservaDTO reserva : reservas) {
+
+            try {
+                int anioInicio = reserva.getFechaInicio().getYear();
+                int mesInicio = reserva.getFechaInicio().getMonthValue();
+                int diaInicio = reserva.getFechaInicio().getDayOfMonth();
+
+                int anioFin = reserva.getFechaFin().getYear();
+                int mesFin = reserva.getFechaFin().getMonthValue();
+                int diaFin = reserva.getFechaFin().getDayOfMonth();
+
+                int hotelId = reserva.getIdHotel();
+                System.out.println(hotelId);
+                String nombreHotel = serviceHotel.obtenerHotelYHabitaciones(hotelId).getNombre();
+
+                int habitacion = reserva.getIdHabitacion();
+
+                Object[] objetoTabla = new Object[]{diaInicio, mesInicio, anioInicio, diaFin, mesFin, anioFin, nombreHotel, habitacion, reserva.getIdReserva()};
+
+                tModel.addRow(objetoTabla);
+
+            } catch (ServiceExceptions ex) {
+                Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
     }//GEN-LAST:event_btnEliminarReservaActionPerformed
 
     private void btnAtrasModificarClienteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasModificarClienteClienteActionPerformed
-        
+
         seleccionarVista(2);
     }//GEN-LAST:event_btnAtrasModificarClienteClienteActionPerformed
 
     private void btnModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClienteActionPerformed
-        
+
         String nombreNuevo = txtModificarClienteNombre.getText();
         String apellidoNuevo = txtModificarClienteApellido.getText();
         String emailNuevo = txtModificarClienteEmail.getText();
-        
+
         try {
-            
-            System.out.println(clienteSesionActual.getDNI());
-            
-            serviceCliente.actualizarCliente(clienteSesionActual.getDNI(), nombreNuevo, apellidoNuevo, clienteSesionActual.getDNI(), emailNuevo);
+
+            clienteSesionActual = serviceCliente.actualizarCliente(clienteSesionActual.getDNI(), nombreNuevo, apellidoNuevo, clienteSesionActual.getDNI(), emailNuevo);
             JOptionPane.showMessageDialog(this, "Cuenta Modificada Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
-            
+
         } catch (Exception ex) {
             Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         txtModificarClienteNombre.setText(clienteSesionActual.getNombre());
         txtModificarClienteApellido.setText(clienteSesionActual.getApellido());
         txtModificarClienteEmail.setText(clienteSesionActual.getEmail());
-        
+
     }//GEN-LAST:event_btnModificarClienteActionPerformed
 
     private void txtModificarClienteNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModificarClienteNombreActionPerformed
@@ -1933,7 +2154,46 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasMenuAdminActionPerformed
 
     private void btnEliminarAdminAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAdminAdminActionPerformed
+
         seleccionarVista(8);
+        List<AdminDTO> admins = serviceAdmin.obtenerAdmins();
+        String dniABuscar = "123";
+
+        try {
+            Iterator<AdminDTO> iterator = admins.iterator();
+            boolean encontrado = false;
+
+            while (iterator.hasNext()) {
+                AdminDTO admin = iterator.next();
+                if (admin.getDNI().equals(dniABuscar)) {
+                    iterator.remove(); // Elimina el admin directamente con el iterator
+                    encontrado = true;
+                    break; // Salimos del bucle una vez que encontramos y eliminamos
+                }
+            }
+
+            if (!encontrado) {
+                JOptionPane.showMessageDialog(this, "Admin no encontrado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+        DefaultTableModel tModel = (DefaultTableModel) this.tblAdminAdmin.getModel();
+        tModel.setRowCount(0);
+
+        for (AdminDTO admin : admins) {
+            String nombre = admin.getNombre();
+            String apellido = admin.getApellido();
+            String dni = admin.getDNI();
+            String email = admin.getEmail();
+
+            Object[] objetoTabla = new Object[]{nombre, apellido, dni, email};
+            tModel.addRow(objetoTabla);
+        }
+
     }//GEN-LAST:event_btnEliminarAdminAdminActionPerformed
 
     private void btnCrearAdminAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAdminAdminActionPerformed
@@ -1941,20 +2201,67 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearAdminAdminActionPerformed
 
     private void btnEliminarClienteAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteAdminActionPerformed
+        
         seleccionarVista(9);
+        
+        List<ClienteDTO> clientes = serviceCliente.obtenerClientes();
+        DefaultTableModel tModel = (DefaultTableModel) this.tblClientesAdmin.getModel();
+        tModel.setRowCount(0);
+        
+        for (ClienteDTO cliente : clientes){
+            
+            String nombre = cliente.getNombre();
+            String apellido = cliente.getApellido();
+            String dni = cliente.getDNI();
+            String email = cliente.getEmail();
+            
+            Object[] objetoTabla = new Object[]{nombre, apellido, dni, email};
+            tModel.addRow(objetoTabla);
+
+        }
+
     }//GEN-LAST:event_btnEliminarClienteAdminActionPerformed
 
-    private void btnModificarReservasAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarReservasAdminActionPerformed
-        seleccionarVista(15);
-    }//GEN-LAST:event_btnModificarReservasAdminActionPerformed
-
     private void btnModificarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarHotelAdminActionPerformed
-        seleccionarVista(13); // PREGUNTAR SAMPE
+        
+        seleccionarVista(13);
+        
+        cbSelectorHotel.removeAllItems();
+        List<HotelDTO> hoteles = serviceHotel.obtenerHoteles();
+
+        for (HotelDTO hotel : hoteles) {
+
+            String NombreHotel = hotel.getNombre();
+
+            cbSelectorHotel.addItem(NombreHotel);
+
+        }
+
+
     }//GEN-LAST:event_btnModificarHotelAdminActionPerformed
 
     private void btnEliminarHotelAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHotelAdminActionPerformed
 
         seleccionarVista(10);
+
+        DefaultTableModel tModel = (DefaultTableModel) this.tblEliminarHotelesAdmin.getModel();
+
+        List<HotelDTO> hoteles = serviceHotel.obtenerHoteles();
+
+        tModel.setRowCount(0);
+
+        for (HotelDTO hotel : hoteles) {
+
+            String nombre = hotel.getNombre();
+            int cantidadEstrellas = hotel.getEstrellas();
+            int cantidadHabitaciones = hotel.getCantidadHabitaciones();
+            int hotelId = hotel.getIdHotel();
+
+            Object[] objetoTabla = new Object[]{nombre, cantidadEstrellas, cantidadHabitaciones, hotelId};
+
+            tModel.addRow(objetoTabla);
+
+        }
 
     }//GEN-LAST:event_btnEliminarHotelAdminActionPerformed
 
@@ -1963,21 +2270,40 @@ public class GUIMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearHotelAdminActionPerformed
 
     private void btnAtrasCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCancelarReservaActionPerformed
-        seleccionarVista(11);
+        seleccionarVista(2);
     }//GEN-LAST:event_btnAtrasCancelarReservaActionPerformed
 
     private void btnIngresarHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarHotelActionPerformed
+     
+        HotelDTO hotelCreado = null;
+        Random random = new Random();
         
         String nombreHotel = txtNombreHotel.getText();
         String cantidadEstrellasHotelString = txtEstrellasHotel.getText();
-        int cantidadEstrellasHotel = Integer.parseInt(nombreHotel);
+        int cantidadEstrellasHotel = Integer.parseInt(cantidadEstrellasHotelString);
         String cantidadHabitacionesString = txtCantidadHabitaciones.getText();
-        int cantidadHabitaciones = Integer.parseInt(cantidadEstrellasHotelString);
+        int cantidadHabitaciones = Integer.parseInt(cantidadHabitacionesString);
         
         try {
             serviceHotel.ingresarHotel(nombreHotel, cantidadEstrellasHotel);
-            JOptionPane.showMessageDialog(this, "Hotel Creado Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
         } catch (ServiceExceptions ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            hotelCreado = serviceHotel.buscarHotelPorNombre(nombreHotel);
+        } catch (ServiceExceptions ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            for (int i = 0; i < cantidadHabitaciones; i++){  
+                serviceHabitacion.ingresarHabitacion(hotelCreado.getIdHotel(), random.nextInt(8) + 1 );
+            }
+             JOptionPane.showMessageDialog(this, "El Hotel Ha Sido Creado Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2005,6 +2331,224 @@ public class GUIMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearReservaActionPerformed
 
+    private void tblCancelarReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCancelarReservaMouseClicked
+  
+        DefaultTableModel tModel = (DefaultTableModel) this.tblCancelarReserva.getModel();
+        
+        int reservaId = (int) tblCancelarReserva.getValueAt(tblCancelarReserva.getSelectedRow(), 8);
+
+        try {
+            serviceReserva.eliminarReserva(reservaId);
+        } catch (ServiceExceptions ex) {
+            
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        List<ReservaDTO> reservas = serviceReserva.obtenerReservasClienteId(clienteSesionActual.getIdCliente());
+
+        tModel.setRowCount(0);
+
+        for (ReservaDTO reserva : reservas) {
+
+            try {
+                int anioInicio = reserva.getFechaInicio().getYear();
+                int mesInicio = reserva.getFechaInicio().getMonthValue();
+                int diaInicio = reserva.getFechaInicio().getDayOfMonth();
+
+                int anioFin = reserva.getFechaFin().getYear();
+                int mesFin = reserva.getFechaFin().getMonthValue();
+                int diaFin = reserva.getFechaFin().getDayOfMonth();
+
+                int hotelId = reserva.getIdHotel();
+                System.out.println(hotelId);
+                String nombreHotel = serviceHotel.obtenerHotelYHabitaciones(hotelId).getNombre();
+
+                int habitacion = reserva.getIdHabitacion();
+
+                Object[] objetoTabla = new Object[]{diaInicio, mesInicio, anioInicio, diaFin, mesFin, anioFin, nombreHotel, habitacion, reserva.getIdReserva()};
+
+                tModel.addRow(objetoTabla);
+
+            } catch (ServiceExceptions ex) {
+                Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+
+    }//GEN-LAST:event_tblCancelarReservaMouseClicked
+
+    private void btnModificarHotelChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarHotelChkActionPerformed
+        
+        String nombreHotelNuevo = txtNombreHotelModificar.getText();
+        String estrellasHotelNuevo = txtEstrellasHotelModificar.getText();
+        
+        String nombreHotel = cbSelectorHotel.getSelectedItem().toString();
+        
+        System.out.println(nombreHotel);
+        
+        try {
+            HotelDTO hotelAModificar = serviceHotel.obtenerHotelYHabitacionesPorNombre(nombreHotel);
+            serviceHotel.ActualizarEstrellasHotel(nombreHotel, Integer.parseInt(estrellasHotelNuevo));
+            serviceHotel.ActualizarNombreHotel(hotelAModificar.getNombre(), nombreHotelNuevo);
+            JOptionPane.showMessageDialog(this, "El Hotel Ha Sido Modificado Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ServiceExceptions ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnModificarHotelChkActionPerformed
+
+    private void cbSelectorHotelPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbSelectorHotelPopupMenuWillBecomeInvisible
+        
+        String nombreHotel = cbSelectorHotel.getSelectedItem().toString();
+        
+        try {
+            
+            HotelDTO hotelAModificar = serviceHotel.obtenerHotelYHabitacionesPorNombre(nombreHotel);
+            
+            String estrellasHotel  = String.valueOf(hotelAModificar.getEstrellas());
+            
+            txtNombreHotelModificar.setText(hotelAModificar.getNombre());
+            txtEstrellasHotelModificar.setText(estrellasHotel);
+            
+        } catch (ServiceExceptions ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_cbSelectorHotelPopupMenuWillBecomeInvisible
+
+    private void tblClientesAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesAdminMouseClicked
+
+        ClienteDTO clienteEliminar = null;
+        try {
+            clienteEliminar = serviceCliente.buscarClienteDNI(tblClientesAdmin.getValueAt(tblClientesAdmin.getSelectedRow(), 2).toString());
+        } catch (Exception ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        List <ReservaDTO> reservas = serviceReserva.obtenerReservasClienteId(clienteEliminar.getIdCliente());
+        
+        try {
+            serviceCliente.eliminarCliente(tblClientesAdmin.getValueAt(tblClientesAdmin.getSelectedRow(), 2).toString());
+            
+            for (ReservaDTO reserva : reservas){
+                
+                serviceReserva.eliminarReserva(reserva.getIdReserva());
+                
+            }
+            
+            JOptionPane.showMessageDialog(this, "Se Ha Eliminado El Cliente Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ServiceExceptions ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        DefaultTableModel tModel = (DefaultTableModel) this.tblClientesAdmin.getModel();
+
+        List<ClienteDTO> clientes = serviceCliente.obtenerClientes();
+        tModel.setRowCount(0);
+        
+        for (ClienteDTO cliente : clientes){
+            
+            String nombre = cliente.getNombre();
+            String apellido = cliente.getApellido();
+            String dni = cliente.getDNI();
+            String email = cliente.getEmail();
+            
+            Object[] objetoTabla = new Object[]{nombre, apellido, dni, email};
+            tModel.addRow(objetoTabla);
+            
+        }
+        
+    }//GEN-LAST:event_tblClientesAdminMouseClicked
+
+    private void btnRegistroAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAdminActionPerformed
+        boolean flag = true;
+        boolean aux = true;
+        String nombreAdmin = txtCrearAdminNombre.getText();
+        String apellidoAdmin = txtCrearAdminApellido.getText();
+        String DNIAdmin = txtCrearAdminDNI.getText();
+        String emailAdmin = txtCrearAdminEmail.getText();
+
+        try {
+
+            aux = serviceAdmin.registrarAdmin(nombreAdmin, apellidoAdmin, DNIAdmin, emailAdmin);
+
+        } catch (ServiceExceptions ex) {
+
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            flag = false;
+        }
+
+        if (flag) {
+
+            seleccionarVista(11);
+
+            JOptionPane.showMessageDialog(this, "Cuenta Registrada Con Éxito", "ÉXITO   ", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            seleccionarVista(6);
+
+        }
+
+    
+    }//GEN-LAST:event_btnRegistroAdminActionPerformed
+
+    private void tblAdminAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAdminAdminMouseClicked
+       AdminDTO adminEliminar = null;
+       
+        try {
+            serviceAdmin.eliminarAdmin(tblAdminAdmin.getValueAt(tblAdminAdmin.getSelectedRow(), 2).toString());
+            JOptionPane.showMessageDialog(this, "Se Ha Eliminado El Admin Con Éxito", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ServiceExceptions ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        List<AdminDTO> admins = serviceAdmin.obtenerAdmins();
+        String dniABuscar = "123";
+
+        try {
+            Iterator<AdminDTO> iterator = admins.iterator();
+            boolean encontrado = false;
+
+            while (iterator.hasNext()) {
+                AdminDTO admin = iterator.next();
+                if (admin.getDNI().equals(dniABuscar)) {
+                    iterator.remove(); // Elimina el admin directamente con el iterator
+                    encontrado = true;
+                    break; // Salimos del bucle una vez que encontramos y eliminamos
+                }
+            }
+
+            if (!encontrado) {
+                JOptionPane.showMessageDialog(this, "Admin no encontrado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(GUIMain.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+        DefaultTableModel tModel = (DefaultTableModel) this.tblAdminAdmin.getModel();
+        tModel.setRowCount(0);
+
+        for (AdminDTO admin : admins) {
+            String nombre = admin.getNombre();
+            String apellido = admin.getApellido();
+            String dni = admin.getDNI();
+            String email = admin.getEmail();
+
+            Object[] objetoTabla = new Object[]{nombre, apellido, dni, email};
+            tModel.addRow(objetoTabla);
+        }
+    }//GEN-LAST:event_tblAdminAdminMouseClicked
+
     private void seleccionarVista(int index) {
 
         pnInicioSesion1.setVisible(false); //0
@@ -2022,7 +2566,6 @@ public class GUIMain extends javax.swing.JFrame {
         pnModificarClienteCliente.setVisible(false);  //12
         pnModificarHotelAdmin.setVisible(false);  //13
         pnRegistro.setVisible(false);  //14
-        pnModificarReservaAdmin_NoTocar.setVisible(false); //15
         pnCancelarReservaCliente.setVisible(false);  //16
 
         switch (index){
@@ -2102,11 +2645,6 @@ public class GUIMain extends javax.swing.JFrame {
                 pnRegistro.setVisible(true);
                 break;
                 
-            case 15 : 
-                
-                pnModificarReservaAdmin_NoTocar.setVisible(true);
-                break;
-                
             case 16 : 
                 
                 pnCancelarReservaCliente.setVisible(true);
@@ -2162,7 +2700,7 @@ public class GUIMain extends javax.swing.JFrame {
     private ServiceReserva serviceReserva = new ServiceReserva();
     private ServiceHabitacion serviceHabitacion = new ServiceHabitacion();
     private ServiceCliente serviceCliente = new ServiceCliente();
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtrasCancelarReserva;
     private javax.swing.JButton btnAtrasCrearAdmin;
@@ -2178,7 +2716,6 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JButton btnAtrasModificarClienteCliente;
     private javax.swing.JButton btnAtrasModificarHotelAdmin;
     private javax.swing.JButton btnAtrasMostrarHoteles;
-    private javax.swing.JButton btnAtrasMostrarHoteles3;
     private javax.swing.JButton btnAtrasRegistro;
     private javax.swing.JButton btnCrearAdminAdmin;
     private javax.swing.JButton btnCrearHotelAdmin;
@@ -2190,23 +2727,22 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresarHotel;
     private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnModificarHotelAdmin;
+    private javax.swing.JButton btnModificarHotelChk;
     private javax.swing.JButton btnModificarPerfilCliente;
-    private javax.swing.JButton btnModificarReservasAdmin;
     private javax.swing.JButton btnNo;
     private javax.swing.JButton btnRealizarReserva;
     private javax.swing.JButton btnRegistro;
+    private javax.swing.JButton btnRegistroAdmin;
     private javax.swing.JButton btnSi;
     private javax.swing.JButton btnVerificarDni;
+    private javax.swing.JComboBox<String> cbSelectorHotel;
     private javax.swing.JDialog dlgNoSeEncontroPersona;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel pnCancelarReservaCliente;
     private javax.swing.JPanel pnCrearAdminAdmin;
     private javax.swing.JPanel pnCrearHotelAdmin;
@@ -2221,7 +2757,6 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JPanel pnMenuCliente;
     private javax.swing.JPanel pnModificarClienteCliente;
     private javax.swing.JPanel pnModificarHotelAdmin;
-    private javax.swing.JPanel pnModificarReservaAdmin_NoTocar;
     private javax.swing.JPanel pnMostrarHotelesCliente;
     private javax.swing.JPanel pnRegistro;
     private javax.swing.JSpinner spnAnioFinal;
@@ -2231,12 +2766,11 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JSpinner spnMesFinal;
     private javax.swing.JSpinner spnMesInicio;
     private javax.swing.JTable tblAdminAdmin;
+    private javax.swing.JTable tblCancelarReserva;
     private javax.swing.JTable tblClientesAdmin;
     private javax.swing.JTable tblEliminarHotelesAdmin;
     private javax.swing.JTable tblHabitaciones;
     private javax.swing.JTable tblHoteles;
-    private javax.swing.JTable tblHoteles3;
-    private javax.swing.JTable tblModificarHotelesAdmin;
     private javax.swing.JLabel tgAnioReservaFin;
     private javax.swing.JLabel tgAnioReservaInicio;
     private javax.swing.JLabel tgCancelarReserva;
@@ -2253,13 +2787,19 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JLabel tgDniPresente;
     private javax.swing.JLabel tgEliminarAdminAdmin;
     private javax.swing.JLabel tgEstrellasHotel;
+    private javax.swing.JLabel tgEstrellasModificarHotel;
+    private javax.swing.JLabel tgMenuAdmin;
+    private javax.swing.JLabel tgMenuAdmin1;
+    private javax.swing.JLabel tgMenuCliente;
     private javax.swing.JLabel tgMesReservaFin;
     private javax.swing.JLabel tgMesReservaInicio;
     private javax.swing.JLabel tgModificarCliente;
     private javax.swing.JLabel tgModificarClienteApellido;
     private javax.swing.JLabel tgModificarClienteEmail;
     private javax.swing.JLabel tgModificarClienteNombre;
+    private javax.swing.JLabel tgModificarHotel;
     private javax.swing.JLabel tgNombreHotel;
+    private javax.swing.JLabel tgNombreModificarHotel;
     private javax.swing.JLabel tgRegistro;
     private javax.swing.JLabel tgRegistroApellido;
     private javax.swing.JLabel tgRegistroDNI;
@@ -2269,10 +2809,9 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JLabel tgSeleccionaHabitacion;
     private javax.swing.JLabel tgSeleccionaHotel;
     private javax.swing.JLabel tgSeleccionaHotel2;
-    private javax.swing.JLabel tgSeleccionaHotel3;
-    private javax.swing.JLabel tgSeleccionaHotel4;
     private javax.swing.JLabel tgSetReserva;
     private javax.swing.JLabel tgTienesCuenta;
+    private javax.swing.JLabel tgTienesCuenta1;
     private javax.swing.JTextField txtCantidadHabitaciones;
     private javax.swing.JTextField txtCrearAdminApellido;
     private javax.swing.JTextField txtCrearAdminDNI;
@@ -2280,10 +2819,12 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JTextField txtCrearAdminNombre;
     private javax.swing.JTextField txtDniCheck;
     private javax.swing.JTextField txtEstrellasHotel;
+    private javax.swing.JTextField txtEstrellasHotelModificar;
     private javax.swing.JTextField txtModificarClienteApellido;
     private javax.swing.JTextField txtModificarClienteEmail;
     private javax.swing.JTextField txtModificarClienteNombre;
     private javax.swing.JTextField txtNombreHotel;
+    private javax.swing.JTextField txtNombreHotelModificar;
     private javax.swing.JTextField txtRegistroApellido;
     private javax.swing.JTextField txtRegistroDNI;
     private javax.swing.JTextField txtRegistroEmail;

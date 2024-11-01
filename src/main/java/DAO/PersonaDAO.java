@@ -137,7 +137,7 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
     @Override
     public List<Cliente> obtenerClientes() {
         List<Cliente> clientes = new ArrayList<>();
-        String query = "SELECT nombre, apellido, DNI FROM Persona WHERE ROL = \"USER\"";
+        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona WHERE ROL = \"USER\"";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Cliente cliente = new Cliente(rs.getInt("persona_id"),
@@ -303,7 +303,6 @@ public class PersonaDAO extends BaseDAO implements PersonaDAOInterface {
 
                 cliente.setApellido(apellidoActualizar);
                 cliente.setNombre(nombreActualizar);
-                cliente.setDNI(DNIActualizar);
                 cliente.setEmail(email);
                 logger.info("Cliente actualizado correctamente");
             } else {
@@ -357,7 +356,7 @@ rametro que recibe el metodo para actualizar en la columna "nombre" en la BD el 
     @Override
     public List<Admin> obtenerAdmins() {
         List<Admin> admins = new ArrayList<>();
-        String query = "SELECT nombre, apellido, DNI FROM Persona WHERE ROL = \"ADMIN\"";
+        String query = "SELECT persona_id, nombre, apellido, DNI, email FROM Persona WHERE ROL = \"ADMIN\"";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Admin admin = new Admin(rs.getInt("persona_id"),
@@ -552,7 +551,7 @@ rametro que recibe el metodo para actualizar en la columna "nombre" en la BD el 
         if (admin == null) {
             logger.info("No se ha encontrado ningun administrador con ese DNI");
         }
-        String query = "DELETE from Persona where DNI = ? AND ROL = ADMIN";
+        String query = "DELETE from Persona where DNI = ? AND ROL =\"ADMIN\"";
         try (Connection conn = ConnectionBD.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, DNI);
             pstmt.executeUpdate();

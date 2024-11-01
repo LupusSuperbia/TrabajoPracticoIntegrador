@@ -315,8 +315,9 @@ public class ReservaDAO extends BaseDAO implements ReservaDAOInterface {
             LocalDate fechaFin = LocalDate.parse(fechaFinStr);
 
             Reserva reserva = new Reserva(rs.getInt("reserva_id"),
-                    rs.getInt("hotel_id"), rs.getInt("habitacion_id"),
                     rs.getInt("cliente_id"),
+                    rs.getInt("hotel_id"),
+                    rs.getInt("habitacion_id"),
                     fechaInicio,
                     fechaFin,
                     rs.getString("estado"));

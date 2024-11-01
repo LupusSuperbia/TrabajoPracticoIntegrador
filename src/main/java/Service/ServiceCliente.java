@@ -109,7 +109,7 @@ public class ServiceCliente extends ServiceBase{
                 cliente.getNombre(),
                 cliente.getApellido(),
                 cliente.getDNI(), 
-               cliente.getEmail()
+               cliente.getEmail(),
                 cliente.getRol());
     }
     

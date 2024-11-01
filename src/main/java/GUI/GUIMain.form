@@ -60,7 +60,7 @@
               <Component id="pnRegistro" alignment="1" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="6" groupAlignment="0" attributes="0">
-              <Component id="pnCancelarReservaCliente" alignment="0" max="32767" attributes="0"/>
+              <Component id="pnCancelarReservaCliente" alignment="0" pref="1000" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="7" groupAlignment="0" attributes="0">
               <Component id="pnCrearHotelAdmin" alignment="1" max="32767" attributes="0"/>
@@ -87,7 +87,7 @@
               <Component id="pnMenuAdmin" alignment="1" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="15" groupAlignment="0" attributes="0">
-              <Component id="pnCrearReservaCliente" alignment="0" max="32767" attributes="0"/>
+              <Component id="pnCrearReservaCliente" alignment="0" pref="1000" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,7 +117,7 @@
           </Group>
           <Group type="103" rootIndex="6" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="pnCancelarReservaCliente" max="32767" attributes="0"/>
+                  <Component id="pnCancelarReservaCliente" pref="609" max="32767" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -2235,7 +2235,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tgCancelarReserva" pref="1006" max="32767" attributes="0"/>
+                      <Component id="tgCancelarReserva" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnAtrasCancelarReserva" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -2252,7 +2252,7 @@
                   <Component id="tgCancelarReserva" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
                   <Component id="btnAtrasCancelarReserva" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

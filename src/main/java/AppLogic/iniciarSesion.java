@@ -30,23 +30,26 @@ public class iniciarSesion {
     menuAdmin AdminMenu = new menuAdmin();
     String Rol = "";
     String DNI;
-    
+
     public void IniciarSesion() {
         do {
             System.out.println("¿Tienes cuenta?, si ya tienes presiona un distinto de N.");
             if (!"N".equals(leer.next().toUpperCase())) {
                 try {
                     Rol = Inicio();
-
+                    System.out.println(Rol);
                     if (Rol != "") {
                         System.out.println("¡Se inició sesion correctamente!");
-                        if(Rol == "USER")
-                        clienteDato = servicioCliente.buscarClienteDNI(DNI);
-                        menuCliente.mostrarMenuCliente(clienteDato);
-                        if(Rol == "ADMIN")
-                        AdminDato = servicioAdmin.buscarAdminDNI(DNI);
-                        AdminMenu.menu(AdminDato);
-                    }else{
+                        if (Rol.trim() == "USER") {
+                            clienteDato = servicioCliente.buscarClienteDNI(DNI);
+                            menuCliente.mostrarMenuCliente(clienteDato);
+                        }
+                        if (Rol.trim() == "ADMIN") {
+                            AdminDato = servicioAdmin.buscarAdminDNI(DNI);
+                            AdminMenu.menu(AdminDato);
+                        }
+                        
+                    } else {
                     }
                 } catch (ServiceExceptions e) {
                     System.out.println(e.getMessage());
@@ -74,14 +77,14 @@ public class iniciarSesion {
                 System.out.println("Ingresa tu DNI para ver si estas en el sistema, o 0 para salir.");
                 DNI = leer.next();
                 Rol = servicioCliente.obtenerRol(DNI);
-                if(Rol == "" && DNI != "0"){
+                if (Rol == "" && DNI != "0") {
                     System.out.println("No se encontro persona por DNI");
                 }
             } catch (ServiceExceptions e) {
                 System.out.println(e);
             }
         } while (Rol == "" && DNI != "0");
-        if(DNI == "0"){
+        if (DNI == "0") {
             return "";
         }
         return Rol;

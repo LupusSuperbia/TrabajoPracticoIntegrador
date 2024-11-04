@@ -4,16 +4,12 @@
  */
 package AppLogic;
 
-import DAO.HabitacionesDAO;
-import DAO.HotelDAO;
 import DAO.PersonaDAO;
-import DAO.ReservaDAO;
 import DTO.ClienteDTO;
 import DTO.HabitacionDTO;
 import DTO.HotelDTO;
 import DTO.ReservaDTO;
 import Model.Hotel;
-import Model.Reserva;
 import Service.ServiceHabitacion;
 import Service.ServiceHotel;
 import Service.ServiceReserva;
@@ -84,7 +80,7 @@ public class MenuCliente {
                     break;
                 case 7:
                     obtenerReservaPorCliente(cliente);
-                   break;
+                    break;
                 default:
                     System.out.println("Dato invalido.");
                     break;
@@ -134,10 +130,10 @@ public class MenuCliente {
             comprobacion = serviceReserva.crearReserva(habitacion.getIdHabitacion(), habitacion.getIdHotel(), cliente.getIdCliente(), LocalDate.of(anio, mes, dia), LocalDate.of(anioFin, mesFin, diaFin));
         } while (comprobacion == false);
     }
-    
-    public void obtenerReservaPorCliente(ClienteDTO cliente){
+
+    public void obtenerReservaPorCliente(ClienteDTO cliente) {
         List<ReservaDTO> reservas = serviceReserva.obtenerReservasClienteId(cliente.getIdCliente());
-        for(ReservaDTO reserva: reservas){
+        for (ReservaDTO reserva : reservas) {
             System.out.println(reserva);
         }
     }

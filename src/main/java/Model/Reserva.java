@@ -89,8 +89,6 @@ public class Reserva {
         return estado;
     }
 
-    
-
     @Override
     public String toString() {
         return "{Reserva : {"

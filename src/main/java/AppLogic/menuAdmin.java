@@ -9,7 +9,7 @@ import DAO.ReservaDAO;
 import DTO.AdminDTO;
 import DTO.ClienteDTO;
 import DTO.HotelDTO;
-import DTO.ReservaDTO;
+import DTO.ReservaDTO;  
 import Exceptions.ServiceExceptions;
 import Model.Reserva;
 import Service.ServiceAdmin;
@@ -34,7 +34,6 @@ public class menuAdmin {
     ServiceReserva servicioReserva = new ServiceReserva();
     ReservaDAO reservaDAO = new ReservaDAO();
     ReservaDTO reserva;
-    boolean flag = true;
     int option = 0;
     AdminDTO admin;
 
@@ -96,10 +95,10 @@ public class menuAdmin {
         System.out.println("Ingresa el nombre a asignarle al hotel");
         String nombre = leer.next();
         int estrellas;
-        System.out.println("Ingresa la cantidad su estrellas.");
+        System.out.println("Ingresa la cantidad de estrellas.");
         do {
             estrellas = leer.nextInt();
-            if (estrellas < 1) {
+            if (estrellas < 1 || estrellas > 5) {
                 System.out.println("Numero invalido, ingresa de nuevo porfavor.");
             }
         } while (estrellas < 1);
@@ -143,7 +142,7 @@ public class menuAdmin {
                     System.out.println("Ingresa la cantidad de estrellas que deseas ponerle.");
                     System.out.println("Este hotel tiene " + hotel.getEstrellas() + " estrellas.");
                     nuevasEstrellas = leer.nextInt();
-                    if (nuevasEstrellas < 1) {
+                    if (nuevasEstrellas < 1 || nuevasEstrellas > 5) {
                         System.out.println("Valor no valido");
                     } else if (nuevasEstrellas == hotel.getEstrellas()) {
                         System.out.println("Este hotel ya tiene estas estrellas.");
@@ -151,6 +150,13 @@ public class menuAdmin {
                         servicioHotel.ActualizarEstrellasHotel(nombre, nuevasEstrellas);
                     }
                     break;
+                default:
+                    System.out.println("Ingresó un valor invalido.");
+                    break;
+                case 0: 
+                    System.out.println("Eligio salir.");
+                    break;
+                            
             }
 
         } while (opcion != 0);
@@ -160,7 +166,7 @@ public class menuAdmin {
     public void modificarEstadoReserva() {
         int numeroReserva;
         String estado;
-        System.out.println("Ingresa el id de la reserva que necesitas modificar");
+        System.out.println("Ingresa el id de la reserva que necesitas modificar.");
         System.out.println("Si no conoces el numero de la reserva, ingresa 0, sino ingresala directamente.");
         numeroReserva = leer.nextInt();
         if (numeroReserva == 0) {
@@ -229,6 +235,7 @@ public class menuAdmin {
                 servicioCliente.eliminarCliente(DNI);
             } else {
                 System.out.println("No se ha encontrado cliente con ese DNI.");
+                DNI = "0";
             }
         } while (DNI != "0");
     }

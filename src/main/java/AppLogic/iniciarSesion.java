@@ -33,7 +33,7 @@ public class iniciarSesion {
 
     public void IniciarSesion() {
         do {
-            System.out.println("¿Tienes cuenta?, si ya tienes presiona un distinto de N.");
+            System.out.println("¿Tienes cuenta?, si ya tienes, presiona un distinto de N.");
             if (!"N".equals(leer.next().toUpperCase())) {
                 try {
                     Rol = Inicio();
@@ -48,7 +48,7 @@ public class iniciarSesion {
                             AdminDato = servicioAdmin.buscarAdminDNI(DNI);
                             AdminMenu.menu(AdminDato);
                         }
-                        
+
                     } else {
                     }
                 } catch (ServiceExceptions e) {
